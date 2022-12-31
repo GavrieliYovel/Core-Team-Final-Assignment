@@ -1,5 +1,4 @@
 const axios = require('axios');
-const {response} = require("express");
 
 exports.experimentController = {
     createExperiment(req, res) {
@@ -16,6 +15,39 @@ exports.experimentController = {
             })
             .catch(mock => {
                 res.send(newExperiment);
+            })
+    },
+    updateExperiment(req, res) {
+        let updatedExperiment = {
+            experimentId: req.body.experimentId,
+            params: req.body.params
+        }
+        axios.put('https://growth.render.com/experiment/update', updatedExperiment)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                res.send(updatedExperiment);
+            })
+    },
+    experimentStatistics(req , res) {
+        axios.get(`https://growth.render.com/experiment/${req.params.id}/statistics`)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                res.send(`Statistics data from experiment ${req.params.id}`);
+            })
+    },
+    endExperiment(req, res) {
+        axios.post(`https://growth.render.com/experiment/${req.params.id}/statistics`, {
+            experimentId: req.body.experimentId
+        })
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                res.send(`experiment ${req.params.id} ended`);
             })
     }
 }

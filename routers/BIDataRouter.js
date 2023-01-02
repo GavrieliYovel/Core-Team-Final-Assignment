@@ -2,15 +2,7 @@ const { Router } = require("express");
 const {BIDataController} = require("../controllers/BIDataController");
 
 
-
 const BIDataRouter = new Router();
-
-//GET
-//Get registered users per day/month
-// BIDataRouter.get();
-
-//Get total credits usage per day/month per user
-
 
 //Billing BI
 BIDataRouter.get("/MRR/:month", BIDataController.getMRR );

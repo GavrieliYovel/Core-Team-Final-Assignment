@@ -1,20 +1,30 @@
 const axios = require('axios');
+const ExperimentRepository = require('../repositories/experimentRepository');
+const experimentRepository = new ExperimentRepository();
 
 exports.experimentController = {
     createExperiment(req, res) {
         let newExperiment = {
+            name: req.body.name,
+            account: req.body.account,
             type: req.body.type,
-            hypotheses: req.body.hypotheses,
-            attributes: req.body.attributes,
-            conditions: req.body.conditions,
-            goals: req.body.goals
+            test_attributes: req.body.test_attributes,
+            variant_success_count: req.body.variant_success_count,
+            traffic_percentage: req.body.traffic_percentage,
+            call_count: req.body.call_count,
+            status: req.body.status,
+            start_time: req.body.start_time,
+            end_time: req.body.end_time,
+            variants: req.body.variants
         }
+
         axios.post('https://growth.render.com/experiment/new', newExperiment)
             .then(response => {
                 res.send(response.data);
             })
             .catch(mock => {
-                res.send(newExperiment);
+                const id = experimentRepository.createExperiment(newExperiment);
+                res.send(experimentRepository.getExperimentById(id));
             })
     },
     updateExperiment(req, res) {
@@ -48,6 +58,26 @@ exports.experimentController = {
             })
             .catch(mock => {
                 res.send(`experiment ${req.params.id} ended`);
+            })
+    },
+    experimentsByAccount(req, res) {
+        axios.get(`https://growth.render.com/experiment/${req.params.account}`)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                const data = experimentRepository.getExperimentByAccount(req.params.account);
+                res.send(data);
+            })
+    },
+    deleteExperiment(req, res) {
+        axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                experimentRepository.deleteExperiment(req.params.id);
+                res.send(`experiment ${req.params.id} deleted`);
             })
     }
 }

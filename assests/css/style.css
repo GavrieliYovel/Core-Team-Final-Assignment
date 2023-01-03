@@ -8344,7 +8344,6 @@ a[data-toggle="collapse"] {
   height: 60px;
 }
 .head-card {
-  width: 350px;
   height: 100%;
   background: white;
   border-radius: 35px;
@@ -8401,13 +8400,59 @@ a[data-toggle="collapse"] {
 
 .card {
   margin: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 300px;
   background: white;
   padding: 30px;
   border: none;
   box-shadow: 5px 5px 3px #d4d4d4b7;
+}
+
+.sidebar-box {
+  text-align: center;
+  color: #5a6268;
+  position: relative;
+  height: 222px;
+  background: #f5f7fe;
+  border-radius: 25px;
+}
+
+.hoop {
+  height: 89px;
+  width: 89px;
+  background: #f5f7fe;
+  border: 5px solid #3445b4;
+  border-radius: 50%;
+  position: absolute;
+  left: 64px;
+  top: -47px;
+}
+
+.inner-hoop {
+  height: 41px;
+  width: 41px;
+  background: #3445b4;
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.inner-inner-hoop {
+  height: 26px;
+  width: 41px;
+  border-radius: 50%;
+  background: #f5f7fe;
+
+}
+
+
+
+
+.calendar {
+  padding: 8px;
+  background: #f5f7fe;
+  border-radius: 8px;
+  border: none;
 }
 
 

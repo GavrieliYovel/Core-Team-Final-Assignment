@@ -8441,14 +8441,14 @@ table {
 th, td {
   text-align: center;
   padding: 10px;
-  font-size: 12px;
+  font-size: 15px;
   color: #4e555b;
 
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+/*tr:nth-child(even) {*/
+/*  background-color: #f2f2f2;*/
+/*}*/
 
 .sidebar-box {
   text-align: center;
@@ -8498,7 +8498,10 @@ tr:nth-child(even) {
   border: none;
 }
 
-
+.badge{
+  font-size: 15px;
+  font-weight: 400;
+}
 
 
 

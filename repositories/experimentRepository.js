@@ -39,6 +39,21 @@ module.exports = class experimentRepository extends EventEmitter {
         return experiments;
     }
 
+    getExperimentById(id) {
+        const experiment = this.data.find(item => item.experimentId == id);
+        return experiment;
+    }
+
+    getABTestByAccount(account) {
+        const experiments = this.data.filter(item => (item.account == account && item.type == "a-b"));
+        return experiments;
+    }
+
+    getFeatureFlagByAccount(account) {
+        const experiments = this.data.filter(item => (item.account == account && item.type == "feature-flag"));
+        return experiments;
+    }
+
     createExperiment(payload) {
         let newID = 1;
         if (this.data.length > 0)
@@ -67,12 +82,44 @@ module.exports = class experimentRepository extends EventEmitter {
         return newID;
     }
 
-    getExperimentById(experimentId) {
-        return this.data.find(item => item.experimentId == experimentId);
-    }
-
     deleteExperiment(experimentId) {
         this.data = this.data.filter(experiment => experiment.experimentId != experimentId);
         this.emit('updateData');
+    }
+
+    updateExperiment(payload, id) {
+        // let updatedExperiment = this.data.find(item => item.id == id);
+        if(payload.hasOwnProperty("test_attributes")) {
+            this.data.find(item => item.experimentId == id).test_attributes = payload.test_attributes;
+        }
+        if(payload.hasOwnProperty("variant_success_count")) {
+            this.data.find(item => item.experimentId == id).variant_success_count = payload.variant_success_count;
+        }
+        if(payload.hasOwnProperty("name")) {
+            this.data.find(item => item.experimentId == id).name = payload.name;
+        }
+        if(payload.hasOwnProperty("name")) {
+            this.data.find(item => item.experimentId == id).test_attributes = payload.test_attributes;
+        }
+        if(payload.hasOwnProperty("type")) {
+            this.data.find(item => item.experimentId == id).type = payload.type;
+        }
+        if(payload.hasOwnProperty("traffic_percentage")) {
+            this.data.find(item => item.experimentId == id).traffic_percentage = payload.traffic_percentage;
+        }
+        if(payload.hasOwnProperty("call_count")) {
+            this.data.find(item => item.experimentId == id).call_count = payload.call_count;
+        }
+        if(payload.hasOwnProperty("status")) {
+            this.data.find(item => item.experimentId == id).status = payload.status;
+        }
+        if(payload.hasOwnProperty("end_time")) {
+            this.data.find(item => item.experimentId == id).end_time = payload.end_time;
+        }
+
+        // this.data.find(item => item.id == id) = updatedExperiment;
+        this.emit('updateData');
+        return this.data.find(item => item.experimentId == id)
+
     }
 }

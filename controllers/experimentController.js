@@ -28,15 +28,12 @@ exports.experimentController = {
             })
     },
     updateExperiment(req, res) {
-        let updatedExperiment = {
-            experimentId: req.body.experimentId,
-            params: req.body.params
-        }
-        axios.put('https://growth.render.com/experiment/update', updatedExperiment)
+        axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
             .then(response => {
                 res.send(response.data);
             })
             .catch(mock => {
+                const updatedExperiment = experimentRepository.updateExperiment(req.body, req.params.id);
                 res.send(updatedExperiment);
             })
     },
@@ -70,6 +67,26 @@ exports.experimentController = {
                 res.send(data);
             })
     },
+    ABTestByAccount(req, res) {
+        axios.get(`https://growth.render.com/experiment/AB/${req.params.account}`)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                const data = experimentRepository.getABTestByAccount(req.params.account);
+                res.send(data);
+            })
+    },
+    FeatureFlagByAccount(req, res) {
+        axios.get(`https://growth.render.com/experiment/FF/${req.params.account}`)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                const data = experimentRepository.getFeatureFlagByAccount(req.params.account);
+                res.send(data);
+            })
+    },
     deleteExperiment(req, res) {
         axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
             .then(response => {
@@ -78,6 +95,30 @@ exports.experimentController = {
             .catch(mock => {
                 experimentRepository.deleteExperiment(req.params.id);
                 res.send(`experiment ${req.params.id} deleted`);
+            })
+    },
+    callExperiment(req, res) {
+        axios.post(`https://growth.render.com/experiment/${req.params.id}`)
+            .then(response => {
+                res.send(response.data);
+            })
+            .catch(mock => {
+                const type = experimentRepository.getExperimentById(req.params.id).type;
+                if(type == "a-b") {
+                    Math.random() < 0.5 ? res.send("A") : res.send("B");
+                } else {
+                    res.send("feature-flag")
+                }
+
+            })
+    },
+    declareGoal(req, res) {
+        axios.post(`https://growth.render.com/experiment/goal/${req.params.id}`)
+            .then(response => {
+                res.send("declared goal");
+            })
+            .catch(mock => {
+                res.send("declared goal");
             })
     }
 }

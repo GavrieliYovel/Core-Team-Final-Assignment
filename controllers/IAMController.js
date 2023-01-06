@@ -73,6 +73,7 @@ exports.IAMController = {
                 res.send(response.data)
             })
             .catch(mock => {
+                console.log(mock)
                 res.send("fail")
             })
     },

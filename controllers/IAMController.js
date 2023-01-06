@@ -21,11 +21,11 @@ exports.IAMController = {
     },
     getDetails(req,res) {
         console.log(req.cookies.jwt);
-        axios.get("https://iam-shenkar.onrender.com/assets/features"), {
+        axios.get("https://iam-shenkar.onrender.com/assets/features", {
             headers: {
                 'Content-Type' : 'application/json'
             }
-        }
+        })
             .then(response => {
                     res.send(response.data)
             })

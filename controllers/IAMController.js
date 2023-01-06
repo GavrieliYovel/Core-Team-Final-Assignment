@@ -24,7 +24,11 @@ exports.IAMController = {
             })
     },
     getDetails(req,res) {
-        axios.get("https://iam-shenkar.onrender.com/assets/features")
+        axios.get("https://iam-shenkar.onrender.com/assets/features"), {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
             .then(response => {
                     res.send(response.data)
             })

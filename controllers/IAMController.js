@@ -13,8 +13,11 @@ exports.IAMController = {
             })
             .then(response => {
                 console.log(response.data);
-                console.log(response.cookies);
-                res.send("success")
+                console.log(response.headers);
+                console.log(response.set);
+                console.log(req.cookies);
+                res.cookie(response.headers["set-cookie"]);
+                res.send("success");
             })
             .catch(mock => {
                 res.send("fail")

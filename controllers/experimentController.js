@@ -4,26 +4,12 @@ const experimentRepository = new ExperimentRepository();
 
 exports.experimentController = {
     createExperiment(req, res) {
-        let newExperiment = {
-            name: req.body.name,
-            account: req.body.account,
-            type: req.body.type,
-            test_attributes: req.body.test_attributes,
-            variant_success_count: req.body.variant_success_count,
-            traffic_percentage: req.body.traffic_percentage,
-            call_count: req.body.call_count,
-            status: req.body.status,
-            start_time: req.body.start_time,
-            end_time: req.body.end_time,
-            variants: req.body.variants
-        }
-
-        axios.post('https://growth.render.com/experiment/new', newExperiment)
+        axios.post('https://growth.render.com/experiment/new', req.body)
             .then(response => {
                 res.send(response.data);
             })
             .catch(mock => {
-                const id = experimentRepository.createExperiment(newExperiment);
+                const id = experimentRepository.createExperiment(req.body);
                 res.send(experimentRepository.getExperimentById(id));
             })
     },
@@ -98,14 +84,14 @@ exports.experimentController = {
             })
     },
     callExperiment(req, res) {
-        axios.post(`https://growth.render.com/experiment/${req.params.id}`)
+        axios.post(`https://growth.render.com/experiment/${req.params.id}`, req)
             .then(response => {
                 res.send(response.data);
             })
             .catch(mock => {
-                const type = experimentRepository.getExperimentById(req.params.id).type;
-                if(type == "a-b") {
-                    Math.random() < 0.5 ? res.send("A") : res.send("B");
+                const experiment = experimentRepository.getExperimentById(req.params.id);
+                if(experiment.type == "a-b") {
+                    Math.random() < 0.5 ? res.send(experiment.variants.A) : res.send(experiment.variants.B);
                 } else {
                     res.send("feature-flag")
                 }
@@ -113,7 +99,7 @@ exports.experimentController = {
             })
     },
     declareGoal(req, res) {
-        axios.post(`https://growth.render.com/experiment/goal/${req.params.id}`)
+        axios.post(`https://growth.render.com/experiment/goal/${req.params.id}`, req)
             .then(response => {
                 res.send("declared goal");
             })

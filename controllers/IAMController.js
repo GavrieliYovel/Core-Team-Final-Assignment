@@ -6,8 +6,14 @@ exports.IAMController = {
         axios.post("https://iam-shenkar.onrender.com/auth/login", {
             "email": req.body.email,
             "password": req.body.password
-        })
+        }, {
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
             .then(response => {
+                console.log(response.data);
+                console.log(response.cookies);
                 res.send("success")
             })
             .catch(mock => {

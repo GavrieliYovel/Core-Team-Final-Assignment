@@ -23,10 +23,12 @@ exports.IAMController = {
         console.log(req.cookies.jwt);
         axios.get("https://iam-shenkar.onrender.com/assets/features", {
             headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
             }
         })
             .then(response => {
+                    console.log(response.headers["set-cookie"]);
                     res.send(response.data)
             })
             .catch(mock => {
@@ -40,6 +42,7 @@ exports.IAMController = {
             }
         })
             .then(response => {
+                console.log(response.headers["set-cookie"]);
                 res.send(response.data)
             })
             .catch(mock => {

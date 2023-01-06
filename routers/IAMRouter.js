@@ -8,5 +8,6 @@ IAMRouter.post('/login', IAMController.login);
 // IAMRouter.get('/register', IAMController.IAMregister);
 IAMRouter.get('/details', IAMController.getDetails)
 IAMRouter.get('/token', IAMController.getToken)
+IAMRouter.get('/credits', IAMController.getCredit)
 
 module.exports = { IAMRouter };

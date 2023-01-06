@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Liran Michaelov",
+    "password": "123456",
+    "plan": "free",
+    "assets": {
+      "credits": "50",
+      "seats": "0"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Gilad Schneider",
+    "password": "123456",
+    "plan": "free",
+    "credits": 50
+  },
+  {
+    "id": 3,
+    "name": "Liran Michaelov",
+    "password": "123456",
+    "plan": "free",
+    "assets": {
+      "credits": "50",
+      "seats": "0"
+    }
+  }
+]

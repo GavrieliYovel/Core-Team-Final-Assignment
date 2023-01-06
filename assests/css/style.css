@@ -8315,7 +8315,7 @@ a[data-toggle="collapse"] {
   color: rgba(255, 255, 255, 0.5); }
 
 .form-control {
-  height: 40px !important;
+  /*height: 40px !important;*/
   background: #fff;
   color: #000;
   font-size: 13px;
@@ -8400,10 +8400,10 @@ a[data-toggle="collapse"] {
   align-self: center;
 }
 .card {
-  margin: 10px;
+  margin: 5px;
   display: flex;
   background: white;
-  padding: 15px;
+  padding: 10px;
   /*min-height: 300px;*/
   /*min-width: 300px;*/
   border: none;
@@ -8503,6 +8503,38 @@ th, td {
   font-weight: 400;
 }
 
+.experiment-input {
+  border: 1px solid #d4d4d4b7;
+  width: 100%;
+  height: 60px;
+  box-shadow: none !important;
+  border-radius: 5px;
+}
+
+.form-floating label {
+  margin-left: 12px;
+}
+
+option {
+  color: #d4d4d4b7;
+}
+
+.experiment-input:focus {
+  border: 2px solid #3445b4 !important;
+}
+
+.add-button {
+  height: calc(3.5rem + 2px);;
+  width: 100%;
+  background: white;
+  color: #878787;
+  border: 1px solid #d4d4d4b7;
+}
+
+.add-bitton:hover {
+  border: 2px solid #3445b4;
+  color: #3445b4;
+}
 
 
 

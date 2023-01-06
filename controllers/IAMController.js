@@ -63,7 +63,7 @@ exports.IAMController = {
             })
     },
     setCredit(req,res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/credits/1`, {
+        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`,{}, {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
@@ -77,7 +77,7 @@ exports.IAMController = {
             })
     },
     setSeat(req,res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/seats/1`, {
+        axios.put(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {},{
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'

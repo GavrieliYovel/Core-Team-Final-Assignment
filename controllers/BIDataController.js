@@ -1,15 +1,16 @@
 const axios = require('axios');
-
+const ExperimentRepository = require('../repositories/experimentRepository');
+const experimentRepository = new ExperimentRepository();
 
 
 exports.BIDataController = {
     getMRR(req, res) {
-        axios.get(`https://Billing.render.com/MRR/${req.params.month}`)
+        axios.get(`https://Billing.render.com/MRR/${req.params.month}/${req.params.year}`)
             .then(response => {
                 res.send(response.data)
             })
             .catch(mock => {
-                res.send(`MRR for the month of ${req.params.month}`)
+                res.send(`Monthly Recurring Revenue ${req.params.month} month in ${req.params.year}`)
             })
     },
 
@@ -19,54 +20,52 @@ exports.BIDataController = {
                 res.send(response.data)
             })
             .catch(mock => {
-                res.send(`ARR for the year of ${req.params.year}`)
+                res.send(`Annual Recurring Revenue for ${req.params.year}`)
             })
     },
 
-    getTypeOfPayments(req, res) {
-        axios.get(`https://Billing.render.com/payments/${req.params.month}`)
+    getPaymentsByMonth(req, res) {
+        axios.get(`https://Billing.render.com/payments/${req.params.month}/${req.params.year}`)
             .then(response => {
                 res.send(response.data)
             })
             .catch(mock => {
-                res.send(`Payments that succeeded/ failed we had this month ${req.params.month}`)
+                res.send(`Payments that succeeded in ${req.params.month} month in ${req.params.year}`)
             })
 
     },
-
-
 
     getMonthlyExperiments(req, res) {
-        axios.get(`https://Growth.render.com/experiments/${req.params.month}`)
+        axios.get(`https://Growth.render.com/experiments?month=${req.params.month}&year=${req.params.year}`)
             .then(response => {
                 res.send(response.data)
             })
             .catch(mock => {
-                res.send(`experiments running per month ${req.params.month}`)
+                res.send(`${experimentRepository.getExperimentsByMonth(req.params.month, req.params.year)}`);
             })
 
     },
-
-
-    getDistributionByDevice(req, res) {
-        axios.get(`https://Growth.render.com/distribution/${req.params.device}`)
-            .then(response => {
-                res.send(response.data)
-            })
-            .catch(mock => {
-                res.send(`distribution by device ${req.params.device}`)
-            })
-
-    },
-    getDistributionByGeo(req, res) {
-        axios.get(`https://Growth.render.com/distribution/${req.params.geo}`)
-            .then(response => {
-                res.send(response.data)
-            })
-            .catch(mock => {
-                res.send(`distribution by geo ${req.params.geo}`)
-            })
-
-    }
+    //
+    // getDistributionByDevice(req, res) {
+    //     axios.get(`https://Growth.render.com/distribution/${req.params.device}`)
+    //         .then(response => {
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             res.send(`distribution by device ${req.params.device}`)
+    //         })
+    //
+    // },
+    //
+    // getDistributionByGeo(req, res) {
+    //     axios.get(`https://Growth.render.com/distribution/${req.params.location}`)
+    //         .then(response => {
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             res.send(`distribution by geo ${req.params.location}`)
+    //         })
+    //
+    // }
 
 }

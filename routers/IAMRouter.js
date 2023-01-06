@@ -7,5 +7,6 @@ const IAMRouter = new Router();
 IAMRouter.post('/login', IAMController.login);
 // IAMRouter.get('/register', IAMController.IAMregister);
 IAMRouter.get('/details', IAMController.getDetails)
+IAMRouter.get('/token', IAMController.getToken)
 
 module.exports = { IAMRouter };

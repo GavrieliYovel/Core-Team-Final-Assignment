@@ -12,10 +12,6 @@ exports.IAMController = {
                 }
             })
             .then(response => {
-                console.log(response.data);
-                console.log(response.headers);
-                console.log(response.set);
-                console.log(req.cookies);
                 res.cookie(response.headers["set-cookie"]);
                 res.send("success");
             })
@@ -34,6 +30,19 @@ exports.IAMController = {
             })
             .catch(mock => {
                     res.send("fail")
+            })
+    },
+    getToken(req,res) {
+        axios.get("https://iam-shenkar.onrender.com/assets/token"), {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
+            .then(response => {
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send("fail")
             })
     }
 }

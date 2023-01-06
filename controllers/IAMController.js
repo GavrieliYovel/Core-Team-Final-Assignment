@@ -62,8 +62,8 @@ exports.IAMController = {
                 res.send("fail")
             })
     },
-    setCredit(req,res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/credits/1`,{}, {
+    setCredit(req, res) {
+        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`,{}, {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
@@ -73,12 +73,12 @@ exports.IAMController = {
                 res.send(response.data)
             })
             .catch(mock => {
-                console.log(mock)
+                console.log(mock.data)
                 res.send("fail")
             })
     },
     setSeat(req,res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/seats/1`, {},{
+        axios.put(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {},{
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'

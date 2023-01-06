@@ -38,6 +38,7 @@ exports.IAMController = {
     getToken(req,res) {
         axios.get("https://iam-shenkar.onrender.com/assets/token", {
             headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
             }
         })

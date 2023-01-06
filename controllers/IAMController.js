@@ -1,5 +1,5 @@
 const axios = require("axios");
-const {response} = require("express");
+
 
 exports.IAMController = {
     login(req, res) {
@@ -64,6 +64,22 @@ exports.IAMController = {
             .catch(mock => {
                 res.send("fail")
             })
+    },
+    setCredit(req,res) {
+        axios.get(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credits}`, {
+            headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
+                'Content-Type' : 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(response.headers["set-cookie"]);
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send("fail")
+            })
     }
+
 
 }

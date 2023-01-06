@@ -66,7 +66,7 @@ exports.IAMController = {
             })
     },
     setCredit(req,res) {
-        axios.get(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credits}`, {
+        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credits}`, {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'

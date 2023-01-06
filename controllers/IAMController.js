@@ -63,8 +63,21 @@ exports.IAMController = {
             })
     },
     setCredit(req,res) {
-        console.log(req.params.credit)
         axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`, {
+            headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
+                'Content-Type' : 'application/json'
+            }
+        })
+            .then(response => {
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send("fail")
+            })
+    },
+    setSeat(req,res) {
+        axios.put(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'

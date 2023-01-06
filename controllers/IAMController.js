@@ -63,6 +63,7 @@ exports.IAMController = {
             })
     },
     setCredit(req,res) {
+        console.log(req.params.credit)
         axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`, {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,

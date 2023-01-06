@@ -34,11 +34,11 @@ exports.IAMController = {
             })
     },
     getToken(req,res) {
-        axios.get("https://iam-shenkar.onrender.com/assets/token"), {
+        axios.get("https://iam-shenkar.onrender.com/assets/token", {
             headers: {
                 'Content-Type' : 'application/json'
             }
-        }
+        })
             .then(response => {
                 res.send(response.data)
             })

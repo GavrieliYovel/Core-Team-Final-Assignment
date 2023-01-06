@@ -1,5 +1,5 @@
 const axios = require("axios");
-const {response} = require("express");
+
 
 exports.IAMController = {
     login(req, res) {
@@ -20,12 +20,15 @@ exports.IAMController = {
             })
     },
     getDetails(req,res) {
-        axios.get("https://iam-shenkar.onrender.com/assets/features"), {
+        console.log(req.cookies.jwt);
+        axios.get("https://iam-shenkar.onrender.com/assets/features", {
             headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
             }
-        }
+        })
             .then(response => {
+                    console.log(response.headers["set-cookie"]);
                     res.send(response.data)
             })
             .catch(mock => {
@@ -33,16 +36,50 @@ exports.IAMController = {
             })
     },
     getToken(req,res) {
-        axios.get("https://iam-shenkar.onrender.com/assets/token"), {
+        axios.get("https://iam-shenkar.onrender.com/assets/token", {
             headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
             }
-        }
+        })
             .then(response => {
+                console.log(response.headers["set-cookie"]);
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send("fail")
+            })
+    },
+    getCredit(req,res) {
+        axios.get("https://iam-shenkar.onrender.com/assets/credits", {
+            headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
+                'Content-Type' : 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(response.headers["set-cookie"]);
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send("fail")
+            })
+    },
+    setCredit(req,res) {
+        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credits}`, {
+            headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
+                'Content-Type' : 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(response.headers["set-cookie"]);
                 res.send(response.data)
             })
             .catch(mock => {
                 res.send("fail")
             })
     }
+
+
 }

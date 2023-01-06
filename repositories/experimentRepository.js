@@ -13,7 +13,6 @@ module.exports = class experimentRepository extends EventEmitter {
         this.setData(data);
         this.on('updateData', () => {
             fs.writeFile(Path.join(__dirname, '../mockData/experimentsMock.json'), JSON.stringify(this.data), 'utf8', err => {
-                console.log(this.data);
                 if (err) throw err;
                 console.log('File has been saved!');
             });

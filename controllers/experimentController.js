@@ -12,26 +12,36 @@ function checkManagerAuth(details) {
     }
 }
 //getting type, credits, plan assets from IAM
-async function getDetails(id) {
-    let details;
-    console.log(id);
-    //getting type, credits, plan assets from IAM
-    await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
-        .then(response => {
-            console.log(response.data);
-            details = response.data;
-        })
-        .catch(mock => {
-            console.log(id);
-            details = userRepository.getDetailsById(id);
-        })
-    return details;
-}
+// async function getDetails(id) {
+//     let details;
+//     console.log(id);
+//     //getting type, credits, plan assets from IAM
+//     await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
+//         .then(response => {
+//             console.log(response.data);
+//             details = response.data;
+//         })
+//         .catch(mock => {
+//             console.log(id);
+//             details = userRepository.getDetailsById(id);
+//         })
+//     return details;
+// }
 exports.experimentController = {
 
     async createExperiment(req, res) {
-        console.log(req.session.userId);
-        const details = await getDetails(req.session.userId);
+        // console.log(req.session.userId);
+        // const details = await getDetails(req.session.userId);
+        let details;
+        //getting type, credits, plan assets from IAM
+        await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
+            .then(response => {
+                console.log(response.data);
+                details = response.data;
+            })
+            .catch(mock => {
+                details = userRepository.getDetailsById(req.session.userId);
+            })
 
         if (checkManagerAuth(details)) {
             await axios.post('https://growth.render.com/experiment/new', req.body)

@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+main, nav, aside, section, header {
+    display: block;
+}
+
+body {
+    background: #fafbfe;
+}
+
+a {
+    color:#fafbfe;
+}
+
+a:hover {
+    color: white;
+}
+.card h4,h1{
+    color: #fafbfe;
+}
+.card {
+    background: linear-gradient(to bottom, #d16ed1, #b965cd, #a05dc8, #8655c3, #684ebd, #5f4dbe, #544dc0, #484cc1, #5651cb, #6457d4, #715cde, #7f61e7);
+    color: #919ca7;
+    border: none;
+    box-shadow: 20px 20px 10px #d4d4d4b7;
+}
+
+.btn {
+    color: #919ca7;
+    border: 2px solid #919ca7;
+}
+
+.btn:hover {
+    color: #313a46;
+    border: 2px solid white;
+    background: white;
+}

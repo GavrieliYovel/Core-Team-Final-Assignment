@@ -1,8 +1,8 @@
 window.onload = () => {
 
-    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yValues = [55, 49, 44, 24, 15];
-    var barColors = ["red", "green","blue","orange","brown"];
+    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    const yValues = [55, 49, 44, 24, 15];
+    const barColors = ["red", "green","blue","orange","brown"];
 
     new Chart(bar, {
         type: "bar",

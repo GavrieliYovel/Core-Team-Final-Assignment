@@ -15,7 +15,7 @@
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body id="home">
@@ -87,7 +87,7 @@
             </div>
             <a class="mr-3"><i class="fa-regular fa-bell fa-xl"></i></a>
             <a class="mr-3"><i class="fa-regular fa-circle-info fa-xl"></i></a>
-            <img id="profile-img" src="../public/images/images.png" alt="user">
+            <img id="profile-img" src="images/images.png" alt="user">
           </div>
         </div>
       </div>
@@ -122,25 +122,24 @@
                   </div>
                   <canvas id="doughnut" height="250px"></canvas>
                 </div>
-
-
               </div>
 
 
           </div>
           <div class="col-3 d-flex flex-column">
 
-            <div class="card text-center mt-5 w-100">
-              <div class="card-body">
-                <h6 class="card-title mb-4">Add New Experiment</h6>
-                <a href="add.experiment.ejs" ><span class="fa fa-solid fa-circle-plus fa-2xl"></span></a>
+            <%= if(userType === "") {
+              <div class="card text-center mt-5 w-100">
+                <div class="card-body">
+                  <h6 class="card-title mb-4">Add New Experiment</h6>
+                  <a href="experiment" ><span class="fa fa-solid fa-circle-plus fa-2xl"></span></a>
+                </div>
               </div>
-            </div>
-
+            } %>
             <div class="card text-center mt-5 w-100" >
               <div class="card-body w-100">
                 <h6 class="card-title mb-4">Manage Experiments</h6>
-                <a href="views/manage.experiments.ejs"><span class="fa fa-light fa-pen-to-square fa-2xl"></span></a>
+                <a href="manage.experiments?id=<%= userId %>"><span class="fa fa-light fa-pen-to-square fa-2xl"></span></a>
               </div>
             </div>
 
@@ -168,11 +167,11 @@
     </div>
   </div>
 </div>
-<script src="../public/js/jquery.min.js"></script>
-<script src="../public/js/popper.js"></script>
-<script src="../public/js/bootstrap.min.js"></script>
-<script src="../public/js/main.js"></script>
-<script src="../public/js/home.charts.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.charts.js"></script>
 </body>
 
 </html>

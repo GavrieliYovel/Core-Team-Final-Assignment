@@ -9,6 +9,7 @@ const sessions = require("express-session");
 const { experimentRouter } = require("./routers/experimentRouter");
 const { IAMRouter } = require("./routers/IAMRouter");
 const { BIDataRouter } = require("./routers/BIDataRouter");
+const { pageRouter } = require("./routers/pageRouter");
 
 
 dotenv.config({ path: path.join(__dirname, './.env') });
@@ -16,10 +17,12 @@ const port = process.env.PORT || 3030;
 
 
 // static files
-// app.use(express.static("public"));
-// app.use("/css", express.static(__dirname + "public/css"));
-// app.use("/js", express.static(__dirname + "public/js"));
-// app.use("/includes", express.static(__dirname + "public/includes"));
+app.use(express.static("public"));
+app.use("/css", express.static(__dirname + "public/css"));
+app.use("/js", express.static(__dirname + "public/js"));
+app.use("/includes", express.static(__dirname + "public/images"));
+app.use("/includes", express.static(__dirname + "public/fonts"));
+app.use("/includes", express.static(__dirname + "public/scss"));
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
@@ -37,8 +40,8 @@ app.use(
 app.use(cookieParser());
 
 // set views
-// app.set("views", "./views");
-// app.set("view engine", "ejs");
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 app.use(cors());
 app.use(express.json());
@@ -47,12 +50,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));  // handel post reqs with body
 
 
-// app.use('/', htmlRouter);
+app.use('/', pageRouter);
 app.use('/growth', experimentRouter);
 app.use('/IAM', IAMRouter);
 app.use('/bi', BIDataRouter);
-
-// app.use('/api/boards', boardsRouter);
+;
 
 app.use((req, res) => {
   res.status(400).send("Something is broken!");

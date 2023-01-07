@@ -25,5 +25,14 @@
     "password": "123456",
     "plan": "free",
     "credits": 50
+  },
+  {
+    "id": 4,
+    "name": "Yovel Gavrieli",
+    "email": "yovgav6@gmail.com",
+    "type": "user",
+    "password": "Aa123456",
+    "plan": "pro",
+    "credits": 50
   }
 ]

@@ -33,7 +33,7 @@ exports.pagesController = {
     experimentAdd(req, res) {
         if(!req.session.hasOwnProperty("userId"))
             res.redirect("/");
-        else if ( req.session.type !== "manager")
+        else if ( req.session !== "manager")
             res.redirect("/home");
         else
             res.render("add_experiment");

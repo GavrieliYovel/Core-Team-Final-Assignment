@@ -8437,6 +8437,9 @@ a[data-toggle="collapse"] {
   position: absolute;
   left: 20px;
   top: 20px;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
 }
 
 .inner-inner-hoop {

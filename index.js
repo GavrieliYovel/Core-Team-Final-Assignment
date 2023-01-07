@@ -6,13 +6,14 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
 
-// const { boardsRouter } = require("./routers/boardsRouter");
-// const { htmlRouter } = require("./routers/htmlRouter");
-// const { sessionRouter } = require("./routers/sessionRouter");
 const { experimentRouter } = require("./routers/experimentRouter");
+const { IAMRouter } = require("./routers/IAMRouter");
+const { BIDataRouter } = require("./routers/BIDataRouter");
 
-dotenv.config({ path: path.join(__dirname, "./.env") });
-const port = process.env.PORT || 3000;
+
+dotenv.config({ path: path.join(__dirname, './.env') });
+const port = process.env.PORT || 3030;
+
 
 // static files
 // app.use(express.static("public"));
@@ -41,11 +42,16 @@ app.use(cookieParser());
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // hundel post reqs with body
 
-//
+
+app.use(express.urlencoded({extended: true}));  // handel post reqs with body
+
+
 // app.use('/', htmlRouter);
-app.use("/growth", experimentRouter);
+app.use('/growth', experimentRouter);
+app.use('/IAM', IAMRouter);
+app.use('/bi', BIDataRouter);
+
 // app.use('/api/boards', boardsRouter);
 
 app.use((req, res) => {

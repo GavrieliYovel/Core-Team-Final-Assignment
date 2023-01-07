@@ -11,6 +11,7 @@ function checkManagerAuth(details) {
         return true;
     }
 }
+
 //getting type, credits, plan assets from IAM
 // async function getDetails(id) {
 //     let details;
@@ -27,6 +28,7 @@ function checkManagerAuth(details) {
 //         })
 //     return details;
 // }
+
 exports.experimentController = {
 
     async createExperiment(req, res) {

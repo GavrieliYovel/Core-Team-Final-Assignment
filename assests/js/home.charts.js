@@ -1,25 +1,4 @@
 window.onload = () => {
-    (function($) {
-
-        "use strict";
-
-        var fullHeight = function() {
-
-            $('.js-fullheight').css('height', $(window).height());
-            $(window).resize(function(){
-                $('.js-fullheight').css('height', $(window).height());
-            });
-
-        };
-        fullHeight();
-
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
-
-    })(jQuery);
-
-    ////////////////////////////////////////////
 
     var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
     var yValues = [55, 49, 44, 24, 15];

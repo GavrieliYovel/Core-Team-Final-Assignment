@@ -1,24 +1,35 @@
 const axios = require("axios");
 
+
 class ABTestSDK {
-    account_id;
      constructor(email, password){
          axios.post("https://core-team-final-assignment-dev.onrender.com/IAM/login", {
              "email": email,
              "password": password
          })
              .then(response => {
-                 // console.log(response.data.account);
+                 console.log(response.data.account);
                  this.account_id = response.data.account;
+                 // console.log(this.account_id)
              })
              .catch(response =>{
+                 this.account_id =  -1;
                  console.log("Failed to login");
              })
+         // this.account_id = null;
+         // this.login(email, password);
      }
+    login(email, password){
 
-     getAccountID(){
-         return this.account_id;
-     }
+    }
+    async getAccountID(email, password){
+        try {
+            const response = await login(email, password);
+            this.data = response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
      getABExperiments(){
         axios.get("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/"+this.account_id+"/AB")

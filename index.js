@@ -10,7 +10,7 @@ const sessions = require('express-session');
 // const { htmlRouter } = require("./routers/htmlRouter");
 // const { sessionRouter } = require("./routers/sessionRouter");
 const { experimentRouter } = require("./routers/experimentRouter");
-const { BIDataRouter } = require("./routers/BIDataRouter");
+const { IAMRouter } = require("./routers/IAMRouter");
 
 
 
@@ -47,7 +47,7 @@ app.use(express.urlencoded({extended: true}));  // hundel post reqs with body
 //
 // app.use('/', htmlRouter);
 app.use('/growth', experimentRouter);
-app.use('/bi', BIDataRouter);
+app.use('/IAM', IAMRouter);
 // app.use('/api/boards', boardsRouter);
 
 app.use((req, res) => {

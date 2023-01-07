@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Liran Michaelov",
+    "email": "liran@core.com",
+    "type": "admin",
+    "password": "123456",
+    "plan": "free",
+    "credits": 50
+  },
+  {
+    "id": 2,
+    "name": "Gilad Schneider",
+    "email": "gilad@core.com",
+    "type": "manager",
+    "password": "123456",
+    "plan": "free",
+    "credits": 50
+  },
+  {
+    "id": 3,
+    "name": "Viki Bril",
+    "email": "viki@core.com",
+    "type": "user",
+    "password": "123456",
+    "plan": "free",
+    "credits": 50
+  }
+]

@@ -22,7 +22,8 @@ exports.IAMController = {
                     req.session.userId = userRepository.getUserIdByEmail(req.body.email).id;
                     res.send({
                         mode: "mock",
-                        response: "success"
+                        response: "success",
+                        account: req.session.userId
                     });
                 } else {
                     res.send("fail");

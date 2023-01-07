@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Growth Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/77b777f4e2.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar">
+    <div class="custom-menu">
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+    </div>
+    <div class="p-4 d-flex justify-content-between flex-column h-100">
+      <div>
+        <h3 class="mt-5">
+          <a href="index.html" class="logo"><b>HORIZON</b> Free</a>
+        </h3>
+        <hr class="mt-4 mb-4">
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-solid fa-lock mr-3"></span> Sign in</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-user mr-3"></span> Profile</a>
+          </li>
+        </ul>
+        <div class="mb-5">
+          <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+          <form action="#" class="subscribe-form">
+            <div class="form-group d-flex">
+              <div class="icon"><span class="icon-paper-plane"></span></div>
+              <input type="text" class="form-control" placeholder="Enter Email Address">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="sidebar-box">
+        <div class="hoop">
+          <div class="inner-hoop">
+            <div class="inner-inner-hoop"></div>
+          </div>
+        </div>
+        <h6 id="mess-title" class="mt-5">title</h6>
+        <p id="mess">something something</p>
+      </div>
+    </div>
+  </nav>
+  <div id="content" class="pt-5 pl-5 pr-5 d-flex flex-column justify-content-between">
+    <div>
+      <div class="row d-flex head">
+        <div class="col d-flex align-items-center">
+          <ol class="breadcrumb blue-grey lighten-4">
+            <li class="breadcrumb-item">
+              <a class="black-text" href="#">Pages</a>
+              <i class="fa fa-angle-double-right mx-2" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">Home Page</li>
+          </ol>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <div class="head-card">
+            <div class="search_container mr-3">
+              <form id="search">
+                <i class="fa fa-solid fa-magnifying-glass fa-lg"></i>
+                <input type="search" name="search" placeholder="Search">
+              </form>
+            </div>
+            <a class="mr-3"><i class="fa-regular fa-bell fa-xl"></i></a>
+            <a class="mr-3"><i class="fa-regular fa-circle-info fa-xl"></i></a>
+            <img id="profile-img" src="images/images.png" alt="user">
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="mb-3">Home Page</h2>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Discover, collect, and sell extraordinary NFTs</h5>
+                <p class="card-text">Enter in this creative world. Discover now the latest NFTs or
+                  start creating your own!.</p>
+                <a href="#" class="btn btn-primary">Discover now</a>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card text-center mt-5 w-100">
+              <div class="card-body w-100">
+                <h5 class="card-title">Add New Experiment</h5>
+                <a href="add.experiment.html" class="btn btn-primary"><span
+                        class="fa fa-solid fa-circle-plus"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card text-center mt-5 w-100">
+              <div class="card-body w-100">
+                <h5 class="card-title">Manage Experiments</h5>
+                <a href="growth_Manage_Exper.html   " class="btn btn-primary"><span
+                        class="fa fa-light fa-pen-to-square"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2 class="mt-5">On Going Experiments</h2>
+        <div class="card d-flex ">
+          <div class="row statistics">
+            <div class="col justify-content-center w-auto">
+              <div class="card ">
+                <canvas id="bar" height="250px"></canvas>
+              </div>
+            </div>
+            <div class="col d-flex justify-content-center w-auto">
+              <div class="card ">
+                <canvas id="doughnut" height="250px"></canvas>
+              </div>
+            </div>
+            <div class="col justify-content-center d-flex w-auto">
+              <div class="card ">
+                <canvas id="bubble-chart" height="250px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col">
+          <p>
+            &copy;Core team
+            <script>document.write(new Date().getFullYear());</script>. all rights reserved
+            <i class="icon-heart" aria-hidden="true"></i>
+          </p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <p class="mr-4">Marketplace</p>
+          <p class="mr-4">License</p>
+          <p class="mr-4">Terms of use</p>
+          <p>Blog</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.charts.js"></script>
+</body>
+
+</html>

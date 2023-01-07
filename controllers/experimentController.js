@@ -16,7 +16,7 @@ exports.experimentController = {
     async createExperiment(req, res) {
         let details;
         //getting type, credits, plan assets from IAM
-        await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
+        await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
             .then(response => {
                 console.log(response.data);
                 details = response.data;
@@ -28,7 +28,7 @@ exports.experimentController = {
         if (checkManagerAuth(details)) {
             await axios.post('https://growth.render.com/experiment/new', req.body)
                 .then(async response => {
-                    await axios.put('https://iam-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
+                    await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
                         .then(response => {
                             res.send(response.data);
                         })
@@ -50,21 +50,23 @@ exports.experimentController = {
     async updateExperiment(req, res) {
         let details;
         //getting type, credits, plan assets from IAM
-        await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
+        await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
             .then(response => {
                 details = response.data;
             })
             .catch(mock => {
                 details = userRepository.getDetailsById(req.session.userId);
             })
-        await axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
-            .then(response => {
-                res.send(response.data);
-            })
-            .catch(mock => {
-                const updatedExperiment = experimentRepository.updateExperiment(req.body, req.params.id);
-                res.send(updatedExperiment);
-            })
+        if (checkManagerAuth(details)) {
+            await axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
+                .then(response => {
+                    res.send(response.data);
+                })
+                .catch(mock => {
+                    const updatedExperiment = experimentRepository.updateExperiment(req.body, req.params.id);
+                    res.send(updatedExperiment);
+                })
+        }
     },
     async experimentStatistics(req , res) {
         await axios.get(`https://growth.render.com/experiment/${req.params.id}/statistics`)
@@ -87,14 +89,30 @@ exports.experimentController = {
             })
     },
     async experimentsByAccount(req, res) {
-        await axios.get(`https://growth.render.com/experiment/${req.params.account}`)
+        let status;
+        await axios.get('https://am-shenkar.onrender.com/assets/token', {headers: {'Content-Type': 'application/json'}})
             .then(response => {
-                res.send(response.data);
+                if('message' in response.data)
+                    status = true;
+                else
+                    status = false;
             })
             .catch(mock => {
-                const data = experimentRepository.getExperimentByAccount(req.params.account);
-                res.send(data);
+                if('userId' in req.session)
+                    status = true;
+                else
+                    status = false;
             })
+        if(status) {
+            await axios.get(`https://growth.render.com/experiment/${req.params.account}`)
+                .then(response => {
+                    res.send(response.data);
+                })
+                .catch(mock => {
+                    const data = experimentRepository.getExperimentByAccount(req.params.account);
+                    res.send(data);
+                })
+        }
     },
     async ABTestByAccount(req, res) {
         await axios.get(`https://growth.render.com/experiment/AB/${req.params.account}`)
@@ -117,14 +135,25 @@ exports.experimentController = {
             })
     },
     async deleteExperiment(req, res) {
-        await axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
+        let details;
+        //getting type, credits, plan assets from IAM
+        await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
             .then(response => {
-                res.send(response.data);
+                details = response.data;
             })
             .catch(mock => {
-                experimentRepository.deleteExperiment(req.params.id);
-                res.send(`experiment ${req.params.id} deleted`);
+                details = userRepository.getDetailsById(req.session.userId);
             })
+        if (checkManagerAuth(details)) {
+            await axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
+                .then(response => {
+                    res.send(response.data);
+                })
+                .catch(mock => {
+                    experimentRepository.deleteExperiment(req.params.id);
+                    res.send(`experiment ${req.params.id} deleted`);
+                })
+        }
     },
     async callExperiment(req, res) {
         await axios.post(`https://growth.render.com/experiment/${req.params.id}`, req)

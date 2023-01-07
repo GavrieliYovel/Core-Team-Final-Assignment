@@ -28,6 +28,7 @@ async function getDetails(id) {
     return details;
 }
 exports.experimentController = {
+
     async createExperiment(req, res) {
         console.log(req.session.userId);
         const details = await getDetails(req.session.userId);

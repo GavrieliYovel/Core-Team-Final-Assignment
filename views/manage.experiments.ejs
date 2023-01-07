@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Manage experiment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/77b777f4e2.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="../public/css/style.css">
+</head>
+
+<body>
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar">
+    <div class="custom-menu">
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+    </div>
+    <div class="p-4 d-flex justify-content-between flex-column h-100">
+      <div>
+        <h3 class="mt-5">
+          <a href="homeDemo.html" class="logo"><b>HORIZON</b> Free</a>
+        </h3>
+        <hr class="mt-4 mb-4">
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="growth_HomPage.html"><span class="fa fa-home mr-3"></span> Home</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-solid fa-lock mr-3"></span> Sign in</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-user mr-3"></span> Profile</a>
+          </li>
+        </ul>
+        <div class="mb-5">
+          <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+          <form action="#" class="subscribe-form">
+            <div class="form-group d-flex">
+              <div class="icon"><span class="icon-paper-plane"></span></div>
+              <input type="text" class="form-control" placeholder="Enter Email Address">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="sidebar-box">
+        <div class="hoop">
+          <div class="inner-hoop">
+            <div class="inner-inner-hoop"></div>
+          </div>
+        </div>
+        <h6 id="mess-title" class="mt-5">title</h6>
+        <p id="mess">something something</p>
+      </div>
+    </div>
+  </nav>
+  <div id="content" class="pt-5 pl-5 pr-5 d-flex flex-column justify-content-between">
+    <div>
+      <div class="row d-flex head">
+        <div class="col p-0 d-flex align-items-center">
+          <ol class="breadcrumb blue-grey lighten-4">
+            <li class="breadcrumb-item">
+              <a class="black-text" href="growth_HomPage.html">Pages</a>
+              <i class="fa fa-angle-double-right mx-2" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">Manage experiments</li>
+          </ol>
+        </div>
+        <div class="col p-0 d-flex justify-content-end">
+          <div class="head-card">
+            <div class="search_container mr-3">
+              <form id="search">
+                <i class="fa fa-solid fa-magnifying-glass fa-lg"></i>
+                <input type="search" name="search" placeholder="Search">
+              </form>
+            </div>
+            <a class="mr-3"><i class="fa-regular fa-bell fa-xl"></i></a>
+            <a class="mr-3"><i class="fa-regular fa-circle-info fa-xl"></i></a>
+            <img id="profile-img" src="../public/images/images.png" alt="user">
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 class="mb-3">Experiments</h1>
+        <div id="insert-experiments" class="row justify-content-center">
+
+            <div class="col-8 d-flex flex-column align-items-center mt-4">
+                <div class="d-flex justify-content-start w-100">
+                  <h6 class="mb-1">Reading articles experiment</h6>
+                </div>
+                <div class="card w-100">
+                  <div class="card-body justify-content-center">
+                    <div class="d-flex flex-column w-100 h-100">
+                      <div class="row d-flex justify-content-center">
+                        <table>
+                          <tr>
+                            <th>Test ID</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                          </tr>
+                          <tr>
+                            <td>1234</td>
+                            <td>A/B testing</td>
+                            <td>
+                              <span class="badge p-3 text-white rounded-pill bg-success">Success</span>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-2 d-flex align-items-center justify-content-start">
+                          <h6 class="m-0">Alternative1</h6>
+                        </div>
+                        <div class="col">
+                          <div class="w3-light-grey justify-content-center">
+                            <div class="row d-flex justify-content-start">
+                              <div class="w3-container w3-blue w3-center " style="width:41%">15%</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-2 d-flex align-items-center justify-content-start">
+                          <h6 class="m-0">Alternative2</h6>
+                        </div>
+                        <div class="col">
+                          <div class="w3-light-grey justify-content-center">
+                            <div class="row d-flex justify-content-start">
+                              <div class="w3-container w3-blue w3-center " style="width:35%">35%</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-2 d-flex align-items-center justify-content-start">
+                          <h6 class="m-0">Default</h6>
+                        </div>
+                        <div class="col">
+                          <div class="w3-light-grey justify-content-center">
+                            <div class="row d-flex justify-content-start">
+                              <div class="w3-container w3-blue w3-center " style="width:56%">56%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="w3-container mt-3 w-100  w3-center mt-5">
+                          <button type="button" class="btn btn-primary btn-sm mr-4 pr-4 pl-4"><a href="edit.experiment.ejs?id=2" class="text-white w-100">Edit</a></button>
+                          <button type="button" class="btn btn-secondary btn-sm">Terminate</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+
+          <div class="col-8 d-flex flex-column align-items-center mt-4">
+            <div class="d-flex justify-content-start w-100">
+              <h6 class="mb-1">People use experiment</h6>
+            </div>
+            <div class="card w-100">
+              <div class="card-body justify-content-center">
+                <div class="d-flex flex-column w-100 h-100">
+                  <div class="row d-flex justify-content-center">
+                    <table>
+                      <tr>
+                        <th>Test ID</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                      </tr>
+                      <tr>
+                        <td>0912384756</td>
+                        <td>Feature - Flag</td>
+                        <td>
+                          <span class="badge p-3 text-white rounded-pill bg-danger">Ended</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col-2 d-flex align-items-center justify-content-start">
+                      <h6 class="m-0">ON</h6>
+                    </div>
+                    <div class="col">
+                      <div class="w3-light-grey justify-content-center">
+                        <div class="row d-flex justify-content-start">
+                          <div class="w3-container w3-blue w3-center " style="width:41%">15%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-2 d-flex align-items-center justify-content-start">
+                      <h6 class="m-0">OFF</h6>
+                    </div>
+                    <div class="col">
+                      <div class="w3-light-grey justify-content-center">
+                        <div class="row d-flex justify-content-start">
+                          <div class="w3-container w3-blue w3-center " style="width:35%">35%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w3-container mt-3 w-100  w3-center mt-5">
+                    <button type="button" class="btn btn-primary btn-sm mr-4 pr-4 pl-4"><a href="edit.experiment.ejs?id=2" class="text-white w-100">Edit</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm">Terminate</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div>
+          <div class="row mt-3">
+            <div class="col">
+              <p>
+                &copy;Core team
+                <script>document.write(new Date().getFullYear());</script>. all rights reserved
+                <i class="icon-heart" aria-hidden="true"></i>
+              </p>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <p class="mr-4">Marketplace</p>
+              <p class="mr-4">License</p>
+              <p class="mr-4">Terms of use</p>
+              <p>Blog</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/popper.js"></script>
+<script src="../public/js/bootstrap.min.js"></script>
+<script src="../public/js/main.js"></script>
+</body>
+
+</html>

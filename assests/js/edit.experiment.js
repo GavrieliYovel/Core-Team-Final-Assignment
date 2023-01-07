@@ -1,3 +1,8 @@
+
+
+
+
+
 window.onload = () => {
 
     form.addEventListener("submit", (event) => {
@@ -48,11 +53,7 @@ window.onload = () => {
 
     });
 
-
-    // trafficAddButton.addEventListener("click", (event) => {
-    //     trafficAddInput();
-    // });
-
+    insertData(demoData);
     addLocation.addEventListener("click", (event) => {
         addLocationInput();
     });
@@ -87,15 +88,11 @@ window.onload = () => {
 
         }
     });
-
-    // goalButton.addEventListener("click", (event) => {
-    //     goalAddInput();
-    // })
-
-
 }
 
 const form = document.getElementById("form");
+const successesModel = document.getElementById("s-model");
+const failedModel = document.getElementById("f-model");
 
 const type          = document.getElementById("type");
 const abTestingIn   = document.getElementById("ab-testing");
@@ -116,11 +113,6 @@ let browserCount = 1;
 const browserIns   = document.getElementById("browser-ins");
 const addBrowser   = document.getElementById("add-browser");
 let removeBrowser;
-
-// const regexTest         = new RegExp(/^[\w-. ?]+$/);
-// const trafficAddButton  = document.getElementById("add-traffic");
-// const labelName         = document.getElementById("extra");
-// const trafficInputs     = document.getElementById("traffic-in");
 
 
 const abRemove = document.getElementById("remove-ab");
@@ -164,14 +156,14 @@ function addBrowserInput() {
     newInput.className = "row";
 
     newInput.innerHTML =    '<div class="col-6 mb-2">' +
-                                '<div class="form-floating">' +
-                                    '<input type="text" class="form-control experiment-input browser-ins" name="browser' + browserCount + '" id="browser-' + browserCount + '" placeholder="Browser">' +
-                                    '<label for="browser-1">Browser</label>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="col-2">' +
-                                '<button type="button" name="' + browserCount + '" class="add-button remove-browser"><i class="fa-regular fa-circle-minus fa-2xl"></i></button>' +
-                            '</div>';
+        '<div class="form-floating">' +
+        '<input type="text" class="form-control experiment-input browser-ins" name="browser' + browserCount + '" id="browser-' + browserCount + '" placeholder="Browser">' +
+        '<label for="browser-1">Browser</label>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-1">' +
+        '<button type="button" name="' + browserCount + '" class="remove-button remove-browser"><i class="fa-regular fa-circle-minus fa-2xl"></i></button>' +
+        '</div>';
 
     browserIns.appendChild(newInput);
 
@@ -188,14 +180,14 @@ function addDeviceInput() {
     newInput.className = "row";
 
     newInput.innerHTML =    '<div class="col-6 mb-2">' +
-                                '<div class="form-floating">' +
-                                    '<input type="text" class="form-control experiment-input device-ins" name="device-' + deviceCount +'" id="device-' + deviceCount + '" placeholder="Device" required>' +
-                                    '<label for="device-' + deviceCount + '">Device</label>' +
-                                '</div>' +
-                            '</div>'  +
-                            '<div class="col-2">' +
-                                '<button type="button" name="' + deviceCount + '" class="add-button remove-device"><i class="fa-regular fa-circle-minus fa-2xl"></i></button>' +
-                            '</div>';
+        '<div class="form-floating">' +
+        '<input type="text" class="form-control experiment-input device-ins" name="device-' + deviceCount +'" id="device-' + deviceCount + '" placeholder="Device" required>' +
+        '<label for="device-' + deviceCount + '">Device</label>' +
+        '</div>' +
+        '</div>'  +
+        '<div class="col-1">' +
+        '<button type="button" name="' + deviceCount + '" class="remove-button remove-device"><i class="fa-regular fa-circle-minus fa-2xl"></i></button>' +
+        '</div>';
 
     deviceIns.appendChild(newInput);
 
@@ -210,14 +202,14 @@ function addLocationInput() {
     newInput.className = "row";
 
     newInput.innerHTML =    '<div class="col-6 mb-2">' +
-                                '<div class="form-floating">' +
-                                    '<input type="text" class="form-control experiment-input location-ins" name="location-' + locationCount +'" id="location-' + locationCount + '" placeholder="Location" required>' +
-                                    '<label for="location-' + locationCount + '">Location</label>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="col-2">' +
-                                    '<button type="button" name="' + locationCount + '" class="add-button remove-location"><i class="fa-regular fa-circle-minus fa-2xl"></i></button>' +
-                                '</div>';
+        '<div class="form-floating">' +
+        '<input type="text" class="form-control experiment-input location-ins" name="location-' + locationCount +'" id="location-' + locationCount + '" placeholder="Location" required>' +
+        '<label for="location-' + locationCount + '">Location</label>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-1">' +
+        '<button type="button" name="' + locationCount + '" class="remove-button remove-location"><i class="fa-regular fa-circle-minus fa-2xl"></i></button>' +
+        '</div>';
     locationIns.appendChild(newInput);
 
     removeLocation = document.getElementsByClassName("remove-location");
@@ -225,29 +217,23 @@ function addLocationInput() {
 }
 
 
+function datetimeLocal(datetime) {
+    const dt = new Date(datetime);
+    dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+    return dt.toISOString().slice(0, 16);
+}
 
-// const goalButton = document.getElementById("add-goal");
-// const goalInputs = document.getElementById("goals-in");
-// let goals = 1;
-//
-//
-// function goalAddInput() {
-//
-//     goals++;
-//     const newInput = document.createElement("div");
-//     newInput.className = "col-6 mb-3";
-//
-//     newInput.innerHTML = '<div class="form-floating">' +
-//         '<input type="text" class="form-control experiment-input" id="goal-' + goals +'" placeholder="goal-' + goals + '" name="goal-' + goals + '">'+
-//         '<label for="goal-' + goals + '">Goal ' + goals +'</label>' +
-//         '</div>';
-//
-//     goalInputs.appendChild(newInput);
-// }
+
+function insertData(data) {
+    abTestingIn.hidden = data.type !== "a-b";
+    form[0].value = data.name;
+    form[1].value = data.type;
+    form[2].value = datetimeLocal(data.start_time);
+    form[3].value = datetimeLocal(data.end_time);
+}
 
 function abAddInput() {
 
-        // abRemove
     if(lastLetter >= "Z".charCodeAt(0)) {
         alert("wrorr bgger then Zzzzzz....");
         return;
@@ -258,9 +244,9 @@ function abAddInput() {
     lastLetter = String.fromCharCode(lastLetter + 1);
 
     newInput.innerHTML = '<div class="form-floating">' +
-                         '<input type="text" class="form-control experiment-input ab-ins" id="' + lastLetter +'" placeholder="' + lastLetter + '" name="' + lastLetter + '" required>' +
-                         '<label for="' + lastLetter + '">' + lastLetter +'</label>' +
-                         '</div>';
+        '<input type="text" class="form-control experiment-input ab-ins" id="' + lastLetter +'" placeholder="' + lastLetter + '" name="' + lastLetter + '" required>' +
+        '<label for="' + lastLetter + '">' + lastLetter +'</label>' +
+        '</div>';
 
     lastLetter = lastLetter.charCodeAt(0);
     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
@@ -269,31 +255,40 @@ function abAddInput() {
 
 
 
-// function trafficAddInput() {
-//     const inputName = labelName.value.toLocaleLowerCase();
-//     const trafficInputsName = document.getElementsByClassName(" traffic-in");
-//
-//     if(inputName === "" || !regexTest.test(inputName)) {
-//         alert("wrorr");
-//         return;
-//     }
-//
-//     for (let i = 0 ; i < trafficInputsName.length ; i++) {
-//         if (trafficInputsName[i].placeholder.toLocaleLowerCase() === inputName) {
-//             alert("wrorr name");
-//             return;
-//         }
-//     }
-//
-//
-//
-//     const newInput = document.createElement("div");
-//     newInput.className = "col-6 mb-3";
-//     newInput.innerHTML =    '<div class="form-floating">' +
-//                             '<input type="text" class="form-control experiment-input  traffic-in" id="browser" name="' + inputName +'" placeholder="' + inputName +'">' +
-//                             '<label for="browser">' + inputName + '</label>' +
-//                             '</div>';
-//
-//     trafficInputs.appendChild(newInput);
-// }
-//
+const demoData = {
+    experimentId: 1,
+    name: "experiment test name",
+    account: "A",
+    type: "a-b",
+    test_attributes: {
+        location: [
+            "IL",
+            "Lod",
+            "UK"
+        ],
+        device: [
+            "mobile",
+            "iphone"
+        ],
+        browser: [
+            "Chrome",
+            "safari"
+        ]
+    },
+    variant_success_count: {
+        A: 0,
+        B: 0,
+        C: 0
+    },
+    traffic_percentage: 50,
+    goal_id: null,
+    call_count: 0,
+    status: "active",
+    start_time: "2022-12-31T13:35:30.301Z",
+    end_time: "2023-12-31T13:35:30.301Z",
+    variants: {
+        A: "Alternative1",
+        B: "Alternative2",
+        C: "Default"
+    }
+}

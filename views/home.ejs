@@ -87,6 +87,7 @@
             </div>
             <a class="mr-3"><i class="fa-regular fa-bell fa-xl"></i></a>
             <a class="mr-3"><i class="fa-regular fa-circle-info fa-xl"></i></a>
+            <a class="mr-3" href="logout"><i class="fa-regular fa-arrow-right-from-bracket fa-xl"></i></a>
             <img id="profile-img" src="images/images.png" alt="user">
           </div>
         </div>
@@ -128,18 +129,18 @@
           </div>
           <div class="col-3 d-flex flex-column">
 
-            <%= if(userType === "") {
+            <% if(userType === "manager") { %>
               <div class="card text-center mt-5 w-100">
                 <div class="card-body">
                   <h6 class="card-title mb-4">Add New Experiment</h6>
-                  <a href="experiment" ><span class="fa fa-solid fa-circle-plus fa-2xl"></span></a>
+                  <a href="add_experiment" ><span class="fa fa-solid fa-circle-plus fa-2xl"></span></a>
                 </div>
               </div>
-            } %>
+           <% } %>
             <div class="card text-center mt-5 w-100" >
               <div class="card-body w-100">
                 <h6 class="card-title mb-4">Manage Experiments</h6>
-                <a href="manage.experiments?id=<%= userId %>"><span class="fa fa-light fa-pen-to-square fa-2xl"></span></a>
+                <a href="manage_experiments?id=<%= userId %>"><span class="fa fa-light fa-pen-to-square fa-2xl"></span></a>
               </div>
             </div>
 

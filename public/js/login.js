@@ -18,10 +18,11 @@ window.onload = () => {
             },
             body: JSON.stringify(user)
         };
-        fetch("https://core-team-final-assignment-dev.onrender.com/IAM/login", requestOptions)
+        fetch("http://localhost:3030/IAM/login", requestOptions)
             .then(async response => {
                 const res = await response.json();
-                if (res.response == "success") {
+                console.log(res.response);
+                if (res.response === "success") {
                     window.location = "./home";
                 } else {
                     error.hidden = false;

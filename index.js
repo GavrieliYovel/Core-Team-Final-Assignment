@@ -54,7 +54,7 @@ app.use('/', pageRouter);
 app.use('/growth', experimentRouter);
 app.use('/IAM', IAMRouter);
 app.use('/bi', BIDataRouter);
-;
+
 
 app.use((req, res) => {
   res.status(400).send("Something is broken!");

@@ -18,7 +18,7 @@ exports.IAMController = {
             })
             .catch(mock => {
                 const answer =  userRepository.login(req.body.email, req.body.password);
-                if(answer == "success") {
+                if(answer === "success") {
                     const user = userRepository.getUserIdByEmail(req.body.email);
                     req.session.userId = user.id;
                     req.session.type = user.type;
@@ -30,8 +30,7 @@ exports.IAMController = {
                 } else {
                     res.send("fail");
                 }
-
-            })
+            });
     },
     getDetails(req,res) {
         console.log(req.cookies.jwt);

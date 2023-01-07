@@ -8632,3 +8632,7 @@ th, td {
 /*.col {*/
 /*  padding: 0;*/
 /*}*/
+
+.head a {
+  color: inherit;
+}

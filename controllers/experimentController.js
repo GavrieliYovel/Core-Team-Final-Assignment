@@ -6,7 +6,7 @@ const {get} = require("axios");
 const userRepository = new UserRepository();
 
 function checkManagerAuth(details) {
-    if(details.type != "manager" || details.credits <= 0) {
+    if(details.type !== "manager" || details.credits <= 0) {
         return false;
     } else {
         return true;

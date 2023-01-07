@@ -22,6 +22,7 @@ async function getDetails(req) {
             details = response.data;
         })
         .catch(mock => {
+            console.log(req.session.userId);
             details = userRepository.getDetailsById(req.session.userId);
         })
     return details
@@ -30,7 +31,8 @@ async function getDetails(req) {
 
 exports.experimentController = {
     async createExperiment(req, res) {
-        const details = getDetails(req);
+        const details = await getDetails(req);
+        console.log(details);
         if (checkManagerAuth(details)) {
             await axios.post('https://growth.render.com/experiment/new', req.body)
                 .then(async response => {
@@ -54,15 +56,7 @@ exports.experimentController = {
 
     },
     async updateExperiment(req, res) {
-        let details;
-        //getting type, credits, plan assets from IAM
-        await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
-            .then(response => {
-                details = response.data;
-            })
-            .catch(mock => {
-                details = userRepository.getDetailsById(req.session.userId);
-            })
+        const details = await getDetails(req);
         if (checkManagerAuth(details)) {
             await axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
                 .then(response => {
@@ -141,15 +135,7 @@ exports.experimentController = {
             })
     },
     async deleteExperiment(req, res) {
-        let details;
-        //getting type, credits, plan assets from IAM
-        await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
-            .then(response => {
-                details = response.data;
-            })
-            .catch(mock => {
-                details = userRepository.getDetailsById(req.session.userId);
-            })
+        const details = await getDetails(req);
         if (checkManagerAuth(details)) {
             await axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
                 .then(response => {

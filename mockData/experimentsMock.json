@@ -266,5 +266,39 @@
       "B": "test3",
       "C": "Default"
     }
+  },
+  {
+    "experimentId": 9,
+    "name": "test4",
+    "account": "A",
+    "type": "a-b",
+    "test_attributes": {
+      "location": [
+        "X",
+        "X"
+      ],
+      "device": [
+        "mobile"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "variant_success_count": {
+      "A": 0,
+      "B": 0,
+      "C": 0
+    },
+    "traffic_percentage": 75,
+    "goal_id": "test3",
+    "call_count": 0,
+    "status": "active",
+    "start_time": "2020-12-31T13:35:30.301Z",
+    "end_time": "2023-12-31T13:35:30.301Z",
+    "variants": {
+      "A": "test3",
+      "B": "test3",
+      "C": "Default"
+    }
   }
 ]

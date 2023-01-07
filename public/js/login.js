@@ -3,7 +3,7 @@ window.onload = () => {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        window.location = "./home.html"
+        window.location = "./home.ejs"
         // const email = inputs[0].value;
         // const pass  = inputs[1].value;
         //

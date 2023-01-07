@@ -3,8 +3,8 @@ const UserRepository = require('../repositories/userRepository');
 const userRepository = new UserRepository();
 
 exports.IAMController = {
-    login(req, res) {
-        axios.post("https://am-shenkar.onrender.com/auth/login", {
+    async login(req, res) {
+        await axios.post("https://am-shenkar.onrender.com/auth/login", {
             "email": req.body.email,
             "password": req.body.password
         }, {

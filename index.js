@@ -6,9 +6,6 @@ const dotenv  = require('dotenv');
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 
-// const { boardsRouter } = require("./routers/boardsRouter");
-// const { htmlRouter } = require("./routers/htmlRouter");
-// const { sessionRouter } = require("./routers/sessionRouter");
 const { experimentRouter } = require("./routers/experimentRouter");
 const { IAMRouter } = require("./routers/IAMRouter");
 const { BIDataRouter } = require("./routers/BIDataRouter");

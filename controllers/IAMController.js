@@ -1,9 +1,10 @@
 const axios = require("axios");
-
+const UserRepository = require('../repositories/userRepository');
+const userRepository = new UserRepository();
 
 exports.IAMController = {
     login(req, res) {
-        axios.post("https://iam-shenkar.onrender.com/auth/login", {
+        axios.post("https://am-shenkar.onrender.com/auth/login", {
             "email": req.body.email,
             "password": req.body.password
         }, {
@@ -16,12 +17,22 @@ exports.IAMController = {
                 res.send("success");
             })
             .catch(mock => {
-                res.send("fail")
+                const answer =  userRepository.login(req.body.email, req.body.password);
+                if(answer == "success") {
+                    req.session.userId = userRepository.getUserIdByEmail(req.body.email).id;
+                    res.send({
+                        mode: "mock",
+                        response: "success"
+                    });
+                } else {
+                    res.send("fail");
+                }
+
             })
     },
     getDetails(req,res) {
         console.log(req.cookies.jwt);
-        axios.get("https://iam-shenkar.onrender.com/assets/features", {
+        axios.get("https://iam-shenkar.onrender.com/assets", {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'

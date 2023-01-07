@@ -28,7 +28,6 @@ exports.IAMController = {
             }
         })
             .then(response => {
-                    console.log(response.headers["set-cookie"]);
                     res.send(response.data)
             })
             .catch(mock => {
@@ -43,7 +42,6 @@ exports.IAMController = {
             }
         })
             .then(response => {
-                console.log(response.headers["set-cookie"]);
                 res.send(response.data)
             })
             .catch(mock => {
@@ -58,22 +56,35 @@ exports.IAMController = {
             }
         })
             .then(response => {
-                console.log(response.headers["set-cookie"]);
                 res.send(response.data)
             })
             .catch(mock => {
                 res.send("fail")
             })
     },
-    setCredit(req,res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credits}`, {
+    setCredit(req, res) {
+        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`,{}, {
             headers: {
                 'cookie': `jwt=${req.cookies.jwt}`,
                 'Content-Type' : 'application/json'
             }
         })
             .then(response => {
-                console.log(response.headers["set-cookie"]);
+                res.send(response.data)
+            })
+            .catch(mock => {
+                console.log(mock.data)
+                res.send("fail")
+            })
+    },
+    setSeat(req,res) {
+        axios.put(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {},{
+            headers: {
+                'cookie': `jwt=${req.cookies.jwt}`,
+                'Content-Type' : 'application/json'
+            }
+        })
+            .then(response => {
                 res.send(response.data)
             })
             .catch(mock => {

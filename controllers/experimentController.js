@@ -4,6 +4,17 @@ const experimentRepository = new ExperimentRepository();
 
 exports.experimentController = {
     createExperiment(req, res) {
+        // axios.get('https://iam-shenkar.onrender.com/assets/token')
+        //     .then(response => {
+        //         const user = response.data;
+        //         if (user.type !== 'manager')
+        //             res.send("Not Authorised"); // should change to page
+        //     })
+        //     .catch(mock => {
+        //         const user = IAMRepository.getUserById(id);
+        //         res.send(experimentRepository.getExperimentById(id));
+        //     })
+
         axios.post('https://growth.render.com/experiment/new', req.body)
             .then(response => {
                 res.send(response.data);

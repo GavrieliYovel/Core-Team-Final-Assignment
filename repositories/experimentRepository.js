@@ -121,4 +121,13 @@ module.exports = class experimentRepository extends EventEmitter {
         return this.data.find(item => item.experimentId == id)
 
     }
+
+    getExperimentsByMonth(month, year) {
+        const date = new Date(year, month , 1);
+        const experiments = this.data.filter(item => new Date(item.end_time)>= date && new Date(item.start_time) <= date);
+        return experiments.length;
+    }
 }
+
+
+

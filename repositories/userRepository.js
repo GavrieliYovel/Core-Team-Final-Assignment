@@ -56,4 +56,8 @@ module.exports = class userRepository extends EventEmitter {
         }
     }
 
+    getUserIdByEmail(email) {
+        return this.data.find(user => user.email == email)
+    }
+
 }

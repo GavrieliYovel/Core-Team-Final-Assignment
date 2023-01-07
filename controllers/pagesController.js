@@ -1,11 +1,10 @@
-
 exports.pagesController = {
 
     getIndex(req, res) {
         if(req.session.hasOwnProperty("userId"))
             res.render("home", { userType: req.session.type, userId: req.session.id });
         else
-        res.render("index");
+            res.render("index");
     },
 
     getHome(req, res) {
@@ -34,7 +33,7 @@ exports.pagesController = {
     experimentAdd(req, res) {
         if(!req.session.hasOwnProperty("userId"))
             res.redirect("/");
-        else if ( req.session !== "manager")
+        else if ( req.session.type !== "manager")
             res.redirect("/home");
         else
             res.render("add_experiment");

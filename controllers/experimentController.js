@@ -69,12 +69,13 @@ exports.experimentController = {
         }
     },
     async experimentStatistics(req , res) {
-        await axios.get(`https://growth.render.com/experiment/${req.params.id}/statistics`)
+        await axios.get(`http://localhost:3030/experiment/${req.params.id}/statistics`)
             .then(response => {
                 res.send(response.data);
             })
             .catch(mock => {
                 res.send(`Statistics data from experiment ${req.params.id}`);
+                res.render("manage.experiments");
             })
     },
     async endExperiment(req, res) {

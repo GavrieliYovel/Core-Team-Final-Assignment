@@ -1,12 +1,12 @@
-
-
-
-
-
 window.onload = () => {
 
+    insertData(demoData);
+
     form.addEventListener("submit", (event) => {
+
         event.preventDefault();
+
+
         const exData = {};
         exData["name"] = form[0].value;
         exData["type"] = form[1].value;
@@ -31,12 +31,19 @@ window.onload = () => {
         for (const input of browserInputs)
             browsers.push(input.value);
 
-        exData["test_attributes"] = {
-            location: locations,
-            device: devices,
-            browser: browsers
-        };
 
+        const testAttributes = {};
+        testAttributes["location"] = locations;
+        testAttributes["devices"]  = devices;
+        testAttributes["browsers"] = browsers;
+
+        const extraTrafficInputs = document.getElementsByClassName("traffic-in");
+        for (const extraInput of extraTrafficInputs) {
+            if(extraInput.value !== "")
+                testAttributes[extraInput.name.toLocaleLowerCase()] = extraInput.value;
+        }
+
+        exData["test_attributes"] = testAttributes;
 
         if(abTestingIn.hidden === false) {
 
@@ -46,37 +53,41 @@ window.onload = () => {
                 variants[input.name.toLocaleUpperCase()] = input.value;
 
             exData["variants"] = variants;
-            exData["goal_id"] = document.getElementById("goal").value;
         }
 
         console.log(exData);
 
     });
 
-    insertData(demoData);
+
+    // trafficAddButton.addEventListener("click", (event) => {
+    //     trafficAddInput();
+    // });
+
     addLocation.addEventListener("click", (event) => {
         addLocationInput();
     });
 
     addDevice.addEventListener("click", (event) => {
         addDeviceInput();
+
     })
 
     addBrowser.addEventListener("click", (event) => {
         addBrowserInput();
     });
 
-    abAddButton.addEventListener("click", (event) => {
-        abAddInput();
-    });
+    // abAddButton.addEventListener("click", (event) => {
+    //     abAddInput();
+    // });
 
-    abRemove.addEventListener("click", (event) => {
-        const lastChild = abInputs.childNodes.length - 1;
-        abInputs.childNodes[lastChild].remove();
-        lastLetter = String.fromCharCode(lastLetter - 1);
-        lastLetter = lastLetter.charCodeAt(0);
-        abRemove.hidden = lastLetter <= "B".charCodeAt(0);
-    });
+    // abRemove.addEventListener("click", (event) => {
+    //     const lastChild = abInputs.childNodes.length - 1;
+    //     abInputs.childNodes[lastChild].remove();
+    //     lastLetter = String.fromCharCode(lastLetter - 1);
+    //     lastLetter = lastLetter.charCodeAt(0);
+    //     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
+    // });
 
 
 
@@ -88,6 +99,16 @@ window.onload = () => {
 
         }
     });
+
+    addTraffic.addEventListener("click", (event) => {
+        trafficAddInput();
+    })
+
+    // goalButton.addEventListener("click", (event) => {
+    //     goalAddInput();
+    // })
+
+
 }
 
 const form = document.getElementById("form");
@@ -97,9 +118,13 @@ const failedModel = document.getElementById("f-model");
 const type          = document.getElementById("type");
 const abTestingIn   = document.getElementById("ab-testing");
 const abTestingIns  = document.getElementsByClassName("ab");
+const trafficIns    = document.getElementById("traffic-ins");
 
+const regexTest     = new RegExp(/^[\w-. ?]+$/);
+const addTraffic    = document.getElementById("add-traffic");
+const trafficInput  = document.getElementById("extra");
 
-let locationCount = 1;
+let locationCount   = 1;
 const locationIns   = document.getElementById("location-ins");
 const addLocation   = document.getElementById("add-location");
 let removeLocation;
@@ -115,10 +140,67 @@ const addBrowser   = document.getElementById("add-browser");
 let removeBrowser;
 
 
-const abRemove = document.getElementById("remove-ab");
-const abAddButton = document.getElementById("add-ab");
-const abInputs = document.getElementById("ab-in");
-let lastLetter = "B".charCodeAt(0);
+// const abRemove = document.getElementById("remove-ab");
+// const abAddButton = document.getElementById("add-ab");
+// const abInputs = document.getElementById("ab-in");
+// let lastLetter = "B".charCodeAt(0);
+
+
+function datetimeLocal(datetime) {
+    const dt = new Date(datetime);
+    dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+    return dt.toISOString().slice(0, 16);
+}
+
+
+function insertData(data) {
+
+    abTestingIn.hidden = data.type !== "a-b";
+    form[0].value = data.name;
+    form[1].value = data.type;
+    form[2].value = datetimeLocal(data.start_time);
+    form[3].value = datetimeLocal(data.end_time);
+
+
+    const browsers = data.test_attributes.browser;
+    for (let i = 0 ; i < browsers.length ; i++) {
+        const browserInputs = document.getElementsByClassName("browser-ins");
+        browserInputs[i].value = browsers[i];
+        if( i !== browsers.length-1)
+            addBrowserInput();
+    }
+
+    const locations = data.test_attributes.location;
+    for (let i = 0 ; i < locations.length ; i++) {
+        const locationInputs = document.getElementsByClassName("location-ins");
+        locationInputs[i].value = locations[i];
+        if( i !== locations.length-1)
+            addLocationInput();
+    }
+
+    const devices = data.test_attributes.device;
+    for (let i = 0 ; i < devices.length ; i++) {
+        const deviceInputs = document.getElementsByClassName("device-ins");
+        deviceInputs[i].value = devices[i];
+        if( i !== devices.length-1)
+            addDeviceInput();
+    }
+
+    document.getElementById("traffic-test").value = data.traffic_percentage;
+
+    if(data.type === "a-b") {
+        document.getElementById("A").value = data.variants.A;
+        document.getElementById("B").value = data.variants.B;
+        document.getElementById("C").value = data.variants.C;
+
+        document.getElementById("A").required = true;
+        document.getElementById("B").required = true;
+    }
+
+
+
+
+}
 
 
 function removeElem(buttons, instance, counter) {
@@ -157,7 +239,7 @@ function addBrowserInput() {
 
     newInput.innerHTML =    '<div class="col-6 mb-2">' +
         '<div class="form-floating">' +
-        '<input type="text" class="form-control experiment-input browser-ins" name="browser' + browserCount + '" id="browser-' + browserCount + '" placeholder="Browser">' +
+        '<input type="text" class="form-control experiment-input browser-ins" name="browser-' + browserCount + '" id="browser-' + browserCount + '" placeholder="Browser">' +
         '<label for="browser-1">Browser</label>' +
         '</div>' +
         '</div>' +
@@ -217,43 +299,58 @@ function addLocationInput() {
 }
 
 
-function datetimeLocal(datetime) {
-    const dt = new Date(datetime);
-    dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
-    return dt.toISOString().slice(0, 16);
-}
+//
+// function abAddInput() {
+//
+//     if(lastLetter >= "Z".charCodeAt(0)) {
+//         alert("wrorr bgger then Zzzzzz....");
+//         return;
+//     }
+//     const newInput = document.createElement("div");
+//     newInput.className = "col-6 mb-3";
+//
+//     lastLetter = String.fromCharCode(lastLetter + 1);
+//
+//     newInput.innerHTML = '<div class="form-floating">' +
+//                          '<input type="text" class="form-control experiment-input ab-ins" id="' + lastLetter +'" placeholder="' + lastLetter + '" name="' + lastLetter + '" required>' +
+//                          '<label for="' + lastLetter + '">' + lastLetter +'</label>' +
+//                          '</div>';
+//
+//     lastLetter = lastLetter.charCodeAt(0);
+//     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
+//     abInputs.appendChild(newInput);
+// }
 
 
-function insertData(data) {
-    abTestingIn.hidden = data.type !== "a-b";
-    form[0].value = data.name;
-    form[1].value = data.type;
-    form[2].value = datetimeLocal(data.start_time);
-    form[3].value = datetimeLocal(data.end_time);
-}
+function trafficAddInput() {
+    const inputName = trafficInput.value.toLocaleLowerCase();
+    const trafficInputsName = document.getElementsByClassName("traffic-in");
 
-function abAddInput() {
+    const defaultTraffic = ["device", "browser", "location"];
 
-    if(lastLetter >= "Z".charCodeAt(0)) {
-        alert("wrorr bgger then Zzzzzz....");
+    if(inputName === ""  || defaultTraffic.indexOf(inputName) !== -1 || !regexTest.test(inputName)) {
+        alert("Invalid traffic name");
         return;
     }
+
+    for (let i = 0 ; i < trafficInputsName.length ; i++) {
+        if (trafficInputsName[i].placeholder.toLocaleLowerCase() === inputName) {
+            alert("Duplicate traffic name");
+            return;
+        }
+    }
+
     const newInput = document.createElement("div");
-    newInput.className = "col-6 mb-3";
-
-    lastLetter = String.fromCharCode(lastLetter + 1);
-
-    newInput.innerHTML = '<div class="form-floating">' +
-        '<input type="text" class="form-control experiment-input ab-ins" id="' + lastLetter +'" placeholder="' + lastLetter + '" name="' + lastLetter + '" required>' +
-        '<label for="' + lastLetter + '">' + lastLetter +'</label>' +
+    newInput.className = "row mt-3";
+    newInput.innerHTML =    '<div class="col-6 mb-2">' +
+        '<div class="form-floating">' +
+        '<input type="text" class="form-control experiment-input traffic-in" id="' + inputName + ' " name="' + inputName + '" placeholder="' + inputName +'">' +
+        '<label for="' + inputName + '">' + inputName + '</label>' +
+        '</div>' +
         '</div>';
 
-    lastLetter = lastLetter.charCodeAt(0);
-    abRemove.hidden = lastLetter <= "B".charCodeAt(0);
-    abInputs.appendChild(newInput);
+    trafficIns.appendChild(newInput);
 }
-
-
 
 const demoData = {
     experimentId: 1,

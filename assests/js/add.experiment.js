@@ -51,7 +51,6 @@ window.onload = () => {
                 variants[input.name.toLocaleUpperCase()] = input.value;
 
             exData["variants"] = variants;
-            exData["goal_id"] = document.getElementById("goal").value;
         }
 
         console.log(exData);
@@ -93,10 +92,8 @@ window.onload = () => {
     type.addEventListener("change", () => {
         abTestingIn.hidden = abTestingIn.hidden === false;
 
-        for (const input of abTestingIns) {
-            input.required = abTestingIn.hidden === false;
-
-        }
+        document.getElementById("A").required = abTestingIn.hidden === false;
+        document.getElementById("B").required = abTestingIn.hidden === false;
     });
 
     addTraffic.addEventListener("click", (event) => {

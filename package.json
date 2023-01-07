@@ -1,6 +1,12 @@
 {
   "dependencies": {
-    "chart.js": "^4.1.1"
+    "axios": "^1.2.2",
+    "chart.js": "^4.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
   },
   "name": "final-project---phase-1",
   "description": "",

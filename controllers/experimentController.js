@@ -85,6 +85,7 @@ exports.experimentController = {
                 res.send(response.data);
             })
             .catch(mock => {
+                experimentRepository.endExperiment(req.params.id);
                 res.send(`experiment ${req.params.id} ended`);
             })
     },
@@ -112,6 +113,8 @@ exports.experimentController = {
                     const data = experimentRepository.getExperimentByAccount(req.params.account);
                     res.send(data);
                 })
+        } else {
+            res.send("you don't have permissions");
         }
     },
     async ABTestByAccount(req, res) {

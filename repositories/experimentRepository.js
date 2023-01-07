@@ -127,6 +127,11 @@ module.exports = class experimentRepository extends EventEmitter {
         const experiments = this.data.filter(item => new Date(item.end_time)>= date && new Date(item.start_time) <= date);
         return experiments.length;
     }
+
+    endExperiment(id) {
+        this.data.find(item => item.experimentId == id).status = "end"
+        this.emit('updateData');
+    }
 }
 
 

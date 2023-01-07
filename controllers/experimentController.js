@@ -15,17 +15,17 @@ function checkManagerAuth(details) {
 exports.experimentController = {
 
     async createExperiment(req, res) {
-        let details;
-        //getting type, credits, plan assets from IAM
-        await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
-            .then(response => {
-                console.log(response.data);
-                details = response.data;
-            })
-            .catch(mock => {
-                details = userRepository.getDetailsById(req.session.userId);
-            })
-
+        // let details;
+        // //getting type, credits, plan assets from IAM
+        // await axios.get('https://iam-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
+        //     .then(response => {
+        //         console.log(response.data);
+        //         details = response.data;
+        //     })
+        //     .catch(mock => {
+        //         details = userRepository.getDetailsById(req.session.userId);
+        //     })
+        let details = {type: "manager", credits: 5}
         if (checkManagerAuth(details)) {
             await axios.post('https://growth.render.com/experiment/new', req.body)
                 .then(async response => {

@@ -19,7 +19,9 @@ exports.IAMController = {
             .catch(mock => {
                 const answer =  userRepository.login(req.body.email, req.body.password);
                 if(answer == "success") {
-                    req.session.userId = userRepository.getUserIdByEmail(req.body.email).id;
+                    const user = userRepository.getUserIdByEmail(req.body.email);
+                    req.session.userId = user.id;
+                    req.session.type = user.type;
                     res.send({
                         mode: "mock",
                         response: "success",

@@ -30,7 +30,7 @@
     "id": 4,
     "name": "Yovel Gavrieli",
     "email": "yovgav6@gmail.com",
-    "type": "user",
+    "type": "manager",
     "password": "Aa123456",
     "plan": "pro",
     "credits": 50

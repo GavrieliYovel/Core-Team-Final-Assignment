@@ -2,6 +2,7 @@ const axios = require('axios');
 const ExperimentRepository = require('../repositories/experimentRepository');
 const experimentRepository = new ExperimentRepository();
 const UserRepository = require('../repositories/userRepository');
+const {get} = require("axios");
 const userRepository = new UserRepository();
 
 function checkManagerAuth(details) {
@@ -12,19 +13,24 @@ function checkManagerAuth(details) {
     }
 }
 
+async function getDetails(req) {
+    let details;
+    //getting type, credits, plan assets from IAM
+    await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
+        .then(response => {
+            console.log(response.data);
+            details = response.data;
+        })
+        .catch(mock => {
+            details = userRepository.getDetailsById(req.session.userId);
+        })
+    return details
+}
+
+
 exports.experimentController = {
     async createExperiment(req, res) {
-        let details;
-        //getting type, credits, plan assets from IAM
-        await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
-            .then(response => {
-                console.log(response.data);
-                details = response.data;
-            })
-            .catch(mock => {
-                details = userRepository.getDetailsById(req.session.userId);
-            })
-
+        const details = getDetails(req);
         if (checkManagerAuth(details)) {
             await axios.post('https://growth.render.com/experiment/new', req.body)
                 .then(async response => {

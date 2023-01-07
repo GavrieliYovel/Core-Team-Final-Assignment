@@ -15,7 +15,7 @@ experimentRouter.post('/experiment/:id', experimentController.callExperiment);
 experimentRouter.post('/experiment/goal/:id', experimentController.declareGoal);
 
 //PUT
-experimentRouter.put('/experiment/end', experimentController.endExperiment);
+experimentRouter.put('/experiment/end/:id', experimentController.endExperiment);
 experimentRouter.put('/experiment/:id', experimentController.updateExperiment);
 
 //DELETE

@@ -4,8 +4,27 @@ const experimentRepository = new ExperimentRepository();
 
 
 exports.BIDataController = {
+
+    async getARR(req, res) {
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/ARR/${req.params.year}`)
+            .then(response => {
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send(`300000`)
+            })
+    },
     async getMRR(req, res) {
-        await axios.get(`https://Billing.render.com/MRR/${req.params.month}/${req.params.year}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/MRR/${req.params.year}/${req.params.month}`)
+            .then(response => {
+                res.send(response.data)
+            })
+            .catch(mock => {
+                res.send(`25000`)
+            })
+    },
+    async getDRR(req, res) {
+        await axios.get(`https://billing-final-phase1-development.onrender.com/MRR/${req.params.year}/${req.params.month}/${req.params.day}`)
             .then(response => {
                 res.send(response.data)
             })
@@ -14,18 +33,8 @@ exports.BIDataController = {
             })
     },
 
-    async getARR(req, res) {
-        await axios.get(`https://Billing.render.com/ARR/${req.params.year}`)
-            .then(response => {
-                res.send(response.data)
-            })
-            .catch(mock => {
-                res.send(`300000`)
-            })
-    },
-
     async getPaymentsByMonth(req, res) {
-        await axios.get(`https://Billing.render.com/payments/${req.params.month}/${req.params.year}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/payments/${req.params.year}/${req.params.month}`)
             .then(response => {
                 res.send(response.data)
             })

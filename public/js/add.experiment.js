@@ -10,6 +10,8 @@ window.onload = () => {
         exData["type"] = form[1].value;
 
         exData["start_time"] = new Date(form[2].value).toISOString();
+        // if form[3].value <= form[2].value
+        //      alert("end time must be after start time")
         exData["end_time"]   = new Date(form[3].value).toISOString();
 
         exData["traffic_percentage"] = document.getElementById("traffic-test").value;

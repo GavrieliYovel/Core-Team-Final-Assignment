@@ -18,7 +18,7 @@ window.onload = () => {
             },
             body: JSON.stringify(user)
         };
-        fetch(`${origin}/IAM/login`, requestOptions)
+        fetch("http://localhost:3030/IAM/login", requestOptions)
             .then(async response => {
                 const res = await response.json();
                 console.log(res.response);
@@ -35,4 +35,3 @@ window.onload = () => {
 
 const form      = document.getElementById('sign-in');
 const error     = document.getElementById('error');
-const origin    = window.origin;

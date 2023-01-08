@@ -375,3 +375,7 @@
 08-01-23 10:18 -> getting user details from mock data
 08-01-23 10:18 -> creating experiment using mock data
 08-01-23 10:18 -> getting home page after login
+08-01-23 10:38 -> redirect to login page before login
+08-01-23 10:38 -> getting login page
+08-01-23 10:38 -> login from mock data succeeded
+08-01-23 10:38 -> getting home page after login

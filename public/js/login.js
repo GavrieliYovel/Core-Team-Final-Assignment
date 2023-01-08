@@ -18,7 +18,7 @@ window.onload = () => {
             },
             body: JSON.stringify(user)
         };
-        fetch("http://localhost:3030/IAM/login", requestOptions)
+        fetch("https://core-team-final-assignment-dev.onrender.com/IAM/login", requestOptions)
             .then(async response => {
                 const res = await response.json();
                 console.log(res.response);

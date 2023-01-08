@@ -67,13 +67,21 @@ exports.experimentController = {
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
                         .then(response => {
                             logger.log("use 1 credit using IAM");
-                            res.send(response.data);
+                            res.send({
+                                response: "success",
+                                data: response.data
+                            });
                         })
                         .catch(mock => {
                             logger.log("use 1 credit using mock data");
                             userRepository.decreaseCredit(req.session.userId, 1);
                             const id = experimentRepository.createExperiment(req.body);
-                            res.send(experimentRepository.getExperimentById(id));
+                            const experiment = experimentRepository.getExperimentById(id);
+                            res.send({
+                                mode: "mock",
+                                response: "success",
+                                data: experiment
+                            });
                         })
                 })
                 .catch(mock => {

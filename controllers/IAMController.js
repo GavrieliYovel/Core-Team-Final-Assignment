@@ -37,104 +37,110 @@ exports.IAMController = {
                 }
             });
     },
-    getDetails(req, res) {
-        console.log(req.cookies.jwt);
-        axios.get("https://iam-shenkar.onrender.com/assets", {
-            headers: {
-                'cookie': `jwt=${req.cookies.jwt}`,
-                'Content-Type': 'application/json'
-            }
+    getSession(req, res) {
+        res.json({
+            userId: req.session.userId,
+            type: req.session.type
         })
-            .then(response => {
-                logger.log("getting details from IAM");
-                res.send(response.data)
-            })
-            .catch(mock => {
-                logger.log("failed getting details from IAM");
-                res.send("fail")
-            })
-    },
-    getToken(req, res) {
-        axios.get("https://iam-shenkar.onrender.com/assets/token", {
-            headers: {
-                'cookie': `jwt=${req.cookies.jwt}`,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                logger.log("getting token from IAM");
-                res.send(response.data)
-            })
-            .catch(mock => {
-                logger.log("failed getting token from IAM");
-                res.send("fail")
-            })
-    },
-    getCredits(req, res) {
-        axios.get("https://iam-shenkar.onrender.com/assets/credits", {
-            headers: {
-                'cookie': `jwt=${req.cookies.jwt}`,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                logger.log("getting credits from IAM");
-                res.send(response.data)
-            })
-            .catch(mock => {
-                logger.log("failed getting credits from IAM");
-                res.send("fail")
-            })
-    },
-    setCredit(req, res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`, {}, {
-            headers: {
-                'cookie': `jwt=${req.cookies.jwt}`,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                logger.log("setting credits using IAM");
-                res.send(response.data)
-            })
-            .catch(mock => {
-                logger.log("failed setting credits using IAM");
-                console.log(mock.data)
-                res.send("fail")
-            })
-    },
-    getSeats(req, res){
-        axios.get(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {}, {
-            headers: {
-                'cookie': `jwt=${req.cookies.jwt}`,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                logger.log("getting seats from IAM");
-                res.send(response.data)
-            })
-            .catch(mock => {
-                logger.log("failed getting seats from IAM");
-                res.send("fail")
-            })
-    },
-    setSeat(req, res) {
-        axios.put(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {}, {
-            headers: {
-                'cookie': `jwt=${req.cookies.jwt}`,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                logger.log("setting seats using IAM");
-                res.send(response.data)
-            })
-            .catch(mock => {
-                logger.log("failed setting seats using IAM");
-                res.send("fail")
-            })
     }
+    // getDetails(req, res) {
+    //     console.log(req.cookies.jwt);
+    //     axios.get("https://iam-shenkar.onrender.com/assets", {
+    //         headers: {
+    //             'cookie': `jwt=${req.cookies.jwt}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             logger.log("getting details from IAM");
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             logger.log("failed getting details from IAM");
+    //             res.send("fail")
+    //         })
+    // },
+    // getToken(req, res) {
+    //     axios.get("https://iam-shenkar.onrender.com/assets/token", {
+    //         headers: {
+    //             'cookie': `jwt=${req.cookies.jwt}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             logger.log("getting token from IAM");
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             logger.log("failed getting token from IAM");
+    //             res.send("fail")
+    //         })
+    // },
+    // getCredits(req, res) {
+    //     axios.get("https://iam-shenkar.onrender.com/assets/credits", {
+    //         headers: {
+    //             'cookie': `jwt=${req.cookies.jwt}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             logger.log("getting credits from IAM");
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             logger.log("failed getting credits from IAM");
+    //             res.send("fail")
+    //         })
+    // },
+    // setCredit(req, res) {
+    //     axios.put(`https://iam-shenkar.onrender.com/assets/credits/${req.params.credit}`, {}, {
+    //         headers: {
+    //             'cookie': `jwt=${req.cookies.jwt}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             logger.log("setting credits using IAM");
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             logger.log("failed setting credits using IAM");
+    //             console.log(mock.data)
+    //             res.send("fail")
+    //         })
+    // },
+    // getSeats(req, res){
+    //     axios.get(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {}, {
+    //         headers: {
+    //             'cookie': `jwt=${req.cookies.jwt}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             logger.log("getting seats from IAM");
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             logger.log("failed getting seats from IAM");
+    //             res.send("fail")
+    //         })
+    // },
+    // setSeat(req, res) {
+    //     axios.put(`https://iam-shenkar.onrender.com/assets/seats/${req.params.seat}`, {}, {
+    //         headers: {
+    //             'cookie': `jwt=${req.cookies.jwt}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             logger.log("setting seats using IAM");
+    //             res.send(response.data)
+    //         })
+    //         .catch(mock => {
+    //             logger.log("failed setting seats using IAM");
+    //             res.send("fail")
+    //         })
+    // }
 }
 
 

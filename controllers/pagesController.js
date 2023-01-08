@@ -6,7 +6,7 @@ exports.pagesController = {
     getIndex(req, res) {
         if(req.session.hasOwnProperty("userId")) {
             logger.log("redirect login page to home page after login");
-            res.render("home", {userType: req.session.type, userId: req.session.id});
+            res.render("home", {userType: req.session.type, userId: req.session.userId});
         }
         else{
             logger.log("getting login page");

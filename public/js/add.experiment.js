@@ -3,6 +3,7 @@ window.onload = () => {
     form.addEventListener("submit", (event) => {
 
         event.preventDefault();
+
         let experiment;
         if (form[3].value <= form[2].value)
             alert("end time must be after start time");
@@ -54,7 +55,7 @@ window.onload = () => {
 
             experiment = {
                 "name": exData["name"],
-                "account_id" : "507f1f77bcf86cd799439011",
+                "account_id" : userId,
                 "type": exData["type"],
                 "test_attributes": {
                     "location" : exData["location"],
@@ -107,18 +108,42 @@ window.onload = () => {
             },
             body: JSON.stringify(experiment)
         };
-        fetch("http://localhost:3030/growth/experiment/new", requestOptions)
+        let userId;
+        const getOptions = {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        fetch(`${origin}/IAM/session`, getOptions)
             .then(async response => {
                 const res = await response.json();
-                console.log(res.response);
-                window.location = "./home";
-                // if (res.response === "success") {
-                //     window.location = "./home";
-                // } else {
-                //     error.hidden = false;
-                //     window.location = "./home";
-                // }
+                console.log(res.userId);
+                userId = res.userId;
+                experiment.account_id = userId
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(experiment)
+                };
+                fetch(`${origin}/growth/experiment/new`, requestOptions)
+                    .then(async response => {
+                        const res = await response.json();
+                        console.log(res.response);
+                        window.location = "./home";
+                        // if (res.response === "success") {
+                        //     window.location = "./home";
+                        // } else {
+                        //     error.hidden = false;
+                        //     window.location = "./home";
+                        // }
+                    });
             });
+
     });
 
 
@@ -198,7 +223,7 @@ let browserCount = 1;
 const browserIns   = document.getElementById("browser-ins");
 const addBrowser   = document.getElementById("add-browser");
 let removeBrowser;
-
+const origin    = window.origin;
 
 // const abRemove = document.getElementById("remove-ab");
 // const abAddButton = document.getElementById("add-ab");

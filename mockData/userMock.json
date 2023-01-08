@@ -34,5 +34,14 @@
     "password": "Aa123456",
     "plan": "pro",
     "credits": 50
+  },
+  {
+    "id": 5,
+    "name": "Suf",
+    "email": "suf@gmail.com",
+    "type": "manager",
+    "password": "123456",
+    "plan": "pro",
+    "credits": 50
   }
 ]

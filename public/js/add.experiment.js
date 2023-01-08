@@ -3,17 +3,15 @@ window.onload = () => {
     form.addEventListener("submit", (event) => {
 
         event.preventDefault();
-
+        let experiment;
+        if (form[3].value <= form[2].value)
+            alert("end time must be after start time");
 
         const exData = {};
         exData["name"] = form[0].value;
         exData["type"] = form[1].value;
-
         exData["start_time"] = new Date(form[2].value).toISOString();
-        // if form[3].value <= form[2].value
-        //      alert("end time must be after start time")
         exData["end_time"]   = new Date(form[3].value).toISOString();
-
         exData["traffic_percentage"] = document.getElementById("traffic-test").value;
 
         const locationInputs = document.getElementsByClassName("location-ins");
@@ -52,11 +50,75 @@ window.onload = () => {
             for (const input of variantInputs)
                 variants[input.name.toLocaleUpperCase()] = input.value;
 
-            exData["variants"] = variants;
+            exData["variants_ab"] = variants;
+
+            experiment = {
+                "name": exData["name"],
+                "account_id" : "507f1f77bcf86cd799439011",
+                "type": exData["type"],
+                "test_attributes": {
+                    "location" : exData["location"],
+                    "device" : exData["device"],
+                    "browser" : exData["browser"]
+                },
+                "variant_success_count": {
+                    "A" : 0,
+                    "B" : 0,
+                    "C" : 0
+                },
+                "traffic_percentage" : exData["traffic_percentage"],
+                "call_count": 10,
+                "status": "active",
+                "duration" : {
+                    "start_time" : exData["start_time"],
+                    "end_time" : exData["end_time"]
+                },
+                "variants_ab" : {
+                    "A" : exData["variants_ab"]["A"],
+                    "B" : exData["variants_ab"]["B"],
+                    "C" : exData["variants_ab"]["C"]
+                }
+            }
         }
-
-        console.log(exData);
-
+        else {
+            experiment = {
+                "name": exData["name"],
+                "account_id": "507f1f77bcf86cd799439011",
+                "type": exData["type"],
+                "test_attributes": {
+                    "location": exData["location"],
+                    "device": exData["device"],
+                    "browser": exData["browser"]
+                },
+                "traffic_percentage": exData["traffic_percentage"],
+                "call_count": 10,
+                "status": "active",
+                "duration": {
+                    "start_time": exData["start_time"],
+                    "end_time": exData["end_time"]
+                }
+            }
+        }
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(experiment)
+        };
+        fetch("http://localhost:3030/growth/experiment/new", requestOptions)
+            .then(async response => {
+                const res = await response.json();
+                console.log(res.response);
+                window.location = "./home";
+                // if (res.response === "success") {
+                //     window.location = "./home";
+                // } else {
+                //     error.hidden = false;
+                //     window.location = "./home";
+                // }
+            });
     });
 
 

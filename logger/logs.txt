@@ -234,3 +234,144 @@
 08-01-23 08:50 -> login from mock data succeeded
 08-01-23 08:50 -> login from mock data succeeded
 08-01-23 08:51 -> login from mock data succeeded
+08-01-23 08:53 -> getting login page
+08-01-23 08:53 -> redirect to 404 page from localhost:3030/includes/apple-touch-icon.png
+08-01-23 08:53 -> redirect to login page before login
+08-01-23 08:53 -> getting login page
+08-01-23 08:53 -> redirect to 404 page from localhost:3030/includes/apple-touch-icon.png
+08-01-23 08:54 -> getting login page
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/includes/apple-touch-icon.png
+08-01-23 08:54 -> login from mock data succeeded
+08-01-23 08:54 -> getting home page after login
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/favicon.ico
+08-01-23 08:54 -> getting add_experiment page after login
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/public/images/done.png
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/public/images/fail.png
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/favicon.ico
+08-01-23 08:55 -> redirect to 404 page from localhost:3030/favicon.ico
+08-01-23 08:56 -> redirect to login page before login
+08-01-23 08:56 -> getting login page
+08-01-23 08:56 -> login from mock data succeeded
+08-01-23 08:56 -> getting home page after login
+08-01-23 08:57 -> login from mock data succeeded
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> login from mock data succeeded
+08-01-23 09:07 -> getting home page after login
+08-01-23 09:07 -> getting add_experiment page after login
+08-01-23 09:19 -> redirect to login page before login
+08-01-23 09:19 -> getting login page
+08-01-23 09:20 -> login from mock data succeeded
+08-01-23 09:20 -> getting home page after login
+08-01-23 09:20 -> getting add_experiment page after login
+08-01-23 09:20 -> redirect to login page before login
+08-01-23 09:20 -> getting login page
+08-01-23 09:20 -> login from mock data succeeded
+08-01-23 09:20 -> getting home page after login
+08-01-23 09:20 -> getting add_experiment page after login
+08-01-23 09:21 -> redirect to login page before login
+08-01-23 09:21 -> getting login page
+08-01-23 09:21 -> login from mock data succeeded
+08-01-23 09:21 -> getting home page after login
+08-01-23 09:21 -> getting add_experiment page after login
+08-01-23 09:25 -> redirect to login page before logout
+08-01-23 09:25 -> getting login page
+08-01-23 09:32 -> login from mock data succeeded
+08-01-23 09:32 -> getting home page after login
+08-01-23 09:32 -> getting add_experiment page after login
+08-01-23 09:32 -> getting add_experiment page after login
+08-01-23 09:33 -> redirect to login page before login
+08-01-23 09:33 -> getting login page
+08-01-23 09:33 -> login from mock data succeeded
+08-01-23 09:33 -> getting home page after login
+08-01-23 09:33 -> getting add_experiment page after login
+08-01-23 09:33 -> getting add_experiment page after login
+08-01-23 09:34 -> redirect to login page before login
+08-01-23 09:34 -> getting login page
+08-01-23 09:34 -> login from mock data succeeded
+08-01-23 09:34 -> getting home page after login
+08-01-23 09:34 -> getting add_experiment page after login
+08-01-23 09:34 -> getting add_experiment page after login
+08-01-23 09:35 -> redirect to login page before login
+08-01-23 09:35 -> getting login page
+08-01-23 09:35 -> login from mock data succeeded
+08-01-23 09:35 -> getting home page after login
+08-01-23 09:35 -> getting add_experiment page after login
+08-01-23 09:35 -> getting user details from mock data
+08-01-23 09:35 -> creating experiment using mock data
+08-01-23 09:44 -> redirect to login page before login
+08-01-23 09:44 -> getting login page
+08-01-23 09:44 -> login from mock data succeeded
+08-01-23 09:44 -> getting home page after login
+08-01-23 09:44 -> getting add_experiment page after login
+08-01-23 09:45 -> redirect to login page before login
+08-01-23 09:45 -> getting login page
+08-01-23 09:45 -> login from mock data succeeded
+08-01-23 09:45 -> getting home page after login
+08-01-23 09:45 -> getting add_experiment page after login
+08-01-23 09:47 -> redirect to login page before login
+08-01-23 09:47 -> getting login page
+08-01-23 09:47 -> getting login page
+08-01-23 09:47 -> login from mock data succeeded
+08-01-23 09:47 -> getting home page after login
+08-01-23 09:47 -> getting add_experiment page after login
+08-01-23 09:48 -> getting user details from mock data
+08-01-23 09:48 -> creating experiment using mock data
+08-01-23 09:50 -> redirect to login page before login
+08-01-23 09:50 -> getting login page
+08-01-23 09:50 -> login from mock data succeeded
+08-01-23 09:50 -> getting home page after login
+08-01-23 09:50 -> getting add_experiment page after login
+08-01-23 09:52 -> getting add_experiment page after login
+08-01-23 09:53 -> redirect to login page before login
+08-01-23 09:53 -> getting login page
+08-01-23 09:53 -> login from mock data succeeded
+08-01-23 09:53 -> getting home page after login
+08-01-23 09:53 -> getting add_experiment page after login
+08-01-23 09:53 -> getting user details from mock data
+08-01-23 09:53 -> creating experiment using mock data
+08-01-23 09:57 -> redirect to login page before login
+08-01-23 09:57 -> getting login page
+08-01-23 09:57 -> login from mock data succeeded
+08-01-23 09:57 -> getting home page after login
+08-01-23 09:57 -> getting add_experiment page after login
+08-01-23 09:58 -> getting user details from mock data
+08-01-23 09:58 -> creating experiment using mock data
+08-01-23 10:06 -> redirect to login page before login
+08-01-23 10:06 -> getting login page
+08-01-23 10:06 -> login from mock data succeeded
+08-01-23 10:06 -> getting home page after login
+08-01-23 10:06 -> getting add_experiment page after login
+08-01-23 10:07 -> redirect to login page before logout
+08-01-23 10:07 -> getting login page
+08-01-23 10:07 -> login from mock data succeeded
+08-01-23 10:07 -> getting home page after login
+08-01-23 10:08 -> getting home page after login
+08-01-23 10:08 -> redirect to login page before logout
+08-01-23 10:08 -> getting login page
+08-01-23 10:08 -> login from mock data succeeded
+08-01-23 10:08 -> getting home page after login
+08-01-23 10:08 -> getting add_experiment page after login
+08-01-23 10:09 -> getting user details from mock data
+08-01-23 10:09 -> creating experiment using mock data
+08-01-23 10:10 -> redirect to login page before login
+08-01-23 10:10 -> getting login page
+08-01-23 10:10 -> login from mock data succeeded
+08-01-23 10:10 -> getting home page after login
+08-01-23 10:10 -> getting add_experiment page after login
+08-01-23 10:11 -> getting user details from mock data
+08-01-23 10:11 -> creating experiment using mock data
+08-01-23 10:18 -> redirect to login page before login
+08-01-23 10:18 -> getting login page
+08-01-23 10:18 -> login from mock data succeeded
+08-01-23 10:18 -> getting home page after login
+08-01-23 10:18 -> getting add_experiment page after login
+08-01-23 10:18 -> getting user details from mock data
+08-01-23 10:18 -> creating experiment using mock data
+08-01-23 10:18 -> getting home page after login

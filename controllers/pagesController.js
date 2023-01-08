@@ -26,7 +26,6 @@ exports.pagesController = {
     },
 
     getError(req, res) {
-        logger.log("redirect to 404 page from "+req.get('host')+req.originalUrl);
         res.render("404");
     },
     experimentManagement(req, res) {

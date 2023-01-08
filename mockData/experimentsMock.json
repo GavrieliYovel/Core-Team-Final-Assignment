@@ -300,5 +300,33 @@
       "B": "test3",
       "C": "Default"
     }
+  },
+  {
+    "experimentId": 10,
+    "name": "Blue button",
+    "type": "feature-flag",
+    "test_attributes": {},
+    "variant_success_count": {
+      "A": 0,
+      "B": 0,
+      "C": 0
+    },
+    "traffic_percentage": "20",
+    "call_count": 0,
+    "status": "active"
+  },
+  {
+    "experimentId": 11,
+    "name": "srgrwgr",
+    "type": "feature-flag",
+    "test_attributes": {},
+    "variant_success_count": {
+      "A": 0,
+      "B": 0,
+      "C": 0
+    },
+    "traffic_percentage": "18",
+    "call_count": 0,
+    "status": "active"
   }
 ]

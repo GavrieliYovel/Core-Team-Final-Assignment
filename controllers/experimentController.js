@@ -21,15 +21,13 @@ async function getDetails(req) {
     await axios.get('https://am-shenkar.onrender.com/assets', {headers: {'Content-Type': 'application/json'}})
         .then(response => {
             logger.log("getting user details from IAM");
-            console.log(response.data);
             details = response.data;
         })
         .catch(mock => {
             logger.log("getting user details from mock data");
-            console.log(req.session.userId);
             details = userRepository.getDetailsById(req.session.userId);
         })
-    return details
+    return details;
 }
 
 async function getToken(){

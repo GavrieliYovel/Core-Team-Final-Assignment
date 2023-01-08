@@ -1,8 +1,8 @@
 window.onload = () => {
 
+    console.log(origin);
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-
         const email = form[0].value;
         const pass  = form[1].value;
 
@@ -28,8 +28,6 @@ window.onload = () => {
                     error.hidden = false;
                 }
             });
-
-
     });
 }
 

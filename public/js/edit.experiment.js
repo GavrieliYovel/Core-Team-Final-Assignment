@@ -1,6 +1,6 @@
 window.onload = () => {
 
-    insertData(demoData);
+    getExperiment(id);
 
     form.addEventListener("submit", (event) => {
 
@@ -55,14 +55,34 @@ window.onload = () => {
             exData["variants"] = variants;
         }
 
-        console.log(exData);
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(exData)
+        };
+
+
+        fetch( `${origin}/growth/experiment/${id}`,requestOptions )
+            .then(async response => {
+                const res = await response.text();
+                if (response.status === 200) {
+                    successesModel.click();
+                    insertData(res);
+                }
+
+                else {
+                    failedModel.click();
+                }
+
+            });
 
     });
 
 
-    // trafficAddButton.addEventListener("click", (event) => {
-    //     trafficAddInput();
-    // });
 
     addLocation.addEventListener("click", (event) => {
         addLocationInput();
@@ -77,17 +97,6 @@ window.onload = () => {
         addBrowserInput();
     });
 
-    // abAddButton.addEventListener("click", (event) => {
-    //     abAddInput();
-    // });
-
-    // abRemove.addEventListener("click", (event) => {
-    //     const lastChild = abInputs.childNodes.length - 1;
-    //     abInputs.childNodes[lastChild].remove();
-    //     lastLetter = String.fromCharCode(lastLetter - 1);
-    //     lastLetter = lastLetter.charCodeAt(0);
-    //     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
-    // });
 
 
 
@@ -102,14 +111,16 @@ window.onload = () => {
 
     addTraffic.addEventListener("click", (event) => {
         trafficAddInput();
-    })
-
-    // goalButton.addEventListener("click", (event) => {
-    //     goalAddInput();
-    // })
-
+    });
 
 }
+
+const qstring = window.location.search;
+
+const urlparams = new URLSearchParams(qstring);
+const id  = urlparams.get("id");
+
+
 
 const form = document.getElementById("form");
 const successesModel = document.getElementById("s-model");
@@ -139,11 +150,17 @@ const browserIns   = document.getElementById("browser-ins");
 const addBrowser   = document.getElementById("add-browser");
 let removeBrowser;
 
+const origin = window.origin;
 
-// const abRemove = document.getElementById("remove-ab");
-// const abAddButton = document.getElementById("add-ab");
-// const abInputs = document.getElementById("ab-in");
-// let lastLetter = "B".charCodeAt(0);
+function getExperiment(id) {
+
+    fetch(`${origin}/growth/experiment/single/${id}`)
+        .then(async response => {
+            const res = await response.json();
+            insertData(res);
+        });
+}
+
 
 
 function datetimeLocal(datetime) {
@@ -299,27 +316,6 @@ function addLocationInput() {
 }
 
 
-//
-// function abAddInput() {
-//
-//     if(lastLetter >= "Z".charCodeAt(0)) {
-//         alert("wrorr bgger then Zzzzzz....");
-//         return;
-//     }
-//     const newInput = document.createElement("div");
-//     newInput.className = "col-6 mb-3";
-//
-//     lastLetter = String.fromCharCode(lastLetter + 1);
-//
-//     newInput.innerHTML = '<div class="form-floating">' +
-//                          '<input type="text" class="form-control experiment-input ab-ins" id="' + lastLetter +'" placeholder="' + lastLetter + '" name="' + lastLetter + '" required>' +
-//                          '<label for="' + lastLetter + '">' + lastLetter +'</label>' +
-//                          '</div>';
-//
-//     lastLetter = lastLetter.charCodeAt(0);
-//     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
-//     abInputs.appendChild(newInput);
-// }
 
 
 function trafficAddInput() {
@@ -350,42 +346,4 @@ function trafficAddInput() {
         '</div>';
 
     trafficIns.appendChild(newInput);
-}
-
-const demoData = {
-    experimentId: 1,
-    name: "experiment test name",
-    account: "A",
-    type: "a-b",
-    test_attributes: {
-        location: [
-            "IL",
-            "Lod",
-            "UK"
-        ],
-        device: [
-            "mobile",
-            "iphone"
-        ],
-        browser: [
-            "Chrome",
-            "safari"
-        ]
-    },
-    variant_success_count: {
-        A: 0,
-        B: 0,
-        C: 0
-    },
-    traffic_percentage: 50,
-    goal_id: null,
-    call_count: 0,
-    status: "active",
-    start_time: "2022-12-31T13:35:30.301Z",
-    end_time: "2023-12-31T13:35:30.301Z",
-    variants: {
-        A: "Alternative1",
-        B: "Alternative2",
-        C: "Default"
-    }
 }

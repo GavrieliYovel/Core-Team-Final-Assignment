@@ -55,7 +55,7 @@ window.onload = () => {
 
             experiment = {
                 "name": exData["name"],
-                "account_id" : userId,
+                "account_id" : "507f1f77bcf86cd799439011",
                 "type": exData["type"],
                 "test_attributes": {
                     "location" : exData["location"],

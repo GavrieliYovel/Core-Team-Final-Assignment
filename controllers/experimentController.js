@@ -30,7 +30,7 @@ async function getDetails(req) {
     return details;
 }
 
-async function getToken(){
+async function getToken(req){
     let status;
     await axios.get('https://am-shenkar.onrender.com/assets/token', {headers: {'Content-Type': 'application/json'}})
         .then(response => {
@@ -87,7 +87,12 @@ exports.experimentController = {
                 .catch(mock => {
                     logger.log("creating experiment using mock data");
                     const id = experimentRepository.createExperiment(req.body);
-                    res.send(experimentRepository.getExperimentById(id));
+                    const experiment = experimentRepository.getExperimentById(id);
+                    res.send({
+                        mode: "mock",
+                        response: "success",
+                        data: experiment
+                    });
                 })
         }
         else {
@@ -102,17 +107,17 @@ exports.experimentController = {
             await axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
                 .then(response => {
                     logger.log("updating experiment using Growth");
-                    res.send(response.data);
+                    res.status(200).json(response.data);
                 })
                 .catch(mock => {
                     logger.log("updating experiment using mock data");
                     const updatedExperiment = experimentRepository.updateExperiment(req.body, req.params.id);
-                    res.send(updatedExperiment);
+                    res.status(200).json(updatedExperiment);
                 })
         }
         else {
             logger.log("user not authorised for updating experiment");
-            res.send("you don't have permission to update experiment")
+            res.status(500).json( { mass: "you don't have permission to update experiment" })
         }
     },
     async experimentStatistics(req , res) {
@@ -149,7 +154,7 @@ exports.experimentController = {
         }
     },
     async experimentsByAccount(req, res) {
-        let status = getToken();
+        let status = getToken(req);
         if(status) {
             await axios.get(`https://growth.render.com/experiment/${req.params.account}`)
                 .then(response => {
@@ -168,7 +173,7 @@ exports.experimentController = {
         }
     },
     async ABTestExperimentsByAccount(req, res) {
-        let status = getToken();
+        let status = getToken(req);
         if(status) {
             await axios.get(`https://growth.render.com/experiment/AB/${req.params.account}`)
                 .then(response => {
@@ -187,7 +192,7 @@ exports.experimentController = {
         }
     },
     async FeatureFlagExperimentsByAccount(req, res) {
-        let status = getToken();
+        let status = getToken(req);
         if(status) {
             await axios.get(`https://growth.render.com/experiment/FF/${req.params.account}`)
                 .then(response => {
@@ -247,6 +252,10 @@ exports.experimentController = {
                 logger.log("declaring goal using mock data");
                 res.send("declared goal");
             })
+    },
+    getExperimentById(req, res) {
+        const experiment = experimentRepository.getExperimentById(req.params.id);
+        res.json(experiment);
     }
 }
 

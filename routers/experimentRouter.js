@@ -8,6 +8,7 @@ experimentRouter.get('/experiment/:id/statistics', experimentController.experime
 experimentRouter.get('/experiment/:account/AB', experimentController.ABTestExperimentsByAccount);
 experimentRouter.get('/experiment/:account/FF', experimentController.FeatureFlagExperimentsByAccount);
 experimentRouter.get('/experiment/:account', experimentController.experimentsByAccount);
+experimentRouter.get('/experiment/single/:id', experimentController.getExperimentById);
 
 //POST
 experimentRouter.post('/experiment/new', experimentController.createExperiment);

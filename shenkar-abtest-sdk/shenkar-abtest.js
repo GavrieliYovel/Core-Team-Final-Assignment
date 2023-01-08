@@ -8,12 +8,15 @@ class ABTestSDK {
              "password": password
          })
              .then(response => {
-                 // console.log(response.data.account);
-                 this.account_id = response.data.account;
+                 this.setAccountID(response.data.account)
              })
              .catch(response =>{
                  console.log("Failed to login");
              })
+     }
+
+     setAccountID(id){
+         this.account_id = id;
      }
 
      getAccountID(){

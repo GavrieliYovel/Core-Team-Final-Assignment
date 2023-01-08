@@ -27,6 +27,7 @@ async function getDetails(req) {
             logger.log("getting user details from mock data");
             details = userRepository.getDetailsById(req.session.userId);
         })
+    console.log(details);
     return details;
 }
 
@@ -61,7 +62,7 @@ exports.experimentController = {
     async createExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.post('https://growth.render.com/experiment/new', req.body)
+            await axios.post('https://ab-test-bvtg.onrender.com/experiment/new', req.body)
                 .then(async response => {
                     logger.log("creating experiment using Growth");
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
@@ -104,7 +105,7 @@ exports.experimentController = {
     async updateExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
+            await axios.put(`https://ab-test-bvtg.onrender.com/experiment/${req.params.id}`, req.body)
                 .then(response => {
                     logger.log("updating experiment using Growth");
                     res.status(200).json(response.data);
@@ -121,7 +122,7 @@ exports.experimentController = {
         }
     },
     async experimentStatistics(req , res) {
-        await axios.get(`https://growth.render.com/experiment/${req.params.id}/statistics`)
+        await axios.get(`https://ab-test-bvtg.onrender.com/experiment/${req.params.id}/statistics`)
             .then(response => {
                 logger.log("getting experiment statistics using Growth");
                 res.send(response.data);
@@ -135,7 +136,7 @@ exports.experimentController = {
     async endExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.post(`https://growth.render.com/experiment/${req.params.id}/end`, {
+            await axios.post(`https://ab-test-bvtg.onrender.com/experiment/${req.params.id}/end`, {
                 experimentId: req.body.experimentId
             })
                 .then(response => {
@@ -156,7 +157,7 @@ exports.experimentController = {
     async experimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://growth.render.com/experiment/${req.params.account}`)
+            await axios.get(`https://ab-test-bvtg.onrender.com/experiment/${req.params.account}`)
                 .then(response => {
                     logger.log("getting experiments by account from Growth");
                     res.send(response.data);
@@ -175,7 +176,7 @@ exports.experimentController = {
     async ABTestExperimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://growth.render.com/experiment/AB/${req.params.account}`)
+            await axios.get(`https://ab-test-bvtg.onrender.com/experiment/AB/${req.params.account}`)
                 .then(response => {
                     logger.log("getting AB experiments by account from Growth");
                     res.send(response.data);
@@ -194,7 +195,7 @@ exports.experimentController = {
     async FeatureFlagExperimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://growth.render.com/experiment/FF/${req.params.account}`)
+            await axios.get(`https://ab-test-bvtg.onrender.com/experiment/FF/${req.params.account}`)
                 .then(response => {
                     logger.log("getting FF experiments by account from Growth");
                     res.send(response.data);
@@ -213,7 +214,7 @@ exports.experimentController = {
     async deleteExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
+            await axios.delete(`https://ab-test-bvtg.onrender.com/experiment/${req.params.id}`)
                 .then(response => {
                     logger.log("deleting experiment using Growth");
                     res.send(response.data);
@@ -226,7 +227,7 @@ exports.experimentController = {
         }
     },
     async callExperiment(req, res) {
-        await axios.post(`https://growth.render.com/experiment/${req.params.id}`, req)
+        await axios.post(`https://ab-test-bvtg.onrender.com/experiment/${req.params.id}`, req)
             .then(response => {
                 logger.log("calling experiment using Growth");
                 res.send(response.data);
@@ -243,7 +244,7 @@ exports.experimentController = {
             })
     },
     async declareGoal(req, res) {
-        await axios.post(`https://growth.render.com/experiment/goal/${req.params.id}`, req)
+        await axios.post(`https://ab-test-bvtg.onrender.com/experiment/goal/${req.params.id}`, req)
             .then(response => {
                 logger.log("declaring goal using Growth");
                 res.send("declared goal");

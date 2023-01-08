@@ -156,8 +156,50 @@ function getExperiment(id) {
 
     fetch(`${origin}/growth/experiment/single/${id}`)
         .then(async response => {
-            const res = await response.json();
-            insertData(res);
+            const data = await response.json();
+
+                abTestingIn.hidden = data.type !== "a-b";
+                form[0].value = data.name;
+                form[1].value = data.type;
+                form[2].value = datetimeLocal(data.start_time);
+                form[3].value = datetimeLocal(data.end_time);
+
+
+                const browsers = data.test_attributes.browser;
+                for (let i = 0 ; i < browsers.length ; i++) {
+                    const browserInputs = document.getElementsByClassName("browser-ins");
+                    browserInputs[i].value = browsers[i];
+                    if( i !== browsers.length-1)
+                        addBrowserInput();
+                }
+
+                const locations = data.test_attributes.location;
+                for (let i = 0 ; i < locations.length ; i++) {
+                    const locationInputs = document.getElementsByClassName("location-ins");
+                    locationInputs[i].value = locations[i];
+                    if( i !== locations.length-1)
+                        addLocationInput();
+                }
+
+                const devices = data.test_attributes.device;
+                for (let i = 0 ; i < devices.length ; i++) {
+                    const deviceInputs = document.getElementsByClassName("device-ins");
+                    deviceInputs[i].value = devices[i];
+                    if( i !== devices.length-1)
+                        addDeviceInput();
+                }
+
+                document.getElementById("traffic-test").value = data.traffic_percentage;
+
+                if(data.type === "a-b") {
+                    document.getElementById("A").value = data.variants.A;
+                    document.getElementById("B").value = data.variants.B;
+                    document.getElementById("C").value = data.variants.C;
+
+                    document.getElementById("A").required = true;
+                    document.getElementById("B").required = true;
+                }
+
         });
 }
 
@@ -167,56 +209,6 @@ function datetimeLocal(datetime) {
     const dt = new Date(datetime);
     dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
     return dt.toISOString().slice(0, 16);
-}
-
-
-function insertData(data) {
-
-    abTestingIn.hidden = data.type !== "a-b";
-    form[0].value = data.name;
-    form[1].value = data.type;
-    form[2].value = datetimeLocal(data.start_time);
-    form[3].value = datetimeLocal(data.end_time);
-
-
-    const browsers = data.test_attributes.browser;
-    for (let i = 0 ; i < browsers.length ; i++) {
-        const browserInputs = document.getElementsByClassName("browser-ins");
-        browserInputs[i].value = browsers[i];
-        if( i !== browsers.length-1)
-            addBrowserInput();
-    }
-
-    const locations = data.test_attributes.location;
-    for (let i = 0 ; i < locations.length ; i++) {
-        const locationInputs = document.getElementsByClassName("location-ins");
-        locationInputs[i].value = locations[i];
-        if( i !== locations.length-1)
-            addLocationInput();
-    }
-
-    const devices = data.test_attributes.device;
-    for (let i = 0 ; i < devices.length ; i++) {
-        const deviceInputs = document.getElementsByClassName("device-ins");
-        deviceInputs[i].value = devices[i];
-        if( i !== devices.length-1)
-            addDeviceInput();
-    }
-
-    document.getElementById("traffic-test").value = data.traffic_percentage;
-
-    if(data.type === "a-b") {
-        document.getElementById("A").value = data.variants.A;
-        document.getElementById("B").value = data.variants.B;
-        document.getElementById("C").value = data.variants.C;
-
-        document.getElementById("A").required = true;
-        document.getElementById("B").required = true;
-    }
-
-
-
-
 }
 
 

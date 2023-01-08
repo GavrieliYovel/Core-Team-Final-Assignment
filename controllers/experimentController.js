@@ -8,11 +8,7 @@ const Logger = require("../logger/Logger");
 const logger = new Logger();
 
 function checkManagerAuth(details) {
-    if(details.type !== "manager" || details.credits <= 0) {
-        return false;
-    } else {
-        return true;
-    }
+    return !(details.type !== "manager" || details.credits <= 0);
 }
 
 async function getDetails(req) {

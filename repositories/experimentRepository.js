@@ -57,11 +57,10 @@ module.exports = class experimentRepository extends EventEmitter {
         let newID = 1;
         if (this.data.length > 0)
             newID = this.data[this.data.length - 1].experimentId + 1;
-
         const newExperiment = {
             experimentId: newID,
             name: payload.name,
-            account: payload.account,
+            account: payload.account_id,
             type: payload.type,
             test_attributes: payload.test_attributes,
             variant_success_count: {
@@ -75,7 +74,7 @@ module.exports = class experimentRepository extends EventEmitter {
             "status": "active",
             start_time: payload.start_time,
             end_time: payload.end_time,
-            variants: payload.variants
+            variants: payload.variants_ab
         }
         this.updateExperimentData(newExperiment);
         return newID;
@@ -126,6 +125,11 @@ module.exports = class experimentRepository extends EventEmitter {
         const date = new Date(year, month , 1);
         const experiments = this.data.filter(item => new Date(item.end_time)>= date && new Date(item.start_time) <= date);
         return experiments.length;
+    }
+
+    endExperiment(id) {
+        this.data.find(item => item.experimentId == id).status = "end"
+        this.emit('updateData');
     }
 }
 

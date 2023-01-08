@@ -1,0 +1,381 @@
+07-12-22 02:31 -> getting index.ejs
+07-12-22 02:31 -> getting boards.ejs
+07-12-22 02:31 -> Getting all boards
+07-12-22 02:31 -> getting tasks.ejs
+07-12-22 02:31 -> getting board no 1
+07-12-22 02:31 -> getting boards.ejs
+07-12-22 02:31 -> Getting all boards
+07-12-22 02:32 -> update a board no 9
+07-12-22 02:32 -> getting boards.ejs
+07-12-22 02:32 -> Getting all boards
+07-12-22 02:32 -> update a board no 9
+07-12-22 02:32 -> getting boards.ejs
+07-12-22 02:32 -> Getting all boards
+07-12-22 02:32 -> getting tasks.ejs
+07-12-22 02:32 -> getting board no 9
+07-12-22 02:32 -> getting boards.ejs
+07-12-22 02:32 -> Getting all boards
+07-12-22 02:32 -> getting tasks.ejs
+07-12-22 02:32 -> getting board no 9
+07-12-22 02:33 -> adding a new task
+07-12-22 02:33 -> getting tasks.ejs
+07-12-22 02:33 -> getting board no 9
+07-12-22 02:44 -> getting index.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting tasks.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting tasks.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting tasks.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting tasks.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:45 -> getting boards.ejs
+07-12-22 02:46 -> getting boards.ejs
+07-12-22 02:46 -> getting boards.ejs
+07-12-22 02:46 -> getting tasks.ejs
+07-12-22 02:46 -> getting boards.ejs
+07-12-22 02:46 -> getting tasks.ejs
+07-12-22 02:47 -> getting boards.ejs
+07-12-22 02:47 -> getting tasks.ejs
+07-12-22 02:47 -> getting boards.ejs
+07-12-22 02:47 -> getting tasks.ejs
+07-12-22 02:47 -> getting boards.ejs
+07-12-22 02:47 -> getting tasks.ejs
+07-12-22 02:47 -> getting boards.ejs
+07-12-22 02:47 -> getting tasks.ejs
+07-12-22 02:47 -> getting boards.ejs
+07-12-22 02:47 -> getting tasks.ejs
+07-12-22 02:49 -> getting boards.ejs
+07-12-22 02:52 -> getting boards.ejs
+07-12-22 02:52 -> getting boards.ejs
+07-12-22 02:52 -> getting tasks.ejs
+07-12-22 02:53 -> getting tasks.ejs
+07-12-22 02:53 -> getting tasks.ejs
+07-12-22 02:55 -> getting tasks.ejs
+07-12-22 02:55 -> getting boards.ejs
+07-12-22 02:55 -> getting tasks.ejs
+07-12-22 02:55 -> getting boards.ejs
+07-12-22 02:55 -> getting boards.ejs
+07-12-22 02:55 -> getting tasks.ejs
+07-12-22 02:55 -> getting tasks.ejs
+07-12-22 02:58 -> getting tasks.ejs
+07-12-22 02:59 -> getting tasks.ejs
+07-12-22 03:03 -> getting tasks.ejs
+07-12-22 03:03 -> getting tasks.ejs
+07-12-22 03:03 -> getting tasks.ejs
+07-12-22 03:03 -> getting tasks.ejs
+07-12-22 03:06 -> getting tasks.ejs
+07-12-22 03:07 -> getting tasks.ejs
+07-12-22 03:07 -> getting tasks.ejs
+07-12-22 03:08 -> getting tasks.ejs
+07-12-22 03:08 -> getting tasks.ejs
+07-12-22 03:12 -> getting tasks.ejs
+07-12-22 03:12 -> getting tasks.ejs
+07-12-22 03:13 -> getting tasks.ejs
+07-12-22 03:15 -> getting boards.ejs
+07-12-22 03:15 -> getting boards.ejs
+07-12-22 03:15 -> getting boards.ejs
+07-12-22 03:15 -> getting boards.ejs
+07-12-22 03:16 -> getting tasks.ejs
+07-12-22 03:16 -> getting boards.ejs
+07-12-22 03:17 -> getting boards.ejs
+07-12-22 03:17 -> getting boards.ejs
+07-12-22 03:20 -> getting boards.ejs
+07-12-22 03:20 -> getting boards.ejs
+07-12-22 03:20 -> getting boards.ejs
+07-12-22 03:21 -> getting boards.ejs
+07-12-22 03:21 -> getting tasks.ejs
+07-12-22 03:21 -> getting tasks.ejs
+07-12-22 03:22 -> getting boards.ejs
+07-12-22 03:27 -> getting boards.ejs
+07-12-22 03:28 -> getting boards.ejs
+07-12-22 03:28 -> getting boards.ejs
+07-12-22 03:28 -> getting boards.ejs
+07-12-22 03:29 -> getting boards.ejs
+07-12-22 03:29 -> getting boards.ejs
+07-12-22 03:29 -> getting boards.ejs
+07-12-22 03:29 -> getting boards.ejs
+07-12-22 03:31 -> getting boards.ejs
+07-12-22 03:31 -> getting boards.ejs
+07-12-22 03:31 -> getting boards.ejs
+07-12-22 03:31 -> getting boards.ejs
+07-12-22 03:31 -> getting tasks.ejs
+07-12-22 03:32 -> getting tasks.ejs
+07-12-22 03:32 -> getting tasks.ejs
+07-12-22 03:32 -> getting tasks.ejs
+07-12-22 03:32 -> getting boards.ejs
+07-12-22 03:33 -> getting boards.ejs
+07-12-22 03:33 -> getting tasks.ejs
+07-12-22 03:33 -> getting boards.ejs
+07-12-22 03:33 -> getting tasks.ejs
+07-12-22 03:33 -> getting tasks.ejs
+07-12-22 03:34 -> getting tasks.ejs
+07-12-22 03:40 -> getting boards.ejs
+07-12-22 03:40 -> getting tasks.ejs
+07-12-22 03:41 -> getting boards.ejs
+07-12-22 03:41 -> getting boards.ejs
+07-12-22 03:41 -> getting boards.ejs
+07-12-22 03:41 -> getting tasks.ejs
+07-12-22 03:41 -> getting tasks.ejs
+07-12-22 03:43 -> getting index.ejs
+07-12-22 03:43 -> getting boards.ejs
+07-12-22 03:43 -> getting tasks.ejs
+07-12-22 03:43 -> getting tasks.ejs
+07-12-22 03:47 -> getting boards.ejs
+07-12-22 03:53 -> getting tasks.ejs
+07-12-22 03:53 -> getting tasks.ejs
+07-12-22 03:54 -> getting tasks.ejs
+07-12-22 04:08 -> getting tasks.ejs
+07-12-22 04:08 -> getting boards.ejs
+07-12-22 04:08 -> getting tasks.ejs
+08-12-22 02:53 -> getting tasks.ejs
+08-12-22 02:53 -> getting boards.ejs
+08-12-22 02:55 -> getting boards.ejs
+08-12-22 02:55 -> getting index.ejs
+08-12-22 02:55 -> getting boards.ejs
+08-12-22 02:58 -> getting boards.ejs
+08-12-22 02:58 -> getting tasks.ejs
+08-12-22 03:03 -> getting boards.ejs
+08-12-22 03:04 -> getting boards.ejs
+08-12-22 03:04 -> getting boards.ejs
+08-12-22 03:04 -> getting boards.ejs
+08-12-22 03:04 -> getting boards.ejs
+08-12-22 03:05 -> getting boards.ejs
+08-12-22 03:05 -> getting boards.ejs
+08-12-22 03:07 -> getting boards.ejs
+08-12-22 03:08 -> getting boards.ejs
+08-12-22 03:08 -> getting tasks.ejs
+08-12-22 03:08 -> getting tasks.ejs
+08-12-22 03:08 -> getting tasks.ejs
+08-12-22 03:10 -> getting tasks.ejs
+08-12-22 03:10 -> getting tasks.ejs
+08-12-22 03:11 -> getting boards.ejs
+08-12-22 03:11 -> getting boards.ejs
+08-12-22 03:14 -> getting boards.ejs
+08-12-22 03:14 -> getting boards.ejs
+08-12-22 03:17 -> getting tasks.ejs
+08-12-22 03:17 -> getting tasks.ejs
+08-12-22 03:17 -> getting tasks.ejs
+08-12-22 03:19 -> getting tasks.ejs
+08-12-22 03:19 -> getting tasks.ejs
+08-12-22 03:21 -> getting tasks.ejs
+08-12-22 03:21 -> getting tasks.ejs
+08-12-22 03:33 -> getting tasks.ejs
+08-12-22 03:34 -> getting tasks.ejs
+08-12-22 03:34 -> getting tasks.ejs
+08-12-22 03:35 -> getting tasks.ejs
+08-12-22 03:35 -> getting tasks.ejs
+08-12-22 03:36 -> getting tasks.ejs
+08-12-22 06:51 -> getting index.ejs
+08-12-22 06:51 -> getting boards.ejs
+08-12-22 06:51 -> getting tasks.ejs
+08-12-22 06:51 -> getting tasks.ejs
+08-12-22 06:53 -> getting tasks.ejs
+08-12-22 06:54 -> getting tasks.ejs
+08-12-22 06:54 -> getting tasks.ejs
+08-12-22 06:54 -> getting tasks.ejs
+08-12-22 06:54 -> getting tasks.ejs
+08-12-22 07:05 -> getting index.ejs
+08-12-22 07:06 -> getting boards.ejs
+08-12-22 07:06 -> getting tasks.ejs
+08-12-22 07:06 -> getting tasks.ejs
+08-12-22 07:07 -> getting tasks.ejs
+08-12-22 07:07 -> getting tasks.ejs
+08-12-22 07:08 -> getting tasks.ejs
+08-12-22 07:08 -> getting tasks.ejs
+08-12-22 07:08 -> getting tasks.ejs
+08-12-22 07:09 -> getting tasks.ejs
+08-12-22 07:13 -> getting tasks.ejs
+08-12-22 07:21 -> getting tasks.ejs
+08-12-22 07:23 -> getting tasks.ejs
+08-12-22 07:24 -> getting tasks.ejs
+08-12-22 07:25 -> getting tasks.ejs
+08-12-22 07:25 -> getting tasks.ejs
+08-12-22 07:26 -> getting tasks.ejs
+08-12-22 07:26 -> getting boards.ejs
+08-12-22 07:26 -> getting tasks.ejs
+08-12-22 07:34 -> getting tasks.ejs
+08-12-22 07:35 -> getting tasks.ejs
+08-12-22 07:38 -> getting tasks.ejs
+08-12-22 07:38 -> getting boards.ejs
+08-12-22 07:38 -> getting tasks.ejs
+08-12-22 07:40 -> getting boards.ejs
+08-12-22 07:40 -> getting tasks.ejs
+08-12-22 07:40 -> getting tasks.ejs
+08-12-22 07:41 -> getting tasks.ejs
+08-12-22 07:46 -> getting boards.ejs
+08-12-22 07:46 -> getting tasks.ejs
+08-12-22 07:47 -> getting tasks.ejs
+08-12-22 07:47 -> getting tasks.ejs
+08-12-22 07:47 -> getting tasks.ejs
+08-12-22 07:49 -> getting boards.ejs
+08-12-22 07:49 -> getting tasks.ejs
+08-12-22 07:49 -> getting boards.ejs
+08-12-22 07:49 -> getting tasks.ejs
+08-01-23 02:28 -> redirect to 404 page:[object Object]
+08-01-23 02:28 -> redirect to 404 page:[object Object]
+08-01-23 02:28 -> redirect to 404 page:[object Object]
+08-01-23 02:28 -> redirect to 404 page:[object Object]
+08-01-23 02:29 -> redirect to 404 page:localhost:3030
+08-01-23 02:29 -> redirect to 404 page:localhost:3030
+08-01-23 02:30 -> redirect to 404 page:localhost:3030/1283nf182
+08-01-23 02:30 -> redirect to 404 page:localhost:3030/favicon.ico
+08-01-23 02:30 -> redirect to 404 page:localhost:3030/1283nf182
+08-01-23 02:30 -> redirect to 404 page:localhost:3030/favicon.ico
+08-01-23 02:31 -> redirect to 404 page:localhost:3030/1283nf182
+08-01-23 02:31 -> redirect to 404 page:localhost:3030/favicon.ico
+08-01-23 02:33 -> redirect to 404 page:localhost:3030/1283nf182
+08-01-23 02:33 -> redirect to 404 page:localhost:3030/favicon.ico
+08-01-23 02:33 -> redirect to 404 page:localhost:3030/asgklsf/sadjfgansofd
+08-01-23 02:33 -> redirect to 404 page:localhost:3030/favicon.ico
+08-01-23 08:50 -> login from mock data succeeded
+08-01-23 08:50 -> login from mock data succeeded
+08-01-23 08:51 -> login from mock data succeeded
+08-01-23 08:53 -> getting login page
+08-01-23 08:53 -> redirect to 404 page from localhost:3030/includes/apple-touch-icon.png
+08-01-23 08:53 -> redirect to login page before login
+08-01-23 08:53 -> getting login page
+08-01-23 08:53 -> redirect to 404 page from localhost:3030/includes/apple-touch-icon.png
+08-01-23 08:54 -> getting login page
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/includes/apple-touch-icon.png
+08-01-23 08:54 -> login from mock data succeeded
+08-01-23 08:54 -> getting home page after login
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/favicon.ico
+08-01-23 08:54 -> getting add_experiment page after login
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/public/images/done.png
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/public/images/fail.png
+08-01-23 08:54 -> redirect to 404 page from localhost:3030/favicon.ico
+08-01-23 08:55 -> redirect to 404 page from localhost:3030/favicon.ico
+08-01-23 08:56 -> redirect to login page before login
+08-01-23 08:56 -> getting login page
+08-01-23 08:56 -> login from mock data succeeded
+08-01-23 08:56 -> getting home page after login
+08-01-23 08:57 -> login from mock data succeeded
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> redirect to login page before login
+08-01-23 09:07 -> getting login page
+08-01-23 09:07 -> login from mock data succeeded
+08-01-23 09:07 -> getting home page after login
+08-01-23 09:07 -> getting add_experiment page after login
+08-01-23 09:19 -> redirect to login page before login
+08-01-23 09:19 -> getting login page
+08-01-23 09:20 -> login from mock data succeeded
+08-01-23 09:20 -> getting home page after login
+08-01-23 09:20 -> getting add_experiment page after login
+08-01-23 09:20 -> redirect to login page before login
+08-01-23 09:20 -> getting login page
+08-01-23 09:20 -> login from mock data succeeded
+08-01-23 09:20 -> getting home page after login
+08-01-23 09:20 -> getting add_experiment page after login
+08-01-23 09:21 -> redirect to login page before login
+08-01-23 09:21 -> getting login page
+08-01-23 09:21 -> login from mock data succeeded
+08-01-23 09:21 -> getting home page after login
+08-01-23 09:21 -> getting add_experiment page after login
+08-01-23 09:25 -> redirect to login page before logout
+08-01-23 09:25 -> getting login page
+08-01-23 09:32 -> login from mock data succeeded
+08-01-23 09:32 -> getting home page after login
+08-01-23 09:32 -> getting add_experiment page after login
+08-01-23 09:32 -> getting add_experiment page after login
+08-01-23 09:33 -> redirect to login page before login
+08-01-23 09:33 -> getting login page
+08-01-23 09:33 -> login from mock data succeeded
+08-01-23 09:33 -> getting home page after login
+08-01-23 09:33 -> getting add_experiment page after login
+08-01-23 09:33 -> getting add_experiment page after login
+08-01-23 09:34 -> redirect to login page before login
+08-01-23 09:34 -> getting login page
+08-01-23 09:34 -> login from mock data succeeded
+08-01-23 09:34 -> getting home page after login
+08-01-23 09:34 -> getting add_experiment page after login
+08-01-23 09:34 -> getting add_experiment page after login
+08-01-23 09:35 -> redirect to login page before login
+08-01-23 09:35 -> getting login page
+08-01-23 09:35 -> login from mock data succeeded
+08-01-23 09:35 -> getting home page after login
+08-01-23 09:35 -> getting add_experiment page after login
+08-01-23 09:35 -> getting user details from mock data
+08-01-23 09:35 -> creating experiment using mock data
+08-01-23 09:44 -> redirect to login page before login
+08-01-23 09:44 -> getting login page
+08-01-23 09:44 -> login from mock data succeeded
+08-01-23 09:44 -> getting home page after login
+08-01-23 09:44 -> getting add_experiment page after login
+08-01-23 09:45 -> redirect to login page before login
+08-01-23 09:45 -> getting login page
+08-01-23 09:45 -> login from mock data succeeded
+08-01-23 09:45 -> getting home page after login
+08-01-23 09:45 -> getting add_experiment page after login
+08-01-23 09:47 -> redirect to login page before login
+08-01-23 09:47 -> getting login page
+08-01-23 09:47 -> getting login page
+08-01-23 09:47 -> login from mock data succeeded
+08-01-23 09:47 -> getting home page after login
+08-01-23 09:47 -> getting add_experiment page after login
+08-01-23 09:48 -> getting user details from mock data
+08-01-23 09:48 -> creating experiment using mock data
+08-01-23 09:50 -> redirect to login page before login
+08-01-23 09:50 -> getting login page
+08-01-23 09:50 -> login from mock data succeeded
+08-01-23 09:50 -> getting home page after login
+08-01-23 09:50 -> getting add_experiment page after login
+08-01-23 09:52 -> getting add_experiment page after login
+08-01-23 09:53 -> redirect to login page before login
+08-01-23 09:53 -> getting login page
+08-01-23 09:53 -> login from mock data succeeded
+08-01-23 09:53 -> getting home page after login
+08-01-23 09:53 -> getting add_experiment page after login
+08-01-23 09:53 -> getting user details from mock data
+08-01-23 09:53 -> creating experiment using mock data
+08-01-23 09:57 -> redirect to login page before login
+08-01-23 09:57 -> getting login page
+08-01-23 09:57 -> login from mock data succeeded
+08-01-23 09:57 -> getting home page after login
+08-01-23 09:57 -> getting add_experiment page after login
+08-01-23 09:58 -> getting user details from mock data
+08-01-23 09:58 -> creating experiment using mock data
+08-01-23 10:06 -> redirect to login page before login
+08-01-23 10:06 -> getting login page
+08-01-23 10:06 -> login from mock data succeeded
+08-01-23 10:06 -> getting home page after login
+08-01-23 10:06 -> getting add_experiment page after login
+08-01-23 10:07 -> redirect to login page before logout
+08-01-23 10:07 -> getting login page
+08-01-23 10:07 -> login from mock data succeeded
+08-01-23 10:07 -> getting home page after login
+08-01-23 10:08 -> getting home page after login
+08-01-23 10:08 -> redirect to login page before logout
+08-01-23 10:08 -> getting login page
+08-01-23 10:08 -> login from mock data succeeded
+08-01-23 10:08 -> getting home page after login
+08-01-23 10:08 -> getting add_experiment page after login
+08-01-23 10:09 -> getting user details from mock data
+08-01-23 10:09 -> creating experiment using mock data
+08-01-23 10:10 -> redirect to login page before login
+08-01-23 10:10 -> getting login page
+08-01-23 10:10 -> login from mock data succeeded
+08-01-23 10:10 -> getting home page after login
+08-01-23 10:10 -> getting add_experiment page after login
+08-01-23 10:11 -> getting user details from mock data
+08-01-23 10:11 -> creating experiment using mock data
+08-01-23 10:18 -> redirect to login page before login
+08-01-23 10:18 -> getting login page
+08-01-23 10:18 -> login from mock data succeeded
+08-01-23 10:18 -> getting home page after login
+08-01-23 10:18 -> getting add_experiment page after login
+08-01-23 10:18 -> getting user details from mock data
+08-01-23 10:18 -> creating experiment using mock data
+08-01-23 10:18 -> getting home page after login
+08-01-23 10:38 -> redirect to login page before login
+08-01-23 10:38 -> getting login page
+08-01-23 10:38 -> login from mock data succeeded
+08-01-23 10:38 -> getting home page after login

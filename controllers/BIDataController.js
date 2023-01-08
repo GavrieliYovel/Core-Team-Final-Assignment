@@ -18,7 +18,7 @@ exports.BIDataController = {
             })
     },
     async getMRR(req, res) {
-        await axios.get(`https://billing-final-phase1-development.onrender.com/MRR/${req.params.year}/${req.params.month}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/MRR/${req.params.year}/${req.params.month}`)
             .then(response => {
                 logger.log("getting MRR from Billing");
                 res.json(response.data)
@@ -29,7 +29,7 @@ exports.BIDataController = {
             })
     },
     async getDRR(req, res) {
-        await axios.get(`https://billing-final-phase1-development.onrender.com/MRR/${req.params.year}/${req.params.month}/${req.params.day}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/DRR/${req.params.year}/${req.params.month}/${req.params.day}`)
             .then(response => {
                 logger.log("getting DRR from Billing");
                 res.json(response.data)

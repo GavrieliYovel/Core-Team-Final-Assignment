@@ -607,3 +607,36 @@
 08-01-23 04:15 -> getting mock token from mock data
 08-01-23 04:15 -> getting user details from mock data
 08-01-23 04:15 -> user not authorised for updating experiment
+08-01-23 04:26 -> login from mock data succeeded
+08-01-23 04:26 -> getting experiments by account from mock data
+08-01-23 04:26 -> getting mock token from mock data
+08-01-23 04:26 -> getting experiments by account from mock data
+08-01-23 04:26 -> getting mock token from mock data
+08-01-23 04:26 -> getting experiments by account from mock data
+08-01-23 04:26 -> getting mock token from mock data
+08-01-23 04:26 -> getting user details from mock data
+08-01-23 04:26 -> user not authorised for updating experiment
+08-01-23 04:26 -> getting user details from mock data
+08-01-23 04:26 -> user not authorised for updating experiment
+08-01-23 04:26 -> getting user details from mock data
+08-01-23 04:26 -> user not authorised for updating experiment
+08-01-23 04:26 -> getting user details from mock data
+08-01-23 04:26 -> user not authorised for updating experiment
+08-01-23 04:26 -> getting experiments by account from mock data
+08-01-23 04:26 -> getting mock token from mock data
+08-01-23 04:27 -> login from mock data succeeded
+08-01-23 04:27 -> getting experiments by account from mock data
+08-01-23 04:27 -> getting mock token from mock data
+08-01-23 04:27 -> login from mock data succeeded
+08-01-23 04:27 -> getting experiments by account from mock data
+08-01-23 04:27 -> getting mock token from mock data
+08-01-23 04:47 -> login from mock data succeeded
+08-01-23 04:47 -> getting experiments by account from mock data
+08-01-23 04:47 -> getting mock token from mock data
+08-01-23 04:47 -> getting user details from mock data
+08-01-23 04:47 -> updating experiment using mock data
+08-01-23 04:47 -> getting experiments by account from mock data
+08-01-23 04:47 -> getting mock token from mock data
+08-01-23 04:48 -> login from mock data succeeded
+08-01-23 04:48 -> getting experiments by account from mock data
+08-01-23 04:48 -> getting mock token from mock data

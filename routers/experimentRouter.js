@@ -5,8 +5,8 @@ const experimentRouter = new Router();
 
 //GET
 experimentRouter.get('/experiment/:id/statistics', experimentController.experimentStatistics);
-experimentRouter.get('/experiment/:account/AB', experimentController.ABTestByAccount);
-experimentRouter.get('/experiment/:account/FF', experimentController.FeatureFlagByAccount);
+experimentRouter.get('/experiment/:account/AB', experimentController.ABTestExperimentsByAccount);
+experimentRouter.get('/experiment/:account/FF', experimentController.FeatureFlagExperimentsByAccount);
 experimentRouter.get('/experiment/:account', experimentController.experimentsByAccount);
 
 //POST

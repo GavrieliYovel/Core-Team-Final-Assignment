@@ -43,10 +43,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));  // handel post reqs with body
 
 //
-app.use('/', pageRouter);
 app.use('/growth', experimentRouter);
 app.use('/IAM', IAMRouter);
 app.use('/BI', BIDataRouter);
+app.use('/', pageRouter);
 // app.use('/api/boards', boardsRouter);
 
 app.use((req, res) => {

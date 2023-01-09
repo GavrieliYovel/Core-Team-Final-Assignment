@@ -2,6 +2,7 @@ window.onload = () => {
 
     getExperiment(id);
 
+
     form.addEventListener("submit", (event) => {
 
         event.preventDefault();
@@ -68,16 +69,17 @@ window.onload = () => {
 
         fetch( `${origin}/growth/experiment/${id}`,requestOptions )
             .then(async response => {
-                const res = await response.text();
+                const res = await response.json();
+                console.log(res);
                 if (response.status === 200) {
                     successesModel.click();
                     insertData(res);
                 }
 
                 else {
+                    document.getElementById("failMsg").innerHTML = res;
                     failedModel.click();
                 }
-
             });
 
     });
@@ -172,6 +174,8 @@ function datetimeLocal(datetime) {
 
 function insertData(data) {
 
+    console.log(data);
+    // debugger;
     abTestingIn.hidden = data.type !== "a-b";
     form[0].value = data.name;
     form[1].value = data.type;
@@ -179,7 +183,7 @@ function insertData(data) {
     form[3].value = datetimeLocal(data.end_time);
 
 
-    const browsers = data.test_attributes.browser;
+    const browsers = data.test_attributes.browsers;
     for (let i = 0 ; i < browsers.length ; i++) {
         const browserInputs = document.getElementsByClassName("browser-ins");
         browserInputs[i].value = browsers[i];
@@ -195,7 +199,7 @@ function insertData(data) {
             addLocationInput();
     }
 
-    const devices = data.test_attributes.device;
+    const devices = data.test_attributes.devices;
     for (let i = 0 ; i < devices.length ; i++) {
         const deviceInputs = document.getElementsByClassName("device-ins");
         deviceInputs[i].value = devices[i];

@@ -26,7 +26,7 @@ module.exports = class userRepository extends EventEmitter {
     }
 
     login(email, password) {
-        if(this.data.find(user => user.email == email && user.password == password)) {
+        if(this.data.find(user => user.email === email && user.password === password)) {
             return "success"
         } else {
             return "fail"

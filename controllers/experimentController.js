@@ -54,6 +54,7 @@ async function getToken(req){
 
 
 exports.experimentController = {
+
     async createExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
@@ -63,37 +64,26 @@ exports.experimentController = {
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
                         .then(response => {
                             logger.log("use 1 credit using IAM");
-                            res.send({
-                                response: "success",
-                                data: response.data
-                            });
+                            res.status(200).send("Experiment added");
                         })
                         .catch(mock => {
                             logger.log("use 1 credit using mock data");
                             userRepository.decreaseCredit(req.session.userId, 1);
                             const id = experimentRepository.createExperiment(req.body);
                             const experiment = experimentRepository.getExperimentById(id);
-                            res.send({
-                                mode: "mock",
-                                response: "success",
-                                data: experiment
-                            });
+                            res.status(200).send("Experiment added");
                         })
                 })
                 .catch(mock => {
                     logger.log("creating experiment using mock data");
                     const id = experimentRepository.createExperiment(req.body);
                     const experiment = experimentRepository.getExperimentById(id);
-                    res.send({
-                        mode: "mock",
-                        response: "success",
-                        data: experiment
-                    });
+                    res.status(200).send("Experiment added");
                 })
         }
         else {
             logger.log("user not authorised for creating experiment");
-            res.send("you don't have permission to create experiment")
+            res.status(400).send("you don't have permission to create experiment")
         }
 
     },
@@ -113,7 +103,7 @@ exports.experimentController = {
         }
         else {
             logger.log("user not authorised for updating experiment");
-            res.status(500).json( { mass: "you don't have permission to update experiment" })
+            res.status(400).json( { mass: "you don't have permission to update experiment" })
         }
     },
     async experimentStatistics(req , res) {
@@ -136,17 +126,17 @@ exports.experimentController = {
             })
                 .then(response => {
                     logger.log("ending experiment using Growth");
-                    res.send(response.data);
+                    res.status(200).send(response.data);
                 })
                 .catch(mock => {
                     logger.log("ending experiment using mock data");
                     experimentRepository.endExperiment(req.params.id);
-                    res.send(`experiment ${req.params.id} ended`);
+                    res.status(200).send(`experiment ${req.params.id} ended`);
                 })
         }
         else {
             logger.log("user not authorised for ending experiment");
-            res.send("you don't have permission to end experiment")
+            res.status(400).send("you don't have permission to end experiment")
         }
     },
     async experimentsByAccount(req, res) {

@@ -92,6 +92,7 @@ If the axios request failed, we are using user mock data.
 ## User Guide - SDK
 ### Before
   1. All the function need to be async await functions
+  2. Before callExperiment and declareGoal use get method to use experimentId for them.
 
 ### Setup
   1. const ABTestSDK = require('shenkar-abtest')

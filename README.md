@@ -36,7 +36,24 @@ The best way to explain our flow is by showing our sequence diagram:
 
 ![image](https://user-images.githubusercontent.com/77021357/211335189-03122d35-c391-47da-95d2-3c97cddf65b0.png)
 
+If the axios request fail When creating an experiment, we are using user mock data.
 
 
-api
+
+### Glossary 
+* Mock data - We used the schemas of the different groups in order to use mock data (JSON file)
+  
+## User Guide
+1. 
+
+api - 
 sdk
+
+## Our team
+* Yovel Gavrieli
+* Abrahem Elnkeeb
+* Liran Michaelov
+* Waleed Younis
+* Viki Bril
+* Gilad Schneider
+

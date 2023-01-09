@@ -58,7 +58,7 @@ module.exports = class experimentRepository extends EventEmitter {
     }
 
     getFeatureFlagByAccount(account) {
-        const experiments = this.data.filter(item => (item.account_id == account && item.type == "feature-flag"));
+        const experiments = this.data.filter(item => (item.account_id == account && item.type == "f-f"));
         if(experiments)
             return experiments;
         else
@@ -180,6 +180,26 @@ module.exports = class experimentRepository extends EventEmitter {
             return  this.data.find(item => item.experimentId == id).call_count;
         else
             return "no such experiment"
+    }
+
+    updateVariantCount(id, variant) {
+        if(this.data.find(item => item.experimentId == id && item.type == "a-b")) {
+            if(variant == "A")
+                this.data.find(item => item.experimentId == id).variant_success_count.A += 1;
+            if(variant == "B")
+                this.data.find(item => item.experimentId == id).variant_success_count.B += 1;
+            if(variant == "C")
+                this.data.find(item => item.experimentId == id).variant_success_count.C += 1;
+            this.emit('updateData');
+        } else if(this.data.find(item => item.experimentId == id && item.type == "f-f")) {
+            if (variant == "ON")
+                this.data.find(item => item.experimentId == id).variant_success_count.ON += 1;
+            if (variant == "OFF")
+                this.data.find(item => item.experimentId == id).variant_success_count.OFF += 1;
+            this.emit('updateData');
+        } else {
+            return "no such experiment"
+        }
     }
 }
 

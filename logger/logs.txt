@@ -640,3 +640,128 @@
 08-01-23 04:48 -> login from mock data succeeded
 08-01-23 04:48 -> getting experiments by account from mock data
 08-01-23 04:48 -> getting mock token from mock data
+09-01-23 12:30 -> getting AB experiments by account from mock data
+09-01-23 12:30 -> failed getting mock token from mock data
+09-01-23 12:30 -> failed getting mock token from mock data
+09-01-23 12:31 -> getting experiments by account from Growth
+09-01-23 12:33 -> failed getting mock token from mock data
+09-01-23 12:33 -> getting experiments by account from Growth
+09-01-23 12:34 -> getting AB experiments by account from mock data
+09-01-23 12:34 -> failed getting mock token from mock data
+09-01-23 12:34 -> getting FF experiments by account from mock data
+09-01-23 12:34 -> failed getting mock token from mock data
+09-01-23 12:35 -> failed getting mock token from mock data
+09-01-23 12:35 -> getting experiments by account from Growth
+09-01-23 12:37 -> failed getting mock token from mock data
+09-01-23 12:37 -> getting AB experiments by account from Growth
+09-01-23 12:38 -> failed getting mock token from mock data
+09-01-23 12:38 -> getting AB experiments by account from Growth
+09-01-23 12:38 -> failed getting mock token from mock data
+09-01-23 12:38 -> getting FF experiments by account from Growth
+09-01-23 12:42 -> login from mock data succeeded
+09-01-23 12:43 -> login from mock data succeeded
+09-01-23 12:44 -> login from mock data succeeded
+09-01-23 12:45 -> getting user details from mock data
+09-01-23 12:45 -> user not authorised for creating experiment
+09-01-23 01:09 -> login from mock data succeeded
+09-01-23 01:09 -> getting user details from mock data
+09-01-23 01:10 -> creating experiment using Growth
+09-01-23 01:10 -> use 1 credit using mock data
+09-01-23 01:13 -> failed getting mock token from mock data
+09-01-23 01:13 -> getting FF experiments by account from Growth
+09-01-23 01:15 -> login from mock data succeeded
+09-01-23 01:16 -> getting mock token from mock data
+09-01-23 01:16 -> getting FF experiments by account from Growth
+09-01-23 01:17 -> getting user details from mock data
+09-01-23 01:17 -> updating experiment using Growth
+09-01-23 01:25 -> failed getting mock token from mock data
+09-01-23 01:25 -> experimentStatistics - must login first
+09-01-23 01:25 -> login from mock data succeeded
+09-01-23 01:25 -> getting mock token from mock data
+09-01-23 01:25 -> getting experiment statistics using mock data
+09-01-23 01:26 -> login from mock data succeeded
+09-01-23 01:26 -> getting mock token from mock data
+09-01-23 01:26 -> getting experiment statistics using mock data
+09-01-23 01:28 -> failed getting mock token from mock data
+09-01-23 01:28 -> experimentStatistics - must login first
+09-01-23 01:28 -> login from mock data succeeded
+09-01-23 01:28 -> getting mock token from mock data
+09-01-23 01:28 -> getting experiment statistics using mock data
+09-01-23 01:29 -> getting mock token from mock data
+09-01-23 01:29 -> getting AB experiments by account from Growth
+09-01-23 01:33 -> getting mock token from mock data
+09-01-23 01:33 -> getting FF experiments by account from Growth
+09-01-23 01:36 -> getting user details from mock data
+09-01-23 01:36 -> user not authorised to delete experiments
+09-01-23 01:37 -> login from mock data succeeded
+09-01-23 01:37 -> getting user details from mock data
+09-01-23 01:37 -> deleting experiment using Growth
+09-01-23 01:37 -> getting mock token from mock data
+09-01-23 01:37 -> getting FF experiments by account from Growth
+09-01-23 01:39 -> getting mock token from mock data
+09-01-23 01:39 -> getting AB experiments by account from Growth
+09-01-23 01:44 -> failed getting mock token from mock data
+09-01-23 01:44 -> getting AB experiments by account from Growth
+09-01-23 01:44 -> get experiment variant count using mock
+09-01-23 01:46 -> get experiment variant count using mock
+09-01-23 01:47 -> get experiment variant count using Growth
+09-01-23 01:51 -> login from mock data succeeded
+09-01-23 01:52 -> getting user details from mock data
+09-01-23 01:52 -> creating experiment using mock data
+09-01-23 01:52 -> use 1 credit using mock data
+09-01-23 01:52 -> getting FF experiments by account from Growth
+09-01-23 01:52 -> failed getting mock token from mock data
+09-01-23 01:52 -> login from mock data succeeded
+09-01-23 01:52 -> getting FF experiments by account from Growth
+09-01-23 01:52 -> getting mock token from mock data
+09-01-23 01:53 -> getting user details from mock data
+09-01-23 01:53 -> creating experiment using mock data
+09-01-23 01:53 -> use 1 credit using mock data
+09-01-23 01:56 -> getting FF experiments by account from Growth
+09-01-23 01:56 -> failed getting mock token from mock data
+09-01-23 01:57 -> failed getting mock token from mock data
+09-01-23 01:57 -> experimentStatistics - must login first
+09-01-23 01:57 -> login from mock data succeeded
+09-01-23 01:58 -> getting user details from mock data
+09-01-23 01:58 -> creating experiment using Growth
+09-01-23 01:58 -> use 1 credit using mock data
+09-01-23 02:01 -> login from mock data succeeded
+09-01-23 02:01 -> getting user details from mock data
+09-01-23 02:01 -> creating experiment using Growth
+09-01-23 02:01 -> use 1 credit using mock data
+09-01-23 02:01 -> new user credit amount 49
+09-01-23 02:08 -> login from mock data succeeded
+09-01-23 02:08 -> getting user details from mock data
+09-01-23 02:08 -> creating experiment using mock data
+09-01-23 02:08 -> use 1 credit using mock data
+09-01-23 02:08 -> new user credit amount 48 using mock data
+09-01-23 02:09 -> getting FF experiments by account from Growth
+09-01-23 02:09 -> failed getting mock token from mock data
+09-01-23 02:09 -> getting user details from mock data
+09-01-23 02:09 -> user not authorised for updating experiment
+09-01-23 02:09 -> login from mock data succeeded
+09-01-23 02:10 -> getting user details from mock data
+09-01-23 02:10 -> updating experiment using Growth
+09-01-23 02:10 -> getting mock token from mock data
+09-01-23 02:10 -> getting experiment statistics using mock data
+09-01-23 02:11 -> get experiment call count using Growth
+09-01-23 02:11 -> get experiment call count using Growth
+09-01-23 03:28 -> login from mock data succeeded
+09-01-23 03:28 -> getting mock token from mock data
+09-01-23 03:29 -> getting AB experiments by account from Growth
+09-01-23 03:34 -> calling experiment using mock data
+09-01-23 03:34 -> calling experiment - no such experiment
+09-01-23 04:10 -> failed getting mock token from mock data
+09-01-23 04:10 -> getting FF experiments by account from Growth
+09-01-23 04:10 -> failed getting mock token from mock data
+09-01-23 04:10 -> experimentStatistics - must login first
+09-01-23 04:15 -> login from mock data succeeded
+09-01-23 04:17 -> getting mock token from mock data
+09-01-23 04:17 -> getting experiment statistics using mock data
+09-01-23 04:21 -> get experiment variant count using Growth
+09-01-23 04:21 -> get experiment call count using Growth
+09-01-23 04:48 -> declaring goal using mock data
+09-01-23 04:49 -> declaring goal using mock data
+09-01-23 04:53 -> declaring goal using mock data
+09-01-23 05:01 -> get experimentId using Growth
+09-01-23 05:02 -> get experiment variant count using Growth

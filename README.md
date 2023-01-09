@@ -74,19 +74,19 @@ If the axios request failed, we are using user mock data.
 
 ### Application use cases:
 #### Create Experiment:
-1. Click on add new experiment
-2. Fill the form with the wanted information
-3. Click save
+  1. Click on add new experiment
+  2. Fill the form with the wanted information
+  3. Click save
 
-### Edit Experiment:
-1. Choose an experiment
-2. Click on edit
-3. Fill the form where you want to change
-4. Click Save
+#### Edit Experiment:
+  1. Choose an experiment
+  2. Click on edit
+  3. Fill the form where you want to change
+  4. Click Save
 
-### Delete Experiment:
-1. Choose an experiment
-2. Click on delete
+#### Delete Experiment:
+  1. Choose an experiment
+  2. Click on delete
 
 
 ## User Guide - SDK

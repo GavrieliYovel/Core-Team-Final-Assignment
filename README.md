@@ -96,20 +96,20 @@ If the axios request failed, we are using user mock data.
 
 ### Setup
   1. const ABTestSDK = require('shenkar-abtest')
-  2. const ab = new ABTestSDK(*accountId*) //Working accountId: 63b9fddd93e055aa3b92bf69
+  2. const ab = new ABTestSDK(*accountId*)
 
 ### SDK Functions
 #### getAllExperiments()
   1. ab.getAllExperiments()
-  2. return an array of all experiments attach to the accountId
+  2. return an array of all experiments attached to the accountId
   
 #### getABExperiments()
   1. ab.getABExperiments()
-  2. return an array of all the AB experiments attach to the accountId
+  2. return an array of all the AB experiments attached to the accountId
   
 #### getFFExperiments()
   1. ab.getFFExperiments()
-  2. return an array of all the Feature Flag experiments attach to the accountId
+  2. return an array of all the Feature Flag experiments attached to the accountId
   
 #### callExperiment(experiment_id)
   1. ab.callExperiment(experiment_id)
@@ -117,7 +117,7 @@ If the axios request failed, we are using user mock data.
 
 #### declareGoal(experiment_id, variant)
   1. ab.declareGoal(experiment_id, variant)
-  2. add to the variant success count 
+  2. increasing the variant success count 
   
 ## Our team
 * Yovel Gavrieli

@@ -4,7 +4,7 @@ Our project is part of a complete system, which our main assignment is to wrap t
 
 ## Our Ownership
 ### Authentication:
-We are in charge of authentication -  who can make changes in the system and view certain parts of it - who has the access to different parts of the system.
+Using the data we get from the IAM Team that in charge of authentication -  We can decide who has access to different parts of the system by the user assests we recieve.
 
 ### BI data:
 We are also responsible for business intelligence (BI) data statistics and their usage, which only certain roles can access.
@@ -18,17 +18,23 @@ We are also responsible for business intelligence (BI) data statistics and their
 
 
 
-## User Interaction With Growth API
-An end user has a couple of options regarding the experiments page: 
-1. Add new experiment 
-2. Manage experiment 
+### User Interaction With Growth API
+An end user has a number of options regarding the experiments page: 
+1. **C**reate experiment 
+2. **R**ead experiment (all or by type)
+3. **U**pdate experiment
+4. **D**elete experiment 
+5. Run experiment
+6. Decalre goal
+7. Get call/variant count
+8. Get experiment statistics
 
 No matter what he chooses, the IAM team has to check whether he is authorized. If he isn't, than his access denied. Otherwise he has access to growth api.
 
 
 ## Dependencies
 * IAM - when login through IAM, the user receives token 
-* Growth -  
+* Growth - all the business logic of the system. We export all their methods. 
 
 
 ## Flow
@@ -36,18 +42,54 @@ The best way to explain our flow is by showing our sequence diagram:
 
 ![image](https://user-images.githubusercontent.com/77021357/211335189-03122d35-c391-47da-95d2-3c97cddf65b0.png)
 
-If the axios request fail When creating an experiment, we are using user mock data.
+If the axios request failed, we are using user mock data.
 
 
 
 ### Glossary 
-* Mock data - We used the schemas of the different groups in order to use mock data (JSON file)
-  
-## User Guide
-1. 
+* Experiment - In our system we have two types of experiments. AB test, Feature Flag.
+* Mock data - We used the schemas of the different groups in order to use mock data (JSON file).
+* Variant -  In each Experiment we have different options based on the type. (AB test {A,B,C}, Feature Flag {ON, OFF}).
 
-api - 
-sdk
+
+## User Guide - API
+### Before
+1. Check out the [API documentation](https://documenter.getpostman.com/view/24149790/2s8Z75RpFi#5e503b8e-7465-44a5-88cf-1e04f789d857)
+
+### Setup - Localhost
+1. Clone git repoitory: git clone https://github.com/GavrieliYovel/Core-Team-Final-Assignment.git
+2. Add .env file
+3. Run npm install
+4. Run npm run start
+5. Open browser and type in the url: "http://localhost:3030/"
+6. Login with: *Username*: yovgav6@gmail.com *Password*: Aa123456
+
+### Setup - Render with mock data 
+1. Open [Render Dev](https://core-team-final-assignment-dev.onrender.com)
+2. Login with: *Username*: yovgav6@gmail.com *Password*: Aa123456
+
+### Setup - Render live data
+1. Open [Render](https://core-team-final-assignment-dev.onrender.com)
+2. Login with: *Username*: yovgav6@gmail.com *Password*: Aa123456
+
+### Application use cases:
+#### Create Experiment:
+1. Click on add new experiment
+2. Fill the form with the wanted information
+3. Click save
+
+### Edit Experiment:
+1. Choose an experiment
+2. Click on edit
+3. Fill the form where you want to change
+4. Click Save
+
+### Delete Experiment:
+1. Choose an experiment
+2. Click on delete
+
+
+## User Guide - SDK
 
 ## Our team
 * Yovel Gavrieli

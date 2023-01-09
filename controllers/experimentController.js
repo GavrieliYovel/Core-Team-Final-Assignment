@@ -233,7 +233,7 @@ exports.experimentController = {
         }
     },
     async callExperiment(req, res) {
-        await axios.post(`https://ab-test-production.onrender.com/test/run`, req.body.id, req.headers)
+        await axios.post(`https://ab-test-production.onrender.com/test/run`, req.body, req.headers)
             .then(response => {
                 logger.log("calling experiment using Growth");
                 res.send(response.data);
@@ -243,9 +243,9 @@ exports.experimentController = {
                 const experiment = experimentRepository.getExperimentById(req.params.id);
                 if(experiment) {
                     if (experiment.type == "a-b") {
-                        Math.random() < 0.5 ? res.send(experiment.variants.A) : res.send(experiment.variants.B);
+                        Math.random() < 0.5 ? res.send(experiment.variant_ab.A) : res.send(experiment.variants.B);
                     } else {
-                        res.send("feature-flag")
+                        Math.random() < 0.5 ? res.send(experiment.variants_ff.ON) : res.send(experiment.variants.OFF);
                     }
                 } else {
                     logger.log("calling experiment - no such experiment");
@@ -254,19 +254,29 @@ exports.experimentController = {
             })
     },
     async declareGoal(req, res) {
-        await axios.post(`https://growth.render.com/experiment/goal/${req.params.id}`, req)
+        await axios.put(`https://growth.render.com/experiment/goal/${req.params.id}`, req.body)
             .then(response => {
                 logger.log("declaring goal using Growth");
-                res.send("declared goal");
+                res.send(response.data);
             })
             .catch(mock => {
                 logger.log("declaring goal using mock data");
+                experimentRepository.updateVariantCount(req.params.id, req.body.variant)
                 res.send("declared goal");
             })
     },
-    getExperimentById(req, res) {
-        const experiment = experimentRepository.getExperimentById(req.params.id);
-        res.json(experiment);
+    async getExperimentById(req, res) {
+        await axios.get(`https://ab-test-production.onrender.com/experiments/${req.params.id}`)
+            .then(response => {
+                logger.log("get experimentId using Growth");
+                res.send(response.data);
+            })
+            .catch(mock => {
+                logger.log("get experiment id using mock data");
+                const experiment = experimentRepository.getExperimentById(req.params.id);
+                res.json(experiment);
+            })
+
     },
     async getVariantCountById(req, res) {
         await axios.get(`https://ab-test-production.onrender.com/goal/variantCount/${req.params.id}`)

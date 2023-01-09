@@ -14,12 +14,13 @@ experimentRouter.get('/experiment/:id', experimentController.getExperimentById);
 
 //POST
 experimentRouter.post('/experiment/new', experimentController.createExperiment);
-experimentRouter.post('/experiment/goal/:id', experimentController.declareGoal);
 experimentRouter.post('/experiment', experimentController.callExperiment);
 
 //PUT
 experimentRouter.put('/experiment/end/:id', experimentController.endExperiment);
+experimentRouter.put('/experiment/goal/:id', experimentController.declareGoal);
 experimentRouter.put('/experiment/:id', experimentController.updateExperiment);
+
 
 //DELETE
 experimentRouter.delete('/experiment', experimentController.deleteExperiment);

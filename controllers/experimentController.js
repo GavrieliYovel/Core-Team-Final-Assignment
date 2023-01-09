@@ -56,8 +56,9 @@ async function getToken(req){
 exports.experimentController = {
     async createExperiment(req, res) {
         const details = await getDetails(req);
+        console.log(details);
         if (checkManagerAuth(details)) {
-            await axios.post('https://growth.render.com/experiment/new', req.body)
+            await axios.post('https://ab-test-production.onrender.com/experiments/', req.body)
                 .then(async response => {
                     logger.log("creating experiment using Growth");
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
@@ -70,18 +71,19 @@ exports.experimentController = {
                         })
                         .catch(mock => {
                             logger.log("use 1 credit using mock data");
-                            userRepository.decreaseCredit(req.session.userId, 1);
-                            const id = experimentRepository.createExperiment(req.body);
-                            const experiment = experimentRepository.getExperimentById(id);
+                            const newAmount = userRepository.decreaseCredit(req.session.userId, 1);
+                            logger.log(`new user credit amount ${newAmount}`);
                             res.send({
-                                mode: "mock",
                                 response: "success",
-                                data: experiment
+                                data: response.data
                             });
                         })
                 })
                 .catch(mock => {
                     logger.log("creating experiment using mock data");
+                    logger.log("use 1 credit using mock data");
+                    const newAmount = userRepository.decreaseCredit(req.session.userId, 1);
+                    logger.log(`new user credit amount ${newAmount} using mock data`);
                     const id = experimentRepository.createExperiment(req.body);
                     const experiment = experimentRepository.getExperimentById(id);
                     res.send({
@@ -100,7 +102,7 @@ exports.experimentController = {
     async updateExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.put(`https://growth.render.com/experiment/${req.params.id}`, req.body)
+            await axios.put(`https://ab-test-production.onrender.com/experiments/${req.params.id}`, req.body)
                 .then(response => {
                     logger.log("updating experiment using Growth");
                     res.status(200).json(response.data);
@@ -117,21 +119,27 @@ exports.experimentController = {
         }
     },
     async experimentStatistics(req , res) {
-        await axios.get(`https://growth.render.com/experiment/${req.params.id}/statistics`)
-            .then(response => {
-                logger.log("getting experiment statistics using Growth");
-                res.send(response.data);
-            })
-            .catch(mock => {
-                logger.log("getting experiment statistics using mock data");
-                res.send(`Statistics data from experiment ${req.params.id}`);
-                res.render("manage.experiments");
-            })
+        console.log(req.params.id)
+        if(await getToken(req)) {
+            await axios.get(`https://ab-test-production.onrender.com/stats/${req.params.id}`)
+                .then(response => {
+                    logger.log("getting experiment statistics using Growth");
+                    res.send(response.data);
+                })
+                .catch(mock => {
+                    logger.log("getting experiment statistics using mock data");
+                    res.send(`Statistics data from experiment ${req.params.id}`);
+                })
+        } else {
+            logger.log("experimentStatistics - must login first");
+            res.send(`experimentStatistics - must login first`);
+        }
+
     },
     async endExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.post(`https://growth.render.com/experiment/${req.params.id}/end`, {
+            await axios.post(`https://ab-test-production.onrender.com/stats/${req.params.id}`, {
                 experimentId: req.body.experimentId
             })
                 .then(response => {
@@ -152,7 +160,7 @@ exports.experimentController = {
     async experimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://growth.render.com/experiment/${req.params.account}`)
+            await axios.get(`https://ab-test-production.onrender.com/experiments/account/${req.params.account}`)
                 .then(response => {
                     logger.log("getting experiments by account from Growth");
                     res.send(response.data);
@@ -171,7 +179,7 @@ exports.experimentController = {
     async ABTestExperimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://growth.render.com/experiment/AB/${req.params.account}`)
+            await axios.get(`https://ab-test-production.onrender.com/experiments/AB/${req.params.account}`)
                 .then(response => {
                     logger.log("getting AB experiments by account from Growth");
                     res.send(response.data);
@@ -190,7 +198,7 @@ exports.experimentController = {
     async FeatureFlagExperimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://growth.render.com/experiment/FF/${req.params.account}`)
+            await axios.get(`https://ab-test-production.onrender.com/experiments/FF/${req.params.account}`)
                 .then(response => {
                     logger.log("getting FF experiments by account from Growth");
                     res.send(response.data);
@@ -209,20 +217,23 @@ exports.experimentController = {
     async deleteExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.delete(`https://growth.render.com/experiment/${req.params.id}`)
+            await axios.delete(`https://ab-test-production.onrender.com/experiments/${req.body.id}`)
                 .then(response => {
                     logger.log("deleting experiment using Growth");
                     res.send(response.data);
                 })
                 .catch(mock => {
                     logger.log("deleting experiment using mock data");
-                    experimentRepository.deleteExperiment(req.params.id);
-                    res.send(`experiment ${req.params.id} deleted`);
+                    experimentRepository.deleteExperiment(req.body.id);
+                    res.send(`experiment ${req.body.id} deleted`);
                 })
+        } else {
+            logger.log("user not authorised to delete experiments");
+            res.send("you don't have permissions");
         }
     },
     async callExperiment(req, res) {
-        await axios.post(`https://growth.render.com/experiment/${req.params.id}`, req)
+        await axios.post(`https://ab-test-production.onrender.com/test/run`, req.body.id, req.headers)
             .then(response => {
                 logger.log("calling experiment using Growth");
                 res.send(response.data);
@@ -230,12 +241,16 @@ exports.experimentController = {
             .catch(mock => {
                 logger.log("calling experiment using mock data");
                 const experiment = experimentRepository.getExperimentById(req.params.id);
-                if(experiment.type == "a-b") {
-                    Math.random() < 0.5 ? res.send(experiment.variants.A) : res.send(experiment.variants.B);
+                if(experiment) {
+                    if (experiment.type == "a-b") {
+                        Math.random() < 0.5 ? res.send(experiment.variants.A) : res.send(experiment.variants.B);
+                    } else {
+                        res.send("feature-flag")
+                    }
                 } else {
-                    res.send("feature-flag")
+                    logger.log("calling experiment - no such experiment");
+                    res.send("no such experiment");
                 }
-
             })
     },
     async declareGoal(req, res) {
@@ -252,6 +267,28 @@ exports.experimentController = {
     getExperimentById(req, res) {
         const experiment = experimentRepository.getExperimentById(req.params.id);
         res.json(experiment);
+    },
+    async getVariantCountById(req, res) {
+        await axios.get(`https://ab-test-production.onrender.com/goal/variantCount/${req.params.id}`)
+            .then(response => {
+                logger.log("get experiment variant count using Growth");
+                res.send(response.data);
+            })
+            .catch(mock => {
+                logger.log("get experiment variant count using mock");
+                res.send(experimentRepository.getVariantCountById(req.params.id));
+            })
+    },
+    async getCallCountById(req, res) {
+        await axios.get(`https://ab-test-production.onrender.com/goal/callCount/${req.params.id}`)
+            .then(response => {
+                logger.log("get experiment call count using Growth");
+                res.send(response.data);
+            })
+            .catch(mock => {
+                logger.log("get experiment call count using mock");
+                res.send(experimentRepository.getCallCountById(req.params.id));
+            })
     }
 }
 

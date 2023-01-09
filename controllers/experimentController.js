@@ -2,7 +2,6 @@ const axios = require('axios');
 const ExperimentRepository = require('../repositories/experimentRepository');
 const experimentRepository = new ExperimentRepository();
 const UserRepository = require('../repositories/userRepository');
-const {get} = require("axios");
 const userRepository = new UserRepository();
 const Logger = require("../logger/Logger");
 const logger = new Logger();
@@ -64,19 +63,13 @@ exports.experimentController = {
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
                         .then(response => {
                             logger.log("use 1 credit using IAM");
-                            res.send({
-                                response: "success",
-                                data: response.data
-                            });
+                            res.status(200).json(response.data);
                         })
                         .catch(mock => {
                             logger.log("use 1 credit using mock data");
                             const newAmount = userRepository.decreaseCredit(req.session.userId, 1);
                             logger.log(`new user credit amount ${newAmount}`);
-                            res.send({
-                                response: "success",
-                                data: response.data
-                            });
+                            res.status(200).json(response.data);
                         })
                 })
                 .catch(mock => {
@@ -86,9 +79,8 @@ exports.experimentController = {
                     logger.log(`new user credit amount ${newAmount} using mock data`);
                     const id = experimentRepository.createExperiment(req.body);
                     const experiment = experimentRepository.getExperimentById(id);
-                    res.send({
+                    res.status(200).json({
                         mode: "mock",
-                        response: "success",
                         data: experiment
                     });
                 })
@@ -139,17 +131,17 @@ exports.experimentController = {
     async endExperiment(req, res) {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
-            await axios.post(`https://ab-test-production.onrender.com/stats/${req.params.id}`, {
+            await axios.post(`https://ab-test-production.onrender.com/end/${req.params.id}`, {
                 experimentId: req.body.experimentId
             })
                 .then(response => {
                     logger.log("ending experiment using Growth");
-                    res.send(response.data);
+                    res.status(200).send(response.data);
                 })
                 .catch(mock => {
                     logger.log("ending experiment using mock data");
                     experimentRepository.endExperiment(req.params.id);
-                    res.send(`experiment ${req.params.id} ended`);
+                    res.status(200).send(`experiment ${req.params.id} ended`);
                 })
         }
         else {
@@ -163,12 +155,12 @@ exports.experimentController = {
             await axios.get(`https://ab-test-production.onrender.com/experiments/account/${req.params.account}`)
                 .then(response => {
                     logger.log("getting experiments by account from Growth");
-                    res.send(response.data);
+                    res.status(200).json(response.data);
                 })
                 .catch(mock => {
                     logger.log("getting experiments by account from mock data");
                     const data = experimentRepository.getExperimentByAccount(req.params.account);
-                    res.send(data);
+                    res.status(200).json(data);
                 })
         }
         else {
@@ -182,12 +174,12 @@ exports.experimentController = {
             await axios.get(`https://ab-test-production.onrender.com/experiments/AB/${req.params.account}`)
                 .then(response => {
                     logger.log("getting AB experiments by account from Growth");
-                    res.send(response.data);
+                    res.status(200).json(response.data);
                 })
                 .catch(mock => {
                     logger.log("getting AB experiments by account from mock data");
                     const data = experimentRepository.getABTestByAccount(req.params.account);
-                    res.send(data);
+                    res.status(200).json(data);
                 })
         }
         else {
@@ -201,12 +193,12 @@ exports.experimentController = {
             await axios.get(`https://ab-test-production.onrender.com/experiments/FF/${req.params.account}`)
                 .then(response => {
                     logger.log("getting FF experiments by account from Growth");
-                    res.send(response.data);
+                    res.status(200).json(response.data);
                 })
                 .catch(mock => {
                     logger.log("getting FF experiments by account from mock data");
                     const data = experimentRepository.getFeatureFlagByAccount(req.params.account);
-                    res.send(data);
+                    res.status(200).json(data);
                 })
         }
         else {
@@ -220,12 +212,12 @@ exports.experimentController = {
             await axios.delete(`https://ab-test-production.onrender.com/experiments/${req.body.id}`)
                 .then(response => {
                     logger.log("deleting experiment using Growth");
-                    res.send(response.data);
+                    res.status(200).json(response.data);
                 })
                 .catch(mock => {
                     logger.log("deleting experiment using mock data");
                     experimentRepository.deleteExperiment(req.body.id);
-                    res.send(`experiment ${req.body.id} deleted`);
+                    res.status(200).json(`experiment ${req.body.id} deleted`);
                 })
         } else {
             logger.log("user not authorised to delete experiments");
@@ -236,16 +228,16 @@ exports.experimentController = {
         await axios.post(`https://ab-test-production.onrender.com/test/run`, req.body, req.headers)
             .then(response => {
                 logger.log("calling experiment using Growth");
-                res.send(response.data);
+                res.status(200).json(response.data);
             })
             .catch(mock => {
                 logger.log("calling experiment using mock data");
                 const experiment = experimentRepository.getExperimentById(req.params.id);
                 if(experiment) {
                     if (experiment.type == "a-b") {
-                        Math.random() < 0.5 ? res.send(experiment.variant_ab.A) : res.send(experiment.variants.B);
+                        Math.random() < 0.5 ? res.status(200).json(experiment.variant_ab.A) : res.status(200).json(experiment.variants.B);
                     } else {
-                        Math.random() < 0.5 ? res.send(experiment.variants_ff.ON) : res.send(experiment.variants.OFF);
+                        Math.random() < 0.5 ? res.status(200).json(experiment.variants_ff.ON) : res.status(200).json(experiment.variants.OFF);
                     }
                 } else {
                     logger.log("calling experiment - no such experiment");
@@ -257,24 +249,24 @@ exports.experimentController = {
         await axios.put(`https://growth.render.com/experiment/goal/${req.params.id}`, req.body)
             .then(response => {
                 logger.log("declaring goal using Growth");
-                res.send(response.data);
+                res.status(200).json(response.data);
             })
             .catch(mock => {
                 logger.log("declaring goal using mock data");
                 experimentRepository.updateVariantCount(req.params.id, req.body.variant)
-                res.send("declared goal");
+                res.status(200).send("declared goal");
             })
     },
     async getExperimentById(req, res) {
         await axios.get(`https://ab-test-production.onrender.com/experiments/${req.params.id}`)
             .then(response => {
                 logger.log("get experimentId using Growth");
-                res.send(response.data);
+                res.status(200).json(response.data);
             })
             .catch(mock => {
                 logger.log("get experiment id using mock data");
                 const experiment = experimentRepository.getExperimentById(req.params.id);
-                res.json(experiment);
+                res.status(200).json(experiment);
             })
 
     },
@@ -282,22 +274,22 @@ exports.experimentController = {
         await axios.get(`https://ab-test-production.onrender.com/goal/variantCount/${req.params.id}`)
             .then(response => {
                 logger.log("get experiment variant count using Growth");
-                res.send(response.data);
+                res.status(200).json(response.data);
             })
             .catch(mock => {
                 logger.log("get experiment variant count using mock");
-                res.send(experimentRepository.getVariantCountById(req.params.id));
+                res.status(200).json(experimentRepository.getVariantCountById(req.params.id));
             })
     },
     async getCallCountById(req, res) {
         await axios.get(`https://ab-test-production.onrender.com/goal/callCount/${req.params.id}`)
             .then(response => {
                 logger.log("get experiment call count using Growth");
-                res.send(response.data);
+                res.status(200).json(response.data);
             })
             .catch(mock => {
                 logger.log("get experiment call count using mock");
-                res.send(experimentRepository.getCallCountById(req.params.id));
+                res.status(200).json(experimentRepository.getCallCountById(req.params.id));
             })
     }
 }

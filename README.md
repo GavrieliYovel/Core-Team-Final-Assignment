@@ -98,6 +98,10 @@ If the axios request failed, we are using user mock data.
   2. const ab = new ABTestSDK(*accountId*) //Working accountId: 63b9fddd93e055aa3b92bf69
 
 ### SDK Functions
+#### getAllExperiments()
+  1. ab.getAllExperiments()
+  2. return an array of all experiments attach to the accountId
+  
 #### getABExperiments()
   1. ab.getABExperiments()
   2. return an array of all the AB experiments attach to the accountId

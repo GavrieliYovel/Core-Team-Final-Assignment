@@ -167,10 +167,7 @@ function getExperiment(id) {
 
     fetch(`${origin}/growth/experiment/${id}`)
         .then(async response => {
-            const res = await response.json();
-            insertData(res);
-        });
-}
+            const data = await response.json();
 
 String.prototype.replaceAt = function(index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + replacement.length);
@@ -203,21 +200,21 @@ function insertData(data) {
             addBrowserInput();
     }
 
-    const locations = data.test_attributes.location;
-    for (let i = 0 ; i < locations.length ; i++) {
-        const locationInputs = document.getElementsByClassName("location-ins");
-        locationInputs[i].value = locations[i];
-        if( i !== locations.length-1)
-            addLocationInput();
-    }
+                const locations = data.test_attributes.location;
+                for (let i = 0 ; i < locations.length ; i++) {
+                    const locationInputs = document.getElementsByClassName("location-ins");
+                    locationInputs[i].value = locations[i];
+                    if( i !== locations.length-1)
+                        addLocationInput();
+                }
 
-    const devices = data.test_attributes.device;
-    for (let i = 0 ; i < devices.length ; i++) {
-        const deviceInputs = document.getElementsByClassName("device-ins");
-        deviceInputs[i].value = devices[i];
-        if( i !== devices.length-1)
-            addDeviceInput();
-    }
+                const devices = data.test_attributes.device;
+                for (let i = 0 ; i < devices.length ; i++) {
+                    const deviceInputs = document.getElementsByClassName("device-ins");
+                    deviceInputs[i].value = devices[i];
+                    if( i !== devices.length-1)
+                        addDeviceInput();
+                }
 
     for (const attributes in data.test_attributes) {
 
@@ -234,14 +231,19 @@ function insertData(data) {
         document.getElementById("A").value = data.variants_ab.A;
         document.getElementById("B").value = data.variants_ab.B;
         document.getElementById("C").value = data.variants_ab.C;
+                    document.getElementById("A").required = true;
+                    document.getElementById("B").required = true;
+                }
 
-        document.getElementById("A").required = true;
-        document.getElementById("B").required = true;
-    }
+        });
+}
 
 
 
-
+function datetimeLocal(datetime) {
+    const dt = new Date(datetime);
+    dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+    return dt.toISOString().slice(0, 16);
 }
 
 

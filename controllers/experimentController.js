@@ -22,6 +22,7 @@ async function getDetails(req) {
             logger.log("getting user details from mock data");
             details = userRepository.getDetailsById(req.session.userId);
         })
+    console.log(details);
     return details;
 }
 
@@ -58,6 +59,7 @@ exports.experimentController = {
         console.log(details);
         if (checkManagerAuth(details)) {
             await axios.post('https://ab-test-production.onrender.com/experiments/', req.body)
+
                 .then(async response => {
                     logger.log("creating experiment using Growth");
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
@@ -95,6 +97,7 @@ exports.experimentController = {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
             await axios.put(`https://ab-test-production.onrender.com/experiments/${req.params.id}`, req.body)
+
                 .then(response => {
                     logger.log("updating experiment using Growth");
                     res.status(200).json(response.data);
@@ -131,6 +134,7 @@ exports.experimentController = {
         const details = await getDetails(req);
         if (checkManagerAuth(details)) {
             await axios.post(`https://ab-test-production.onrender.com/end/${req.params.id}`, {
+
                 experimentId: req.body.experimentId
             })
                 .then(response => {

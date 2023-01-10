@@ -34,90 +34,92 @@ module.exports = class experimentRepository extends EventEmitter {
     }
 
     getExperimentByAccount(account) {
-        const experiments = this.data.filter(item => item.account == account);
-        return experiments;
+        return this.data.filter(item => item.account_id === account);
     }
 
     getExperimentById(id) {
-        const experiment = this.data.find(item => item.experimentId == id);
-        return experiment;
+        return this.data.find(item => item._id === id);
     }
 
     getABTestByAccount(account) {
-        const experiments = this.data.filter(item => (item.account == account && item.type == "a-b"));
-        return experiments;
+        return this.data.filter(item => (item.account_id === account && item.type === "a-b"));
     }
 
     getFeatureFlagByAccount(account) {
-        const experiments = this.data.filter(item => (item.account == account && item.type == "feature-flag"));
-        return experiments;
+        return this.data.filter(item => (item.account_id === account && item.type === "feature-flag"));
+
     }
 
     createExperiment(payload) {
         let newID = 1;
         if (this.data.length > 0)
-            newID = this.data[this.data.length - 1].experimentId + 1;
+            newID = this.data[this.data.length - 1]._id + 1;
+
         const newExperiment = {
             experimentId: newID,
             name: payload.name,
-            account: payload.account_id,
+            account_id: payload.account_id,
             type: payload.type,
             test_attributes: payload.test_attributes,
-            variant_success_count: {
-                "A": 0,
-                "B": 0,
-                "C": 0
-            },
             traffic_percentage: payload.traffic_percentage,
             goal_id: payload.goal_id,
-            "call_count": 0,
-            "status": "active",
+            call_count: 0,
+            status: "active",
             start_time: payload.start_time,
             end_time: payload.end_time,
-            variants: payload.variants_ab
+
         }
+        if("variants_ab" in payload) {
+            newExperiment["variants_ab"] = payload.variants_ab;
+            newExperiment["variant_success_count"] = {
+                A: 0,
+                B: 0,
+                C: 0
+            };
+        }
+
         this.updateExperimentData(newExperiment);
         return newID;
     }
 
     deleteExperiment(experimentId) {
-        this.data = this.data.filter(experiment => experiment.experimentId != experimentId);
+        this.data = this.data.filter(experiment => experiment._id != experimentId);
         this.emit('updateData');
     }
 
     updateExperiment(payload, id) {
         // let updatedExperiment = this.data.find(item => item.id == id);
         if(payload.hasOwnProperty("test_attributes")) {
-            this.data.find(item => item.experimentId == id).test_attributes = payload.test_attributes;
+            this.data.find(item => item._id == id).test_attributes = payload.test_attributes;
         }
         if(payload.hasOwnProperty("variant_success_count")) {
-            this.data.find(item => item.experimentId == id).variant_success_count = payload.variant_success_count;
+            this.data.find(item => item._id == id).variant_success_count = payload.variant_success_count;
         }
         if(payload.hasOwnProperty("name")) {
-            this.data.find(item => item.experimentId == id).name = payload.name;
+            this.data.find(item => item._id == id).name = payload.name;
         }
-        if(payload.hasOwnProperty("name")) {
-            this.data.find(item => item.experimentId == id).test_attributes = payload.test_attributes;
+        if(payload.hasOwnProperty("variants_ab")) {
+            this.data.find(item => item._id == id).variants_ab = payload.variants_ab;
         }
         if(payload.hasOwnProperty("type")) {
-            this.data.find(item => item.experimentId == id).type = payload.type;
+            this.data.find(item => item._id == id).type = payload.type;
         }
         if(payload.hasOwnProperty("traffic_percentage")) {
-            this.data.find(item => item.experimentId == id).traffic_percentage = payload.traffic_percentage;
+            this.data.find(item => item._id == id).traffic_percentage = payload.traffic_percentage;
         }
         if(payload.hasOwnProperty("call_count")) {
-            this.data.find(item => item.experimentId == id).call_count = payload.call_count;
+            this.data.find(item => item._id == id).call_count = payload.call_count;
         }
         if(payload.hasOwnProperty("status")) {
-            this.data.find(item => item.experimentId == id).status = payload.status;
+            this.data.find(item => item._id == id).status = payload.status;
         }
         if(payload.hasOwnProperty("end_time")) {
-            this.data.find(item => item.experimentId == id).end_time = payload.end_time;
+            this.data.find(item => item._id == id).end_time = payload.end_time;
         }
 
         // this.data.find(item => item.id == id) = updatedExperiment;
         this.emit('updateData');
-        return this.data.find(item => item.experimentId == id)
+        return this.data.find(item => item._id == id)
 
     }
 
@@ -128,8 +130,9 @@ module.exports = class experimentRepository extends EventEmitter {
     }
 
     endExperiment(id) {
-        this.data.find(item => item.experimentId == id).status = "end"
+        this.data.find(item => item._id == id).status = "end"
         this.emit('updateData');
+
     }
 }
 

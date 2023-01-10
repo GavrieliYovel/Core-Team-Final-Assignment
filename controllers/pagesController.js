@@ -45,5 +45,11 @@ exports.pagesController = {
         if(req.session.hasOwnProperty("userId"))
             req.session.destroy();
         res.redirect("/");
+    },
+    experiment(req, res) {
+        if(!req.session.hasOwnProperty("userId"))
+            res.redirect("/");
+        else
+            res.render("experiment");
     }
 }

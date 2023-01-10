@@ -4,15 +4,28 @@ window.onload = () => {
 
         event.preventDefault();
 
-        let experiment;
-        if (form[3].value <= form[2].value)
-            alert("end time must be after start time");
-
         const exData = {};
         exData["name"] = form[0].value;
         exData["type"] = form[1].value;
-        exData["start_time"] = new Date(form[2].value).toISOString();
-        exData["end_time"]   = new Date(form[3].value).toISOString();
+        const start =  new Date(form[2].value);
+        const end   =  new Date(form[3].value);
+        if(end.getTime() < start.getTime()) {
+            alert("Error! the start date should be earlier than the end date.");
+            return;
+        }
+
+
+        exData["duration"] = {
+            start_time:  start.toISOString(),
+            end_time: end.toISOString()
+        };
+
+        exData["status"] = "active";
+        exData["variants_ff"] = {
+            ON: true,
+            OFF: false
+        };
+
         exData["traffic_percentage"] = document.getElementById("traffic-test").value;
 
         const locationInputs = document.getElementsByClassName("location-ins");
@@ -33,13 +46,15 @@ window.onload = () => {
 
         const testAttributes = {};
         testAttributes["location"] = locations;
-        testAttributes["devices"]  = devices;
-        testAttributes["browsers"] = browsers;
+        testAttributes["device"]  = devices;
+        testAttributes["browser"] = browsers;
 
         const extraTrafficInputs = document.getElementsByClassName("traffic-in");
         for (const extraInput of extraTrafficInputs) {
-            if(extraInput.value !== "")
-                testAttributes[extraInput.name.toLocaleLowerCase()] = extraInput.value;
+            if(extraInput.value !== "") {
+                testAttributes[extraInput.name.toLocaleLowerCase()] = [];
+                testAttributes[extraInput.name.toLocaleLowerCase()].push(extraInput.value);
+            }
         }
 
         exData["test_attributes"] = testAttributes;
@@ -53,103 +68,38 @@ window.onload = () => {
 
             exData["variants_ab"] = variants;
 
-            experiment = {
-                "name": exData["name"],
-                "account_id" : "507f1f77bcf86cd799439011",
-                "type": exData["type"],
-                "test_attributes": {
-                    "location" : exData["location"],
-                    "device" : exData["device"],
-                    "browser" : exData["browser"]
-                },
-                "variant_success_count": {
-                    "A" : 0,
-                    "B" : 0,
-                    "C" : 0
-                },
-                "traffic_percentage" : exData["traffic_percentage"],
-                "call_count": 10,
-                "status": "active",
-                "duration" : {
-                    "start_time" : exData["start_time"],
-                    "end_time" : exData["end_time"]
-                },
-                "variants_ab" : {
-                    "A" : exData["variants_ab"]["A"],
-                    "B" : exData["variants_ab"]["B"],
-                    "C" : exData["variants_ab"]["C"]
-                }
-            }
+
         }
-        else {
-            experiment = {
-                "name": exData["name"],
-                "account_id": "507f1f77bcf86cd799439011",
-                "type": exData["type"],
-                "test_attributes": {
-                    "location": exData["location"],
-                    "device": exData["device"],
-                    "browser": exData["browser"]
-                },
-                "traffic_percentage": exData["traffic_percentage"],
-                "call_count": 10,
-                "status": "active",
-                "duration": {
-                    "start_time": exData["start_time"],
-                    "end_time": exData["end_time"]
-                }
-            }
-        }
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(experiment)
-        };
-        let userId;
-        const getOptions = {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        };
-        fetch(`${origin}/IAM/session`, getOptions)
+
+        fetch(`${origin}/IAM/session`)
             .then(async response => {
                 const res = await response.json();
-                console.log(res.userId);
-                userId = res.userId;
-                experiment.account_id = userId
+                exData["account_id"] = res.userId;
                 const requestOptions = {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(experiment)
+                    body: JSON.stringify(exData)
                 };
                 fetch(`${origin}/growth/experiment/new`, requestOptions)
                     .then(async response => {
-                        const res = await response.json();
-                        console.log(res.response);
-                        window.location = "./home";
-                        // if (res.response === "success") {
-                        //     window.location = "./home";
-                        // } else {
-                        //     error.hidden = false;
-                        //     window.location = "./home";
-                        // }
+                        const res = await response.text();
+                        if(response.status === 200) {
+                            successesModel.click();
+                        }
+                        else {
+                            document.getElementById("failMsg").innerHTML = res;
+                            failedModel.click();
+                        }
+
+
                     });
             });
 
     });
 
-
-    // trafficAddButton.addEventListener("click", (event) => {
-    //     trafficAddInput();
-    // });
 
     addLocation.addEventListener("click", (event) => {
         addLocationInput();
@@ -164,18 +114,6 @@ window.onload = () => {
         addBrowserInput();
     });
 
-    // abAddButton.addEventListener("click", (event) => {
-    //     abAddInput();
-    // });
-
-    // abRemove.addEventListener("click", (event) => {
-    //     const lastChild = abInputs.childNodes.length - 1;
-    //     abInputs.childNodes[lastChild].remove();
-    //     lastLetter = String.fromCharCode(lastLetter - 1);
-    //     lastLetter = lastLetter.charCodeAt(0);
-    //     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
-    // });
-
 
 
     type.addEventListener("change", () => {
@@ -189,9 +127,9 @@ window.onload = () => {
         trafficAddInput();
     })
 
-    // goalButton.addEventListener("click", (event) => {
-    //     goalAddInput();
-    // })
+    successBn.addEventListener("click", (event) => {
+        window.location = "home";
+    });
 
 
 }
@@ -199,10 +137,10 @@ window.onload = () => {
 const form = document.getElementById("form");
 const successesModel = document.getElementById("s-model");
 const failedModel = document.getElementById("f-model");
+const successBn      = document.getElementById("successBn");
 
 const type          = document.getElementById("type");
 const abTestingIn   = document.getElementById("ab-testing");
-const abTestingIns  = document.getElementsByClassName("ab");
 const trafficIns    = document.getElementById("traffic-ins");
 
 const regexTest     = new RegExp(/^[\w-. ?]+$/);
@@ -327,27 +265,6 @@ function addLocationInput() {
 }
 
 
-//
-// function abAddInput() {
-//
-//     if(lastLetter >= "Z".charCodeAt(0)) {
-//         alert("wrorr bgger then Zzzzzz....");
-//         return;
-//     }
-//     const newInput = document.createElement("div");
-//     newInput.className = "col-6 mb-3";
-//
-//     lastLetter = String.fromCharCode(lastLetter + 1);
-//
-//     newInput.innerHTML = '<div class="form-floating">' +
-//                          '<input type="text" class="form-control experiment-input ab-ins" id="' + lastLetter +'" placeholder="' + lastLetter + '" name="' + lastLetter + '" required>' +
-//                          '<label for="' + lastLetter + '">' + lastLetter +'</label>' +
-//                          '</div>';
-//
-//     lastLetter = lastLetter.charCodeAt(0);
-//     abRemove.hidden = lastLetter <= "B".charCodeAt(0);
-//     abInputs.appendChild(newInput);
-// }
 
 
 function trafficAddInput() {

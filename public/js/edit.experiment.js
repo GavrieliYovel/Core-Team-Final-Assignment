@@ -1,5 +1,6 @@
 window.onload = () => {
 
+    document.getElementById("step-back").href = "/experiment?id=" + id;
     getExperiment(id);
 
 
@@ -35,13 +36,15 @@ window.onload = () => {
 
         const testAttributes = {};
         testAttributes["location"] = locations;
-        testAttributes["devices"]  = devices;
-        testAttributes["browsers"] = browsers;
+        testAttributes["device"]  = devices;
+        testAttributes["browser"] = browsers;
 
         const extraTrafficInputs = document.getElementsByClassName("traffic-in");
         for (const extraInput of extraTrafficInputs) {
-            if(extraInput.value !== "")
-                testAttributes[extraInput.name.toLocaleLowerCase()] = extraInput.value;
+            if(extraInput.value !== "") {
+                testAttributes[extraInput.name.toLocaleLowerCase()] = [];
+                testAttributes[extraInput.name.toLocaleLowerCase()].push(extraInput.value);
+            }
         }
 
         exData["test_attributes"] = testAttributes;
@@ -66,14 +69,11 @@ window.onload = () => {
             body: JSON.stringify(exData)
         };
 
-
         fetch( `${origin}/growth/experiment/${id}`,requestOptions )
             .then(async response => {
                 const res = await response.json();
-                console.log(res);
                 if (response.status === 200) {
                     successesModel.click();
-                    insertData(res);
                 }
 
                 else {
@@ -81,6 +81,7 @@ window.onload = () => {
                     failedModel.click();
                 }
             });
+
 
     });
 
@@ -99,6 +100,10 @@ window.onload = () => {
         addBrowserInput();
     });
 
+    successBn.addEventListener("click", (event) => {
+        window.location = "experiment?id=" + id;
+    });
+
 
 
 
@@ -112,7 +117,8 @@ window.onload = () => {
     });
 
     addTraffic.addEventListener("click", (event) => {
-        trafficAddInput();
+        const inputName = trafficInput.value.toLocaleLowerCase();
+        trafficAddInput(inputName, undefined, testAttributes);
     });
 
 }
@@ -122,11 +128,15 @@ const qstring = window.location.search;
 const urlparams = new URLSearchParams(qstring);
 const id  = urlparams.get("id");
 
+const origin = window.origin;
+const defaultTraffic = ["device", "browser", "location"];
 
 
-const form = document.getElementById("form");
+
+const form           = document.getElementById("form");
 const successesModel = document.getElementById("s-model");
-const failedModel = document.getElementById("f-model");
+const failedModel    = document.getElementById("f-model");
+const successBn      = document.getElementById("successBn");
 
 const type          = document.getElementById("type");
 const abTestingIn   = document.getElementById("ab-testing");
@@ -152,20 +162,23 @@ const browserIns   = document.getElementById("browser-ins");
 const addBrowser   = document.getElementById("add-browser");
 let removeBrowser;
 
-const origin = window.origin;
 
 function getExperiment(id) {
 
-    fetch(`${origin}/growth/experiment/single/${id}`)
+    fetch(`${origin}/growth/experiment/${id}`)
         .then(async response => {
             const res = await response.json();
             insertData(res);
         });
 }
 
-
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+}
 
 function datetimeLocal(datetime) {
+    const sz = datetime.length;
+    datetime = datetime.replaceAt(sz-5, '.');
     const dt = new Date(datetime);
     dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
     return dt.toISOString().slice(0, 16);
@@ -174,16 +187,15 @@ function datetimeLocal(datetime) {
 
 function insertData(data) {
 
-    console.log(data);
-    // debugger;
     abTestingIn.hidden = data.type !== "a-b";
     form[0].value = data.name;
     form[1].value = data.type;
-    form[2].value = datetimeLocal(data.start_time);
-    form[3].value = datetimeLocal(data.end_time);
+    form[2].value = datetimeLocal(data.duration.start_time);
+    form[3].value = datetimeLocal(data.duration.end_time);
 
 
-    const browsers = data.test_attributes.browsers;
+    const browsers = data.test_attributes.browser;
+
     for (let i = 0 ; i < browsers.length ; i++) {
         const browserInputs = document.getElementsByClassName("browser-ins");
         browserInputs[i].value = browsers[i];
@@ -199,7 +211,7 @@ function insertData(data) {
             addLocationInput();
     }
 
-    const devices = data.test_attributes.devices;
+    const devices = data.test_attributes.device;
     for (let i = 0 ; i < devices.length ; i++) {
         const deviceInputs = document.getElementsByClassName("device-ins");
         deviceInputs[i].value = devices[i];
@@ -207,12 +219,21 @@ function insertData(data) {
             addDeviceInput();
     }
 
+    for (const attributes in data.test_attributes) {
+
+            if(defaultTraffic.indexOf(attributes) === -1) {
+                for (const attribute in data.test_attributes[attributes]) {
+                    trafficAddInput(attributes, data.test_attributes[attributes][attribute], undefined);
+                }
+            }
+    }
+
     document.getElementById("traffic-test").value = data.traffic_percentage;
 
     if(data.type === "a-b") {
-        document.getElementById("A").value = data.variants.A;
-        document.getElementById("B").value = data.variants.B;
-        document.getElementById("C").value = data.variants.C;
+        document.getElementById("A").value = data.variants_ab.A;
+        document.getElementById("B").value = data.variants_ab.B;
+        document.getElementById("C").value = data.variants_ab.C;
 
         document.getElementById("A").required = true;
         document.getElementById("B").required = true;
@@ -260,7 +281,7 @@ function addBrowserInput() {
 
     newInput.innerHTML =    '<div class="col-6 mb-2">' +
         '<div class="form-floating">' +
-        '<input type="text" class="form-control experiment-input browser-ins" name="browser-' + browserCount + '" id="browser-' + browserCount + '" placeholder="Browser">' +
+        '<input type="text" class="form-control experiment-input browser-ins" name="browser-' + browserCount + '" id="browser-' + browserCount + '" placeholder="Browser" required>' +
         '<label for="browser-1">Browser</label>' +
         '</div>' +
         '</div>' +
@@ -274,6 +295,8 @@ function addBrowserInput() {
     removeElem(removeBrowser, browserIns, "browserCount");
 
 }
+
+
 
 
 function addDeviceInput() {
@@ -322,20 +345,31 @@ function addLocationInput() {
 
 
 
-function trafficAddInput() {
-    const inputName = trafficInput.value.toLocaleLowerCase();
+function testAttributes(inputName) {
+
     const trafficInputsName = document.getElementsByClassName("traffic-in");
 
-    const defaultTraffic = ["device", "browser", "location"];
 
     if(inputName === ""  || defaultTraffic.indexOf(inputName) !== -1 || !regexTest.test(inputName)) {
         alert("Invalid traffic name");
-        return;
+        return false;
     }
 
     for (let i = 0 ; i < trafficInputsName.length ; i++) {
         if (trafficInputsName[i].placeholder.toLocaleLowerCase() === inputName) {
             alert("Duplicate traffic name");
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function trafficAddInput(inputName, value, test) {
+
+
+    if(test) {
+        if (!test(inputName)) {
             return;
         }
     }
@@ -344,7 +378,7 @@ function trafficAddInput() {
     newInput.className = "row mt-3";
     newInput.innerHTML =    '<div class="col-6 mb-2">' +
         '<div class="form-floating">' +
-        '<input type="text" class="form-control experiment-input traffic-in" id="' + inputName + ' " name="' + inputName + '" placeholder="' + inputName +'">' +
+        '<input type="text" class="form-control experiment-input traffic-in" value="' + (value ? value : "") + '" id="' + inputName + ' " name="' + inputName + '" placeholder="' + inputName +'">' +
         '<label for="' + inputName + '">' + inputName + '</label>' +
         '</div>' +
         '</div>';

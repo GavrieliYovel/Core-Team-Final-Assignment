@@ -28,14 +28,14 @@
         </h3>
         <hr class="mt-4 mb-4">
         <ul class="list-unstyled components mb-5">
-          <li class="active">
-            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+          <li>
+            <a href="home"><i class="fa-solid fa-home mr-3"></i>Home</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-solid fa-lock mr-3"></span> Sign in</a>
+            <a class="mr-3" href="logout"><i class="fa-regular fa-arrow-right-from-bracket mr-3"></i>Logout</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-user mr-3"></span>  Profile</a>
+            <a><i class="fa-solid fa-user mr-3"></i>Profile</a>
           </li>
         </ul>
         <div class="mb-5">
@@ -61,10 +61,14 @@
         <div class="col p-0 d-flex align-items-center">
           <ol class="breadcrumb blue-grey lighten-4">
             <li class="breadcrumb-item">
-              <a class="black-text" href="home">Home page</a>
+              <a class="black-text" href="home">Home</a>
               <i class="fa fa-angle-double-right mx-2" aria-hidden="true"></i>
             </li>
-            <li class="ml-2 active">Experiment form</li>
+            <li class="breadcrumb-item">
+              <a class="black-text" id="step-back" href="">Experiment</a>
+              <i class="fa fa-angle-double-right mx-2" aria-hidden="true"></i>
+            </li>
+            <li class="ml-2 active">Edit experiment</li>
           </ol>
         </div>
         <div class="col p-0 d-flex justify-content-end">
@@ -77,7 +81,6 @@
             </div>
             <a class="mr-3"><i class="fa-regular fa-bell fa-xl"></i></a>
             <a class="mr-3"><i class="fa-regular fa-circle-info fa-xl"></i></a>
-            <a class="mr-3" href="logout"><i class="fa-regular fa-arrow-right-from-bracket fa-xl"></i></a>
             <img id="profile-img" src="images/images.png" alt="user">
           </div>
         </div>
@@ -243,7 +246,7 @@
         <img src="images/done.png">
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+        <button class="btn btn-success btn-block" id="successBn" data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>

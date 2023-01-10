@@ -1,1 +1,244 @@
-[{"experimentId":2,"name":"experiment test name country validation","account":4,"type":"a-b","test_attributes":{"location":["XXX","XXXR"],"devices":["mobile","mac"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"50","goal_id":null,"call_count":0,"status":"end","start_time":"2022-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:00.000Z","variants":{"A":"Alternative1","B":"Alternative2","C":"Default"}},{"experimentId":3,"name":"experiment test name country validation","account":4,"type":"a-b","test_attributes":{"location":["XXX","XXXR"],"device":["mobile"],"browser":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":50,"goal_id":null,"call_count":0,"status":"active","start_time":"2022-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:30.301Z","variants":{"A":"Alternative1","B":"Alternative2","C":"Default"}},{"experimentId":4,"name":"test","account":4,"type":"a-b","test_attributes":{"location":["X","X"],"device":["mobile"],"browser":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":50,"call_count":0,"status":"active","start_time":"2020-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:30.301Z","variants":{"A":"test1","B":"test1","C":"Default"}},{"experimentId":5,"name":"test2","account":2,"type":"a-b","test_attributes":{"location":["X","X"],"device":["mobile"],"browser":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":75,"call_count":0,"status":"active","start_time":"2020-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:30.301Z","variants":{"A":"test2","B":"test2","C":"Default"}},{"experimentId":6,"name":"test3","account":4,"type":"feature-flag","test_attributes":{"location":["X","X"],"device":["mobile"],"browser":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":75,"call_count":0,"status":"active","start_time":"2020-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:30.301Z","variants":{"A":"test3","B":"test3","C":"Default"}},{"experimentId":7,"name":"test4","account":4,"type":"a-b","test_attributes":{"location":["X"],"devices":["mobile"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"75","goal_id":"test3","call_count":0,"status":"active","start_time":"2020-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:00.000Z","variants":{"A":"test3","B":"test3","C":"Default"}},{"experimentId":8,"name":"test4","account":4,"type":"a-b","test_attributes":{"location":["X","X"],"device":["mobile"],"browser":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":75,"goal_id":"test3","call_count":0,"status":"end","start_time":"2020-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:30.301Z","variants":{"A":"test3","B":"test3","C":"Default"}},{"experimentId":9,"name":"test4","account":4,"type":"a-b","test_attributes":{"location":["X","X"],"device":["mobile"],"browser":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":75,"goal_id":"test3","call_count":0,"status":"active","start_time":"2020-12-31T13:35:30.301Z","end_time":"2023-12-31T13:35:30.301Z","variants":{"A":"test3","B":"test3","C":"Default"}},{"experimentId":10,"name":"Blue button","type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"20","call_count":0,"status":"active"},{"experimentId":11,"name":"srgrwgr","type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"18","call_count":0,"status":"active"},{"experimentId":12,"name":"liran","type":"a-b","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"32","call_count":0,"status":"active"},{"experimentId":13,"name":"liran","type":"a-b","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"20","call_count":0,"status":"active"},{"experimentId":14,"name":"liran","type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"10","call_count":0,"status":"active"},{"experimentId":15,"name":"liran","type":"a-b","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"23","call_count":0,"status":"active","variants":{"A":"dasdad","B":"asdasdas","C":"ads"}},{"experimentId":16,"name":"asdasd","type":"a-b","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"32","call_count":0,"status":"active","variants":{"A":"dasdasd","B":"asda","C":"sdasdas"}},{"experimentId":17,"name":"liran","account":"507f1f77bcf86cd799439011","type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"23","call_count":0,"status":"active"},{"experimentId":18,"name":"liran","account":"507f1f77bcf86cd799439011","type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"12","call_count":0,"status":"active"},{"experimentId":19,"name":"liran","account":"507f1f77bcf86cd799439011","type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"10","call_count":0,"status":"active"},{"experimentId":20,"name":"liran","type":"a-b","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"12","call_count":0,"status":"active","variants":{"A":"asdf","B":"asda","C":""}},{"experimentId":21,"name":"liran","account":4,"type":"feature-flag","test_attributes":{},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"12","call_count":0,"status":"end"},{"experimentId":22,"name":"myTest","account":4,"type":"feature-flag","test_attributes":{"location":["UK"],"devices":["mac"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"30","call_count":0,"status":"active","start_time":"2023-01-09T13:59:00.000Z","end_time":"2023-01-30T13:59:00.000Z"},{"experimentId":23,"name":"myTest","account":4,"type":"feature-flag","test_attributes":{"location":["UK"],"devices":["mac"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"30","call_count":0,"status":"active","start_time":"2023-01-09T14:02:00.000Z","end_time":"2023-01-31T14:02:00.000Z"},{"experimentId":24,"name":"myTest","account":4,"type":"feature-flag","test_attributes":{"location":["UK"],"devices":["mac"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"40","call_count":0,"status":"active","start_time":"2023-01-03T14:04:00.000Z","end_time":"2023-01-30T14:04:00.000Z"},{"experimentId":25,"name":"myTest","account":4,"type":"feature-flag","test_attributes":{"location":["UK"],"devices":["mac"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"50","call_count":0,"status":"active","start_time":"2023-01-01T14:05:00.000Z","end_time":"2023-01-24T14:05:00.000Z"},{"experimentId":26,"name":"myTest","account":4,"type":"feature-flag","test_attributes":{"location":["UK"],"devices":["mac"],"browsers":["Chrome"]},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"50","call_count":0,"status":"active","start_time":"2023-01-01T14:06:00.000Z","end_time":"2023-01-30T14:06:00.000Z"},{"experimentId":27,"name":"myTest","account":4,"type":"feature-flag","test_attributes":{"location":["UK","canda","france"],"devices":["mac","ipad"],"browsers":["Chrome","safari"],"ram":"32 GB"},"variant_success_count":{"A":0,"B":0,"C":0},"traffic_percentage":"30","call_count":0,"status":"active","start_time":"2023-01-09T14:38:00.000Z","end_time":"2023-01-31T14:38:00.000Z"}]
+[
+  {
+    "test_attributes": {
+      "location": [
+        "IL"
+      ],
+      "device": [
+        "mobile"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "_id": "63b9f9a3e95872dcba3442b6",
+    "name": "Sufs experiment EDITED",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "a-b",
+    "variant_success_count": {
+      "A": 3,
+      "B": 0,
+      "C": 0,
+      "ON": 22,
+      "OFF": 19
+    },
+    "traffic_percentage": 50,
+    "call_count": 40,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-01T13:35:30:301Z",
+      "end_time": "2023-01-31T13:35:30:301Z"
+    },
+    "variants_ff": {
+      "ON": true,
+      "OFF": false
+    },
+    "variants_ab": {
+      "A": "variant A",
+      "B": "variant B",
+      "C": "variant C"
+    }
+  },
+  {
+    "test_attributes": {
+      "location": [
+        "IL"
+      ],
+      "device": [
+        "mobile"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "_id": "63ba00cc806a8a9896a0b978",
+    "name": "Sufs experiment",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "a-b",
+    "variant_success_count": {
+      "A": 4,
+      "B": 4,
+      "C": 2
+    },
+    "traffic_percentage": 50,
+    "call_count": 42,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-06T13:20:30.301Z",
+      "end_time": "2023-01-31T13:22:30.301Z"
+    },
+    "variants_ab": {
+      "A": "variant A",
+      "B": "variant B",
+      "C": "variant C"
+    },
+    "__v": 0
+  },
+  {
+    "test_attributes": {
+      "location": [
+        "AR"
+      ],
+      "device": [
+        "desktop"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "_id": "63bc009bfeb49937106ebef7",
+    "name": "FF experiment",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "f-f",
+    "variant_success_count": {
+      "ON": 1,
+      "OFF": 2
+    },
+    "traffic_percentage": 80,
+    "call_count": 3,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-01T13:35:30:301Z",
+      "end_time": "2023-01-29T13:35:30:301Z"
+    },
+    "variants_ff": {
+      "ON": true,
+      "OFF": false
+    },
+    "__v": 0
+  },
+  {
+    "test_attributes": {
+      "location": [
+        "AR"
+      ],
+      "device": [
+        "desktop"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "_id": "63bc0225feb49937106ebefd",
+    "name": "FF EDITED",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "f-f",
+    "variant_success_count": {
+      "ON": 1,
+      "OFF": 2
+    },
+    "traffic_percentage": 80,
+    "call_count": 0,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-01T13:35:30:301Z",
+      "end_time": "2023-01-29T13:35:30:301Z"
+    },
+    "variants_ff": {
+      "ON": true,
+      "OFF": false
+    },
+    "__v": 0
+  },
+  {
+    "test_attributes": {
+      "location": [
+        "AR"
+      ],
+      "device": [
+        "desktop"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "_id": "63bc2360ac37a18031a89828",
+    "name": "FF experiment",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "f-f",
+    "variant_success_count": {
+      "ON": 1,
+      "OFF": 2
+    },
+    "traffic_percentage": 80,
+    "call_count": 5,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-01T13:35:30:301Z",
+      "end_time": "2023-01-29T13:35:30:301Z"
+    },
+    "variants_ff": {
+      "ON": true,
+      "OFF": false
+    },
+    "__v": 0
+  },
+  {
+    "test_attributes": {
+      "location": [
+        "AR"
+      ],
+      "device": [
+        "desktop"
+      ],
+      "browser": [
+        "Chrome"
+      ]
+    },
+    "_id": "63bc58e9c2a3b10933596e5e",
+    "name": "FF experiment",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "f-f",
+    "variant_success_count": {
+      "ON": 1,
+      "OFF": 2
+    },
+    "traffic_percentage": 80,
+    "call_count": 5,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-01T13:35:30:301Z",
+      "end_time": "2023-01-29T13:35:30:301Z"
+    },
+    "variants_ff": {
+      "ON": true,
+      "OFF": false
+    },
+    "__v": 0
+  },
+  {
+    "_id": "39",
+    "name": "myTest",
+    "account_id": "63b9fddd93e055aa3b92bf69",
+    "type": "f-f",
+    "test_attributes": {
+      "location": [
+        "UK"
+      ],
+      "device": [
+        "mac",
+        "phone",
+        "smart tv"
+      ],
+      "browser": [
+        "Chrome",
+        "firefox",
+        "edge"
+      ],
+      "ram": [
+        "32 GB"
+      ],
+      "black": [
+        "white"
+      ]
+    },
+    "traffic_percentage": "20",
+    "call_count": 0,
+    "status": "active",
+    "duration": {
+      "start_time": "2023-01-08T23:45:00.000Z",
+      "end_time": "2023-01-24T23:45:00.000Z"
+    },
+    "end_time": "2023-01-24T23:45:00.000Z"
+  }
+]

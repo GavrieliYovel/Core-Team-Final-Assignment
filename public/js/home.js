@@ -7,36 +7,21 @@ window.onload = () => {
 const origin = window.origin;
 const dropExperiments = document.getElementById("account-experiments");
 
-let deleteExperiments;
-let terminateExperiments;
 
 
-async function deleteExperiment(experimentId) {
-    await fetch(`${origin}/growth/experiment/${experimentId}`, {method: "DELETE"})
-        .then( response => {
-            window.location.reload();
-        });
-}
-
-async function terminateExperiment(experimentId) {
-    await fetch(`${origin}/growth/experiment/end/${experimentId}`, {method: "PUT"})
-        .then( response => {
-            window.location.reload();
-        });
-}
 
 function loadExperiments(experiments, user) {
 
-    for (const experiment of experiments) {
 
+    for (const experiment of experiments) {
         const experimentName = document.createElement("div");
         experimentName.className = "d-flex justify-content-center w-100";
-        experimentName.innerHTML = `<h6 class="mb-1">${experiment.name}</h6>`;
+        experimentName.innerHTML = `<a href="experiment?id=${experiment._id}"><h6 class="mb-1">${experiment.name}</h6></a>`;
 
         dropExperiments.appendChild(experimentName);
 
         const experimentInfo = document.createElement("div");
-        experimentInfo.className = "d-flex flex-column w-100 h-100";
+        experimentInfo.className = "d-flex flex-column  justify-content-center w-100 h-100";
 
         const table = document.createElement("div");
         table.className = "row d-flex justify-content-center";
@@ -47,19 +32,25 @@ function loadExperiments(experiments, user) {
 
         let statistics = "";
 
-        if (experiment.type === "a-b") {
-            statistics += experimentStatistics("A", 23);
-            statistics += experimentStatistics("B", 83);
-            statistics += experimentStatistics("C", 0);
-        }
-        else {
-            statistics += experimentStatistics("ON", 51);
-            statistics += experimentStatistics("OFF", 20);
-        }
+        fetch(`${origin}/growth/experiment/${experiment._id}/statistics`).then(async response => {
+            const res = await response.json();
+            if (experiment.type === "a-b") {
+                statistics += experimentStatistics(experiment.variants_ab["A"], res["A"]);
+                statistics += experimentStatistics(experiment.variants_ab["B"], res["B"]);
+                statistics += experimentStatistics(experiment.variants_ab["C"], res["C"]);
+            }
+            else {
+                statistics += experimentStatistics("ON",  (res["ON"] ? res["ON"] : 0));
+                statistics += experimentStatistics("OFF", (res["OFF"] ? res["OFF"] : 0));
+            }
+            experimentInfo.innerHTML += statistics;
+        });
 
-        experimentInfo.innerHTML += statistics;
 
-        experimentInfo.innerHTML += experimentButtons(user, experiment.experimentId);
+
+
+
+        // experimentInfo.innerHTML += experimentButtons(user, experiment.experimentId);
 
 
         const cardBody = document.createElement("div");
@@ -76,19 +67,6 @@ function loadExperiments(experiments, user) {
 
     }
 
-    deleteExperiments = document.getElementsByClassName("delete");
-    for (const deleteBn of deleteExperiments) {
-        deleteBn.onclick = () => {
-            deleteExperiment(deleteBn.title);
-        }
-    }
-    terminateExperiments = document.getElementsByClassName("terminate");
-    for (const terminateBn of terminateExperiments) {
-        terminateBn.onclick = () => {
-            terminateExperiment(terminateBn.title);
-        }
-    }
-
 
 }
 
@@ -96,12 +74,10 @@ function loadExperiments(experiments, user) {
 function experimentTable (experiment) {
     return `<table>
                 <tr>
-                    <th>Test ID</th>
                     <th>Type</th>
                     <th>Status</th>
                 </tr>
                 <tr>
-                    <td>${experiment.experimentId}</td>
                     <td>${experiment.type}</td>
                      <td>` +
                         (experiment.status === "active" ? '<span class="badge p-3 text-white rounded-pill bg-success">active</span>' : '<span class="badge p-3 text-white rounded-pill bg-danger">ended</span>') +
@@ -111,8 +87,9 @@ function experimentTable (experiment) {
 }
 
 function experimentStatistics (col, percent) {
+    percent = percent ? percent : 0;
     return  `<div class="row mt-3">
-                <div class="col-2 d-flex align-items-center justify-content-start">
+                <div class="col-2 d-flex align-items-center justify-content-center">
                     <h6 class="m-0">${col}</h6>
                 </div>
                 <div class="col">
@@ -125,27 +102,15 @@ function experimentStatistics (col, percent) {
             </div>`;
 }
 
-function experimentButtons(user, experimentId) {
-    if (user.type === "manager") {
-        return  `<div class="w3-container mt-3 w-100  w3-center mt-5">
-                    <a href="/edit_experiment?id=${experimentId}"><button type="button" class="btn btn-primary btn-sm mr-4 pr-4 pl-4">Edit</button></a>
-                    <button type="button" title=${experimentId} class="btn btn-secondary btn-sm mr-4 pr-4 pl-4 terminate">Terminate</button>
-                    <button type="button" title=${experimentId} class="btn btn-danger btn-sm pr-4 pl-4 delete">Delete</button>
-                </div>`;
-    }
-    return "";
-}
 
 
 function getExperiments(user) {
 
-    fetch(`${origin}/growth/experiment/${user.userId}`)
+    fetch(`${origin}/growth/experiment/account/${user.userId}`)
         .then(async response => {
             const res = await response.json();
             loadExperiments(res, user);
         });
-
-
 }
 
 function getUser() {

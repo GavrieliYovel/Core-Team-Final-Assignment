@@ -7,14 +7,24 @@ window.onload = () => {
         const exData = {};
         exData["name"] = form[0].value;
         exData["type"] = form[1].value;
-        const start = new Date(form[2].value)
-        const end   =  new Date(form[3].value)
+        const start =  new Date(form[2].value);
+        const end   =  new Date(form[3].value);
         if(end.getTime() < start.getTime()) {
             alert("Error! the start date should be earlier than the end date.");
             return;
         }
-        exData["start_time"] = start.toISOString();
-        exData["end_time"]   = end.toISOString();
+
+
+        exData["duration"] = {
+            start_time:  start.toISOString(),
+            end_time: end.toISOString()
+        };
+
+        exData["status"] = "active";
+        exData["variants_ff"] = {
+            ON: true,
+            OFF: false
+        };
 
         exData["traffic_percentage"] = document.getElementById("traffic-test").value;
 
@@ -36,13 +46,15 @@ window.onload = () => {
 
         const testAttributes = {};
         testAttributes["location"] = locations;
-        testAttributes["devices"]  = devices;
-        testAttributes["browsers"] = browsers;
+        testAttributes["device"]  = devices;
+        testAttributes["browser"] = browsers;
 
         const extraTrafficInputs = document.getElementsByClassName("traffic-in");
         for (const extraInput of extraTrafficInputs) {
-            if(extraInput.value !== "")
-                testAttributes[extraInput.name.toLocaleLowerCase()] = extraInput.value;
+            if(extraInput.value !== "") {
+                testAttributes[extraInput.name.toLocaleLowerCase()] = [];
+                testAttributes[extraInput.name.toLocaleLowerCase()].push(extraInput.value);
+            }
         }
 
         exData["test_attributes"] = testAttributes;
@@ -58,13 +70,10 @@ window.onload = () => {
 
 
         }
-        exData["call_count"] = 10;
 
-        console.log(exData);
         fetch(`${origin}/IAM/session`)
             .then(async response => {
                 const res = await response.json();
-                console.log(res);
                 exData["account_id"] = res.userId;
                 const requestOptions = {
                     method: "POST",
@@ -77,8 +86,6 @@ window.onload = () => {
                 fetch(`${origin}/growth/experiment/new`, requestOptions)
                     .then(async response => {
                         const res = await response.text();
-                        console.log(res);
-                        console.log(res.status);
                         if(response.status === 200) {
                             successesModel.click();
                         }
@@ -120,9 +127,9 @@ window.onload = () => {
         trafficAddInput();
     })
 
-    // goalButton.addEventListener("click", (event) => {
-    //     goalAddInput();
-    // })
+    successBn.addEventListener("click", (event) => {
+        window.location = "home";
+    });
 
 
 }
@@ -130,10 +137,10 @@ window.onload = () => {
 const form = document.getElementById("form");
 const successesModel = document.getElementById("s-model");
 const failedModel = document.getElementById("f-model");
+const successBn      = document.getElementById("successBn");
 
 const type          = document.getElementById("type");
 const abTestingIn   = document.getElementById("ab-testing");
-const abTestingIns  = document.getElementsByClassName("ab");
 const trafficIns    = document.getElementById("traffic-ins");
 
 const regexTest     = new RegExp(/^[\w-. ?]+$/);

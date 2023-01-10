@@ -1013,3 +1013,532 @@
 09-01-23 04:44 -> getting mock token from mock data
 09-01-23 04:45 -> getting experiments by account from mock data
 09-01-23 04:45 -> getting mock token from mock data
+09-01-23 04:56 -> getting experiments by account from mock data
+09-01-23 04:56 -> getting mock token from mock data
+09-01-23 04:56 -> getting experiments by account from mock data
+09-01-23 04:56 -> getting mock token from mock data
+09-01-23 04:57 -> getting user details from mock data
+09-01-23 04:57 -> ending experiment using mock data
+09-01-23 04:57 -> getting experiments by account from mock data
+09-01-23 04:57 -> getting mock token from mock data
+09-01-23 04:58 -> getting experiments by account from mock data
+09-01-23 04:58 -> getting mock token from mock data
+09-01-23 05:01 -> getting experiments by account from mock data
+09-01-23 05:01 -> getting mock token from mock data
+09-01-23 05:01 -> getting user details from mock data
+09-01-23 05:01 -> deleting experiment using mock data
+09-01-23 05:01 -> getting experiments by account from mock data
+09-01-23 05:01 -> getting mock token from mock data
+09-01-23 05:18 -> login from mock data succeeded
+09-01-23 05:18 -> getting experiments by account from mock data
+09-01-23 05:18 -> getting mock token from mock data
+09-01-23 05:38 -> login from mock data succeeded
+09-01-23 05:38 -> getting experiments by account from mock data
+09-01-23 05:38 -> getting mock token from mock data
+09-01-23 05:44 -> getting experiments by account from mock data
+09-01-23 05:44 -> getting mock token from mock data
+09-01-23 07:48 -> getting experiments by account from mock data
+09-01-23 07:48 -> getting mock token from mock data
+09-01-23 07:49 -> getting experiments by account from mock data
+09-01-23 07:49 -> getting mock token from mock data
+09-01-23 07:55 -> getting experiments by account from mock data
+09-01-23 07:55 -> getting mock token from mock data
+09-01-23 07:55 -> getting experiments by account from mock data
+09-01-23 07:55 -> getting mock token from mock data
+09-01-23 08:04 -> getting experiments by account from mock data
+09-01-23 08:04 -> getting mock token from mock data
+09-01-23 08:51 -> getting experiments by account from mock data
+09-01-23 08:51 -> getting mock token from mock data
+09-01-23 08:51 -> getting experiments by account from mock data
+09-01-23 08:51 -> getting mock token from mock data
+09-01-23 08:52 -> getting experiments by account from mock data
+09-01-23 08:52 -> getting mock token from mock data
+09-01-23 08:52 -> getting experiments by account from mock data
+09-01-23 08:52 -> getting mock token from mock data
+09-01-23 09:08 -> getting experiments by account from mock data
+09-01-23 09:08 -> getting mock token from mock data
+09-01-23 09:12 -> getting experiments by account from mock data
+09-01-23 09:12 -> getting mock token from mock data
+09-01-23 09:13 -> getting experiments by account from mock data
+09-01-23 09:13 -> getting mock token from mock data
+09-01-23 09:18 -> getting experiments by account from mock data
+09-01-23 09:18 -> getting mock token from mock data
+09-01-23 09:19 -> getting experiments by account from mock data
+09-01-23 09:19 -> getting mock token from mock data
+09-01-23 09:20 -> getting experiments by account from mock data
+09-01-23 09:20 -> getting mock token from mock data
+09-01-23 09:21 -> getting experiments by account from mock data
+09-01-23 09:21 -> getting mock token from mock data
+09-01-23 09:21 -> getting experiments by account from mock data
+09-01-23 09:21 -> getting mock token from mock data
+09-01-23 09:21 -> getting experiments by account from mock data
+09-01-23 09:21 -> getting mock token from mock data
+09-01-23 09:21 -> getting experiments by account from mock data
+09-01-23 09:21 -> getting mock token from mock data
+09-01-23 09:23 -> getting experiments by account from mock data
+09-01-23 09:23 -> getting mock token from mock data
+09-01-23 09:23 -> getting experiments by account from mock data
+09-01-23 09:23 -> getting mock token from mock data
+09-01-23 09:23 -> getting experiments by account from mock data
+09-01-23 09:23 -> getting mock token from mock data
+09-01-23 09:24 -> getting experiments by account from mock data
+09-01-23 09:24 -> getting mock token from mock data
+09-01-23 09:24 -> getting experiments by account from mock data
+09-01-23 09:24 -> getting mock token from mock data
+09-01-23 09:24 -> getting experiments by account from mock data
+09-01-23 09:24 -> getting mock token from mock data
+09-01-23 09:32 -> getting experiments by account from mock data
+09-01-23 09:32 -> getting mock token from mock data
+09-01-23 09:37 -> getting experiments by account from mock data
+09-01-23 09:37 -> getting mock token from mock data
+09-01-23 09:37 -> login from mock data succeeded
+09-01-23 09:37 -> getting experiments by account from mock data
+09-01-23 09:37 -> getting mock token from mock data
+09-01-23 09:39 -> getting experiments by account from mock data
+09-01-23 09:39 -> getting mock token from mock data
+09-01-23 09:45 -> getting experiments by account from mock data
+09-01-23 09:45 -> getting mock token from mock data
+09-01-23 09:47 -> getting experiments by account from mock data
+09-01-23 09:47 -> getting mock token from mock data
+09-01-23 10:02 -> getting experiments by account from mock data
+09-01-23 10:02 -> getting mock token from mock data
+09-01-23 10:02 -> getting experiments by account from mock data
+09-01-23 10:02 -> getting mock token from mock data
+09-01-23 10:51 -> getting experiments by account from mock data
+09-01-23 10:51 -> getting mock token from mock data
+09-01-23 10:51 -> getting experiments by account from mock data
+09-01-23 10:51 -> getting mock token from mock data
+09-01-23 10:51 -> getting experiments by account from mock data
+09-01-23 10:51 -> getting mock token from mock data
+09-01-23 10:51 -> getting experiments by account from mock data
+09-01-23 10:51 -> getting mock token from mock data
+09-01-23 10:51 -> getting experiments by account from mock data
+09-01-23 10:51 -> getting mock token from mock data
+09-01-23 10:52 -> getting experiments by account from mock data
+09-01-23 10:52 -> getting mock token from mock data
+09-01-23 10:52 -> getting user details from mock data
+09-01-23 10:52 -> updating experiment using mock data
+09-01-23 10:52 -> getting experiments by account from mock data
+09-01-23 10:52 -> getting mock token from mock data
+09-01-23 10:52 -> getting experiments by account from mock data
+09-01-23 10:52 -> getting mock token from mock data
+09-01-23 10:53 -> getting user details from mock data
+09-01-23 10:53 -> updating experiment using mock data
+09-01-23 10:53 -> getting experiments by account from mock data
+09-01-23 10:53 -> getting mock token from mock data
+09-01-23 10:53 -> getting experiments by account from mock data
+09-01-23 10:53 -> getting mock token from mock data
+09-01-23 11:20 -> getting experiments by account from mock data
+09-01-23 11:20 -> getting mock token from mock data
+09-01-23 11:20 -> getting experiments by account from mock data
+09-01-23 11:20 -> getting mock token from mock data
+09-01-23 11:24 -> getting experiments by account from mock data
+09-01-23 11:24 -> getting mock token from mock data
+09-01-23 11:28 -> getting experiments by account from mock data
+09-01-23 11:28 -> getting mock token from mock data
+09-01-23 11:28 -> getting experiments by account from mock data
+09-01-23 11:28 -> getting mock token from mock data
+09-01-23 11:31 -> getting experiments by account from mock data
+09-01-23 11:31 -> getting mock token from mock data
+09-01-23 11:31 -> getting user details from mock data
+09-01-23 11:31 -> updating experiment using mock data
+09-01-23 11:31 -> getting experiments by account from mock data
+09-01-23 11:31 -> getting mock token from mock data
+09-01-23 11:34 -> getting experiments by account from mock data
+09-01-23 11:34 -> getting mock token from mock data
+09-01-23 11:43 -> getting experiments by account from mock data
+09-01-23 11:43 -> getting mock token from mock data
+09-01-23 11:55 -> getting experiments by account from mock data
+09-01-23 11:55 -> getting mock token from mock data
+10-01-23 12:01 -> getting experiments by account from mock data
+10-01-23 12:01 -> getting mock token from mock data
+10-01-23 12:47 -> login from mock data succeeded
+10-01-23 12:47 -> getting experiments by account from mock data
+10-01-23 12:47 -> getting mock token from mock data
+10-01-23 12:47 -> getting experiments by account from mock data
+10-01-23 12:47 -> getting mock token from mock data
+10-01-23 12:47 -> login from mock data succeeded
+10-01-23 12:47 -> getting experiments by account from mock data
+10-01-23 12:47 -> getting mock token from mock data
+10-01-23 12:50 -> getting experiments by account from mock data
+10-01-23 12:50 -> getting mock token from mock data
+10-01-23 01:02 -> getting experiments by account from mock data
+10-01-23 01:02 -> getting mock token from mock data
+10-01-23 01:05 -> getting experiments by account from mock data
+10-01-23 01:05 -> getting mock token from mock data
+10-01-23 01:06 -> getting experiments by account from mock data
+10-01-23 01:06 -> getting mock token from mock data
+10-01-23 01:06 -> getting experiments by account from mock data
+10-01-23 01:06 -> getting mock token from mock data
+10-01-23 01:15 -> getting experiments by account from mock data
+10-01-23 01:15 -> getting mock token from mock data
+10-01-23 01:16 -> getting experiments by account from mock data
+10-01-23 01:16 -> getting mock token from mock data
+10-01-23 01:17 -> getting experiments by account from mock data
+10-01-23 01:17 -> getting mock token from mock data
+10-01-23 01:18 -> getting experiments by account from mock data
+10-01-23 01:18 -> getting mock token from mock data
+10-01-23 01:19 -> login from mock data succeeded
+10-01-23 01:19 -> getting experiments by account from mock data
+10-01-23 01:19 -> getting mock token from mock data
+10-01-23 01:19 -> getting experiments by account from mock data
+10-01-23 01:19 -> getting mock token from mock data
+10-01-23 01:20 -> login from mock data succeeded
+10-01-23 01:20 -> getting experiments by account from mock data
+10-01-23 01:20 -> getting mock token from mock data
+10-01-23 01:20 -> getting experiments by account from mock data
+10-01-23 01:20 -> getting mock token from mock data
+10-01-23 01:23 -> login from mock data succeeded
+10-01-23 01:23 -> getting experiments by account from mock data
+10-01-23 01:23 -> getting mock token from mock data
+10-01-23 01:33 -> login from mock data succeeded
+10-01-23 01:33 -> getting experiments by account from mock data
+10-01-23 01:33 -> getting mock token from mock data
+10-01-23 01:34 -> getting experiments by account from mock data
+10-01-23 01:34 -> getting mock token from mock data
+10-01-23 01:35 -> login from mock data succeeded
+10-01-23 01:35 -> getting experiments by account from mock data
+10-01-23 01:35 -> getting mock token from mock data
+10-01-23 01:35 -> login from mock data succeeded
+10-01-23 01:35 -> getting experiments by account from mock data
+10-01-23 01:35 -> getting mock token from mock data
+10-01-23 01:35 -> getting experiments by account from mock data
+10-01-23 01:35 -> getting mock token from mock data
+10-01-23 01:37 -> login from mock data succeeded
+10-01-23 01:37 -> getting experiments by account from mock data
+10-01-23 01:37 -> getting mock token from mock data
+10-01-23 01:39 -> login from mock data succeeded
+10-01-23 01:40 -> login from mock data succeeded
+10-01-23 01:40 -> getting experiments by account from mock data
+10-01-23 01:40 -> getting mock token from mock data
+10-01-23 01:43 -> login from mock data succeeded
+10-01-23 01:43 -> getting experiments by account from mock data
+10-01-23 01:43 -> getting mock token from mock data
+10-01-23 01:44 -> getting experiments by account from mock data
+10-01-23 01:44 -> getting mock token from mock data
+10-01-23 01:44 -> getting experiments by account from mock data
+10-01-23 01:44 -> getting mock token from mock data
+10-01-23 01:46 -> getting user details from mock data
+10-01-23 01:46 -> creating experiment using mock data
+10-01-23 01:46 -> login from mock data succeeded
+10-01-23 01:46 -> getting experiments by account from mock data
+10-01-23 01:46 -> getting mock token from mock data
+10-01-23 01:46 -> getting experiments by account from mock data
+10-01-23 01:46 -> getting mock token from mock data
+10-01-23 01:47 -> getting experiments by account from mock data
+10-01-23 01:47 -> getting mock token from mock data
+10-01-23 01:48 -> login from mock data succeeded
+10-01-23 01:48 -> getting experiments by account from mock data
+10-01-23 01:48 -> getting mock token from mock data
+10-01-23 11:55 -> login from mock data succeeded
+10-01-23 11:55 -> getting experiments by account from mock data
+10-01-23 11:55 -> getting mock token from mock data
+10-01-23 11:56 -> getting experiments by account from mock data
+10-01-23 11:56 -> getting mock token from mock data
+10-01-23 11:56 -> getting experiments by account from mock data
+10-01-23 11:56 -> getting mock token from mock data
+10-01-23 11:57 -> getting experiments by account from mock data
+10-01-23 11:57 -> getting mock token from mock data
+10-01-23 11:58 -> getting experiments by account from mock data
+10-01-23 11:58 -> getting mock token from mock data
+10-01-23 11:59 -> getting experiments by account from mock data
+10-01-23 11:59 -> getting mock token from mock data
+10-01-23 11:59 -> getting experiments by account from mock data
+10-01-23 11:59 -> getting mock token from mock data
+10-01-23 12:01 -> getting experiments by account from mock data
+10-01-23 12:01 -> getting mock token from mock data
+10-01-23 12:01 -> getting experiments by account from mock data
+10-01-23 12:01 -> getting mock token from mock data
+10-01-23 12:01 -> getting experiments by account from mock data
+10-01-23 12:01 -> getting mock token from mock data
+10-01-23 12:02 -> getting experiments by account from mock data
+10-01-23 12:02 -> getting mock token from mock data
+10-01-23 12:06 -> getting experiments by account from mock data
+10-01-23 12:06 -> getting mock token from mock data
+10-01-23 12:07 -> getting experiments by account from mock data
+10-01-23 12:07 -> getting mock token from mock data
+10-01-23 12:26 -> getting experiments by account from mock data
+10-01-23 12:26 -> getting mock token from mock data
+10-01-23 12:26 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:27 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:27 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:27 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:27 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:27 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:27 -> getting experiments by account from mock data
+10-01-23 12:27 -> getting mock token from mock data
+10-01-23 12:28 -> getting experiments by account from mock data
+10-01-23 12:28 -> getting mock token from mock data
+10-01-23 12:33 -> getting experiments by account from mock data
+10-01-23 12:33 -> getting mock token from mock data
+10-01-23 12:34 -> login from mock data succeeded
+10-01-23 12:34 -> getting experiments by account from mock data
+10-01-23 12:34 -> getting mock token from mock data
+10-01-23 12:39 -> login from mock data succeeded
+10-01-23 12:39 -> getting experiments by account from mock data
+10-01-23 12:39 -> getting mock token from mock data
+10-01-23 01:04 -> getting experiments by account from mock data
+10-01-23 01:04 -> getting mock token from mock data
+10-01-23 01:10 -> login from mock data succeeded
+10-01-23 01:10 -> getting experiments by account from mock data
+10-01-23 01:10 -> getting mock token from mock data
+10-01-23 01:13 -> getting user details from mock data
+10-01-23 01:13 -> updating experiment using mock data
+10-01-23 01:14 -> getting user details from mock data
+10-01-23 01:14 -> updating experiment using mock data
+10-01-23 01:17 -> getting user details from mock data
+10-01-23 01:17 -> updating experiment using mock data
+10-01-23 01:18 -> getting user details from mock data
+10-01-23 01:18 -> updating experiment using mock data
+10-01-23 01:18 -> getting user details from mock data
+10-01-23 01:18 -> updating experiment using mock data
+10-01-23 01:19 -> getting user details from mock data
+10-01-23 01:19 -> updating experiment using mock data
+10-01-23 01:20 -> getting user details from mock data
+10-01-23 01:20 -> updating experiment using mock data
+10-01-23 01:25 -> getting experiments by account from mock data
+10-01-23 01:25 -> getting mock token from mock data
+10-01-23 01:25 -> getting experiments by account from mock data
+10-01-23 01:25 -> getting mock token from mock data
+10-01-23 01:26 -> getting experiments by account from mock data
+10-01-23 01:26 -> getting mock token from mock data
+10-01-23 01:26 -> getting experiments by account from mock data
+10-01-23 01:26 -> getting mock token from mock data
+10-01-23 01:28 -> login from mock data succeeded
+10-01-23 01:28 -> getting experiments by account from mock data
+10-01-23 01:28 -> getting mock token from mock data
+10-01-23 01:28 -> getting user details from mock data
+10-01-23 01:28 -> updating experiment using mock data
+10-01-23 01:28 -> getting user details from mock data
+10-01-23 01:28 -> updating experiment using mock data
+10-01-23 01:32 -> getting user details from mock data
+10-01-23 01:32 -> updating experiment using mock data
+10-01-23 01:34 -> getting user details from mock data
+10-01-23 01:34 -> updating experiment using mock data
+10-01-23 01:34 -> getting experiments by account from mock data
+10-01-23 01:34 -> getting mock token from mock data
+10-01-23 01:34 -> getting experiments by account from mock data
+10-01-23 01:34 -> getting mock token from mock data
+10-01-23 01:35 -> getting experiments by account from mock data
+10-01-23 01:35 -> getting mock token from mock data
+10-01-23 01:35 -> getting experiments by account from mock data
+10-01-23 01:35 -> getting mock token from mock data
+10-01-23 01:36 -> getting experiments by account from mock data
+10-01-23 01:36 -> getting mock token from mock data
+10-01-23 01:52 -> getting experiments by account from mock data
+10-01-23 01:52 -> getting mock token from mock data
+10-01-23 01:52 -> getting experiments by account from mock data
+10-01-23 01:52 -> getting mock token from mock data
+10-01-23 01:52 -> getting experiments by account from mock data
+10-01-23 01:52 -> getting mock token from mock data
+10-01-23 01:55 -> getting experiments by account from mock data
+10-01-23 01:55 -> getting mock token from mock data
+10-01-23 01:57 -> getting experiments by account from mock data
+10-01-23 01:57 -> getting mock token from mock data
+10-01-23 01:58 -> getting experiments by account from mock data
+10-01-23 01:58 -> getting mock token from mock data
+10-01-23 02:01 -> getting experiments by account from mock data
+10-01-23 02:01 -> getting mock token from mock data
+10-01-23 02:04 -> getting experiments by account from mock data
+10-01-23 02:04 -> getting mock token from mock data
+10-01-23 02:05 -> getting experiments by account from mock data
+10-01-23 02:05 -> getting mock token from mock data
+10-01-23 02:23 -> login from mock data succeeded
+10-01-23 02:57 -> login from mock data succeeded
+10-01-23 03:00 -> login from mock data succeeded
+10-01-23 03:00 -> login from mock data succeeded
+10-01-23 03:01 -> login from mock data succeeded
+10-01-23 03:01 -> login from mock data succeeded
+10-01-23 03:06 -> login from mock data succeeded
+10-01-23 03:06 -> login from mock data succeeded
+10-01-23 03:06 -> login from mock data succeeded
+10-01-23 03:06 -> login from mock data succeeded
+10-01-23 03:08 -> login from mock data succeeded
+10-01-23 03:10 -> login from mock data succeeded
+10-01-23 03:10 -> login from mock data succeeded
+10-01-23 03:10 -> getting mock token from mock data
+10-01-23 03:11 -> getting experiments by account from Growth
+10-01-23 03:11 -> login from mock data succeeded
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting experiments by account from Growth
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting experiment statistics using Growth
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting mock token from mock data
+10-01-23 03:11 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> login from mock data succeeded
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiments by account from Growth
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiment statistics using Growth
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting mock token from mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:12 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiments by account from Growth
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting experiments by account from Growth
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> getting experiment statistics using mock data
+10-01-23 03:14 -> get experimentId using Growth
+10-01-23 03:14 -> getting mock token from mock data
+10-01-23 03:14 -> getting experiment statistics using Growth
+10-01-23 03:17 -> get experimentId using Growth
+10-01-23 03:17 -> getting user details from mock data
+10-01-23 03:17 -> updating experiment using Growth
+10-01-23 03:17 -> get experimentId using Growth
+10-01-23 03:17 -> getting mock token from mock data
+10-01-23 03:17 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiments by account from Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> get experimentId using Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiments by account from Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting mock token from mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using Growth
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:18 -> getting experiment statistics using mock data
+10-01-23 03:20 -> getting user details from mock data
+10-01-23 03:20 -> creating experiment using Growth
+10-01-23 03:20 -> use 1 credit using mock data
+10-01-23 03:20 -> new user credit amount 49
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting experiments by account from Growth
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting experiment statistics using Growth
+10-01-23 03:20 -> getting experiment statistics using Growth
+10-01-23 03:20 -> getting experiment statistics using Growth
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> getting experiment statistics using Growth
+10-01-23 03:20 -> getting experiment statistics using Growth
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> get experimentId using Growth
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting experiment statistics using mock data
+10-01-23 03:20 -> get experimentId using Growth
+10-01-23 03:20 -> getting mock token from mock data
+10-01-23 03:20 -> getting experiment statistics using mock data

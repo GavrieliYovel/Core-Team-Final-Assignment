@@ -8333,6 +8333,10 @@ a[data-toggle="collapse"] {
   border: transparent;
 }
 
+.breadcrumb-item+.breadcrumb-item::before {
+  content: "";
+}
+
 .form-control:focus, .form-control:active {
   border-color: #000; }
 .form-control::-webkit-input-placeholder {
@@ -8633,6 +8637,37 @@ th, td {
 /*  padding: 0;*/
 /*}*/
 
-.head a {
+a {
   color: inherit;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 70px;
+  width: 200px;
+  margin: 5px 10px;
+
+}
+
+.info p {
+  margin: 0;
+}
+
+.container hr {
+  border: 1px solid #5a6268;
+  padding: 0;
+}
+
+.info button {
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+.w3-container.w3-blue.w3-center {
+  height: 20px;
+  font-size: 12px;
 }

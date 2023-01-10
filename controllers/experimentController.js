@@ -256,6 +256,12 @@ exports.experimentController = {
                 experimentRepository.updateVariantCount(req.params.id, req.body.variant)
                 res.status(200).send("declared goal");
             })
+            .catch(mock => {
+                logger.log("get experiment id using mock data");
+                const experiment = experimentRepository.getExperimentById(req.params.id);
+                res.status(200).json(experiment);
+            })
+
     },
     async getExperimentById(req, res) {
         await axios.get(`https://ab-test-production.onrender.com/experiments/${req.params.id}`)

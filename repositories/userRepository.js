@@ -34,6 +34,7 @@ module.exports = class userRepository extends EventEmitter {
     }
 
     getDetailsById(userId) {
+        console.log(userId);
         const user = this.data.find(user => user.id == userId);
         if(user) {
             return {
@@ -50,6 +51,7 @@ module.exports = class userRepository extends EventEmitter {
         const user = this.data.find(user => user.id == userId);
         if(user) {
             user.credits -= amount;
+            this.emit('updateData');
             return user.credits;
         } else {
             return "no such user"

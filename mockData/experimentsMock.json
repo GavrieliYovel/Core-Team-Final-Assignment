@@ -81,6 +81,7 @@
       ],
       "device": [
         "desktop"
+
       ],
       "browser": [
         "Chrome"
@@ -114,6 +115,7 @@
       ],
       "device": [
         "desktop"
+
       ],
       "browser": [
         "Chrome"
@@ -147,11 +149,13 @@
       ],
       "device": [
         "desktop"
+
       ],
       "browser": [
         "Chrome"
       ]
     },
+
     "_id": "63bc2360ac37a18031a89828",
     "name": "FF experiment",
     "account_id": "63b9fddd93e055aa3b92bf69",

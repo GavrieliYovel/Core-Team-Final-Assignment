@@ -47,6 +47,7 @@ module.exports = class experimentRepository extends EventEmitter {
 
     getFeatureFlagByAccount(account) {
         return this.data.filter(item => (item.account_id === account && item.type === "feature-flag"));
+
     }
 
     createExperiment(payload) {
@@ -66,6 +67,7 @@ module.exports = class experimentRepository extends EventEmitter {
             status: "active",
             start_time: payload.start_time,
             end_time: payload.end_time,
+
         }
         if("variants_ab" in payload) {
             newExperiment["variants_ab"] = payload.variants_ab;
@@ -130,6 +132,7 @@ module.exports = class experimentRepository extends EventEmitter {
     endExperiment(id) {
         this.data.find(item => item._id == id).status = "end"
         this.emit('updateData');
+
     }
 }
 

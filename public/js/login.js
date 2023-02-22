@@ -20,8 +20,8 @@ window.onload = () => {
         };
         fetch(`${origin}/IAM/login`, requestOptions)
             .then(async response => {
-                const res = await response.json();
-                if (res.status === 200) {
+                const res = await response.text();
+                if (res === "success") {
                     window.location = "./home";
                 } else {
                     error.hidden = false;

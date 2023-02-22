@@ -34,124 +34,92 @@ module.exports = class experimentRepository extends EventEmitter {
     }
 
     getExperimentByAccount(account) {
-        const experiments = this.data.filter(item => item.account_id == account);
-        if(experiments)
-            return experiments;
-        else
-            return [];
+        return this.data.filter(item => item.account_id === account);
     }
 
     getExperimentById(id) {
-        if(this.data.find(item => item.experimentId == id))
-            return this.data.find(item => item.experimentId == id);
-        else
-            return false;
+        return this.data.find(item => item._id === id);
     }
 
     getABTestByAccount(account) {
-        const experiments = this.data.filter(item => (item.account_id == account && item.type == "a-b"));
-        if(experiments)
-            return experiments;
-        else
-            return [];
-
+        return this.data.filter(item => (item.account_id === account && item.type === "a-b"));
     }
 
     getFeatureFlagByAccount(account) {
-        const experiments = this.data.filter(item => (item.account_id == account && item.type == "f-f"));
-        if(experiments)
-            return experiments;
-        else
-            return [];
+        return this.data.filter(item => (item.account_id === account && item.type === "feature-flag"));
+
     }
 
     createExperiment(payload) {
         let newID = 1;
         if (this.data.length > 0)
-            newID = this.data[this.data.length - 1].experimentId + 1;
-        let newExperiment;
-        if(payload.type ==  'a-b') {
-             newExperiment = {
-                experimentId: newID,
-                name: payload.name,
-                account_id: payload.account_id,
-                type: payload.type,
-                test_attributes: payload.test_attributes,
-                variant_success_count: {
-                    "A": 0,
-                    "B": 0,
-                    "C": 0
-                },
-                traffic_percentage: payload.traffic_percentage,
-                goal_id: payload.goal_id,
-                call_count: 1,
-                status: "active",
-                start_time: payload.start_time,
-                end_time: payload.end_time,
-                variants_ab: payload.variants_ab
-            }
-        } else {
-             newExperiment = {
-                experimentId: newID,
-                name: payload.name,
-                account_id: payload.account_id,
-                type: payload.type,
-                test_attributes: payload.test_attributes,
-                variant_success_count: {
-                    "ON": 0,
-                    "OFF": 0
-                },
-                traffic_percentage: payload.traffic_percentage,
-                goal_id: payload.goal_id,
-                call_count: 1,
-                status: "active",
-                start_time: payload.start_time,
-                end_time: payload.end_time,
-                variants_ff: payload.variants_ff
-            }
+            newID = this.data[this.data.length - 1]._id + 1;
+
+        const newExperiment = {
+            experimentId: newID,
+            name: payload.name,
+            account_id: payload.account_id,
+            type: payload.type,
+            test_attributes: payload.test_attributes,
+            traffic_percentage: payload.traffic_percentage,
+            goal_id: payload.goal_id,
+            call_count: 0,
+            status: "active",
+            start_time: payload.start_time,
+            end_time: payload.end_time,
+
         }
+        if("variants_ab" in payload) {
+            newExperiment["variants_ab"] = payload.variants_ab;
+            newExperiment["variant_success_count"] = {
+                A: 0,
+                B: 0,
+                C: 0
+            };
+        }
+
         this.updateExperimentData(newExperiment);
         return newID;
     }
 
     deleteExperiment(experimentId) {
-        this.data = this.data.filter(experiment => experiment.experimentId != experimentId);
+        this.data = this.data.filter(experiment => experiment._id != experimentId);
         this.emit('updateData');
     }
 
     updateExperiment(payload, id) {
         // let updatedExperiment = this.data.find(item => item.id == id);
         if(payload.hasOwnProperty("test_attributes")) {
-            this.data.find(item => item.experimentId == id).test_attributes = payload.test_attributes;
+            this.data.find(item => item._id == id).test_attributes = payload.test_attributes;
         }
         if(payload.hasOwnProperty("variant_success_count")) {
-            this.data.find(item => item.experimentId == id).variant_success_count = payload.variant_success_count;
+            this.data.find(item => item._id == id).variant_success_count = payload.variant_success_count;
         }
         if(payload.hasOwnProperty("name")) {
-            this.data.find(item => item.experimentId == id).name = payload.name;
+            this.data.find(item => item._id == id).name = payload.name;
         }
-        if(payload.hasOwnProperty("name")) {
-            this.data.find(item => item.experimentId == id).test_attributes = payload.test_attributes;
+        if(payload.hasOwnProperty("variants_ab")) {
+            this.data.find(item => item._id == id).variants_ab = payload.variants_ab;
         }
         if(payload.hasOwnProperty("type")) {
-            this.data.find(item => item.experimentId == id).type = payload.type;
+            this.data.find(item => item._id == id).type = payload.type;
         }
         if(payload.hasOwnProperty("traffic_percentage")) {
-            this.data.find(item => item.experimentId == id).traffic_percentage = payload.traffic_percentage;
+            this.data.find(item => item._id == id).traffic_percentage = payload.traffic_percentage;
         }
         if(payload.hasOwnProperty("call_count")) {
-            this.data.find(item => item.experimentId == id).call_count = payload.call_count;
+            this.data.find(item => item._id == id).call_count = payload.call_count;
         }
         if(payload.hasOwnProperty("status")) {
-            this.data.find(item => item.experimentId == id).status = payload.status;
+            this.data.find(item => item._id == id).status = payload.status;
         }
         if(payload.hasOwnProperty("end_time")) {
-            this.data.find(item => item.experimentId == id).end_time = payload.end_time;
+            this.data.find(item => item._id == id).end_time = payload.end_time;
         }
 
         // this.data.find(item => item.id == id) = updatedExperiment;
         this.emit('updateData');
-        return this.data.find(item => item.experimentId == id)
+        return this.data.find(item => item._id == id)
 
     }
 
@@ -162,44 +130,9 @@ module.exports = class experimentRepository extends EventEmitter {
     }
 
     endExperiment(id) {
-        if( this.data.find(item => item.experimentId == id)) {
-            this.data.find(item => item.experimentId == id).status = "end"
-            this.emit('updateData');
-        }
-    }
+        this.data.find(item => item._id == id).status = "end"
+        this.emit('updateData');
 
-    getVariantCountById(id) {
-        if(this.data.find(item => item.experimentId == id))
-            return  this.data.find(item => item.experimentId == id).variant_success_count;
-        else
-            return "no such experiment"
-    }
-
-    getCallCountById(id) {
-        if(this.data.find(item => item.experimentId == id))
-            return  this.data.find(item => item.experimentId == id).call_count;
-        else
-            return "no such experiment"
-    }
-
-    updateVariantCount(id, variant) {
-        if(this.data.find(item => item.experimentId == id && item.type == "a-b")) {
-            if(variant == "A")
-                this.data.find(item => item.experimentId == id).variant_success_count.A += 1;
-            if(variant == "B")
-                this.data.find(item => item.experimentId == id).variant_success_count.B += 1;
-            if(variant == "C")
-                this.data.find(item => item.experimentId == id).variant_success_count.C += 1;
-            this.emit('updateData');
-        } else if(this.data.find(item => item.experimentId == id && item.type == "f-f")) {
-            if (variant == "ON")
-                this.data.find(item => item.experimentId == id).variant_success_count.ON += 1;
-            if (variant == "OFF")
-                this.data.find(item => item.experimentId == id).variant_success_count.OFF += 1;
-            this.emit('updateData');
-        } else {
-            return "no such experiment"
-        }
     }
 }
 

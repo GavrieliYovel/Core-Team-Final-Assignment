@@ -9,10 +9,6 @@
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
   <script src="https://kit.fontawesome.com/77b777f4e2.js" crossorigin="anonymous"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>-->
-<!--  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>-->
-<!--  <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>-->
-<!--  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>-->
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="css/style.css">
@@ -30,18 +26,18 @@
     <div class="p-4 d-flex justify-content-between flex-column h-100">
       <div>
         <h3 class="mt-5">
-          <a href="homeDemo.html" class="logo"><b>AB-TEST</b> Dashboard</a>
+          <a href="home" class="logo"><b>AB-TEST</b> Dashboard</a>
         </h3>
         <hr class="mt-4 mb-4">
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+            <a href="home"><i class="fa-solid fa-home mr-3"></i>Home</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-solid fa-lock mr-3"></span> Sign in</a>
+            <a class="mr-3" href="logout"><i class="fa-regular fa-arrow-right-from-bracket mr-3"></i>Logout</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-user mr-3"></span> Profile</a>
+            <a><i class="fa-solid fa-user mr-3"></i>Profile</a>
           </li>
         </ul>
         <div class="mb-5">
@@ -71,10 +67,8 @@
         <div class="col p-0 d-flex align-items-center">
           <ol class="breadcrumb blue-grey lighten-4">
             <li class="breadcrumb-item">
-              <a class="black-text" href="#">Pages</a>
-              <i class="fa fa-angle-double-right mx-2" aria-hidden="true"></i>
+              <a class="black-text" href="#">Home</a>
             </li>
-            <li class="breadcrumb-item active">Home Page</li>
           </ol>
         </div>
         <div class="col p-0 d-flex justify-content-end">
@@ -87,7 +81,6 @@
             </div>
             <a class="mr-3"><i class="fa-regular fa-bell fa-xl"></i></a>
             <a class="mr-3"><i class="fa-regular fa-circle-info fa-xl"></i></a>
-            <a class="mr-3" href="logout"><i class="fa-regular fa-arrow-right-from-bracket fa-xl"></i></a>
             <img id="profile-img" src="images/images.png" alt="user">
           </div>
         </div>
@@ -103,60 +96,6 @@
              <div id="main-dash" class="mt-5">
               <%}%>
               <div class="row justify-content-center" id="account-experiments">
-<!--                <div class="d-flex justify-content-center w-100">-->
-<!--                  <h5 class="mb-1">Reading articles experiment</h5>-->
-<!--                </div>-->
-
-
-<!--                <div class="d-flex justify-content-center w-100">-->
-<!--                  <h5 class="mt-4">Reading articles experiment</h5>-->
-<!--                </div>-->
-<!--                <div class="card w-100">-->
-<!--                  <div class="card-body justify-content-center">-->
-<!--                    <div class="d-flex flex-column w-100 h-100">-->
-<!--                      <div class="row d-flex justify-content-center">-->
-<!--                        <table>-->
-<!--                          <tr>-->
-<!--                            <th>Test ID</th>-->
-<!--                            <th>Type</th>-->
-<!--                            <th>Status</th>-->
-<!--                          </tr>-->
-<!--                          <tr>-->
-<!--                            <td>0912384756</td>-->
-<!--                            <td>Feature - Flag</td>-->
-<!--                            <td>-->
-<!--                              <span class="badge p-3 text-white rounded-pill bg-danger">Ended</span>-->
-<!--                            </td>-->
-<!--                          </tr>-->
-<!--                        </table>-->
-<!--                      </div>-->
-<!--                      <div class="row mt-4">-->
-<!--                        <div class="col-2 d-flex align-items-center justify-content-start">-->
-<!--                          <h6 class="m-0">ON</h6>-->
-<!--                        </div>-->
-<!--                        <div class="col">-->
-<!--                          <div class="w3-light-grey justify-content-center">-->
-<!--                            <div class="row d-flex justify-content-start">-->
-<!--                              <div class="w3-container w3-blue w3-center " style="width:41%">15%</div>-->
-<!--                            </div>-->
-<!--                          </div>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="row mt-3">-->
-<!--                        <div class="col-2 d-flex align-items-center justify-content-start">-->
-<!--                          <h6 class="m-0">OFF</h6>-->
-<!--                        </div>-->
-<!--                        <div class="col">-->
-<!--                          <div class="w3-light-grey justify-content-center">-->
-<!--                            <div class="row d-flex justify-content-start">-->
-<!--                              <div class="w3-container w3-blue w3-center " style="width:35%">35%</div>-->
-<!--                            </div>-->
-<!--                          </div>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
               </div>
           </div>
             <% if(userType === "manager") { %>

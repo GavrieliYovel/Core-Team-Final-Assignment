@@ -111,10 +111,10 @@ exports.experimentController = {
         }
     },
     async experimentStatistics(req , res) {
-        console.log(req.params.id)
         if(await getToken(req)) {
             await axios.get(`https://ab-test-production.onrender.com/stats/${req.params.id}`)
                 .then(response => {
+
                     logger.info("getting experiment statistics using Growth");
                     res.send(response.data);
                 })
@@ -125,6 +125,7 @@ exports.experimentController = {
         } else {
             logger.info("experimentStatistics - must login first");
             res.send(`experimentStatistics - must login first`);
+
         }
 
     },
@@ -161,7 +162,9 @@ exports.experimentController = {
                     res.status(200).json(response.data);
                 })
                 .catch(mock => {
+
                     logger.info("getting experiments by account from mock data");
+
                     const data = experimentRepository.getExperimentByAccount(req.params.account);
                     res.status(200).json(data);
                 })
@@ -169,6 +172,7 @@ exports.experimentController = {
         else {
             logger.info("user not authorised to get experiments by account");
             res.send("you don't have permissions");
+
         }
     },
     async ABTestExperimentsByAccount(req, res) {
@@ -259,6 +263,12 @@ exports.experimentController = {
                 experimentRepository.updateVariantCount(req.params.id, req.body.variant)
                 res.status(200).send("declared goal");
             })
+            .catch(mock => {
+                logger.log("get experiment id using mock data");
+                const experiment = experimentRepository.getExperimentById(req.params.id);
+                res.status(200).json(experiment);
+            })
+
     },
     async getExperimentById(req, res) {
         await axios.get(`https://ab-test-production.onrender.com/experiments/${req.params.id}`)
@@ -296,4 +306,3 @@ exports.experimentController = {
             })
     }
 }
-

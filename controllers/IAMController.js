@@ -26,10 +26,7 @@ exports.IAMController = {
                     const user = userRepository.getUserIdByEmail(req.body.email);
                     req.session.userId = user.id;
                     req.session.type = user.type;
-                    res.status(200).json({
-                        mode: "mock",
-                        account: req.session.userId
-                    });
+                    res.send("success");
                 } else {
                     logger.log("login from mock data failed");
                     res.send("fail");
@@ -43,5 +40,4 @@ exports.IAMController = {
         })
     }
 }
-
 

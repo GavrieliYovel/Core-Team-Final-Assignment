@@ -90,7 +90,35 @@ If the axios request failed, we are using user mock data.
 
 
 ## User Guide - SDK
+### Before
+  1. All the function need to be async await functions
+  2. Before callExperiment and declareGoal use get method to use experimentId for them.
 
+### Setup
+  1. const ABTestSDK = require('shenkar-abtest')
+  2. const ab = new ABTestSDK(*accountId*)
+
+### SDK Functions
+#### getAllExperiments()
+  1. ab.getAllExperiments()
+  2. return an array of all experiments attached to the accountId
+  
+#### getABExperiments()
+  1. ab.getABExperiments()
+  2. return an array of all the AB experiments attached to the accountId
+  
+#### getFFExperiments()
+  1. ab.getFFExperiments()
+  2. return an array of all the Feature Flag experiments attached to the accountId
+  
+#### callExperiment(experiment_id)
+  1. ab.callExperiment(experiment_id)
+  2. return a random variant of the experiment
+
+#### declareGoal(experiment_id, variant)
+  1. ab.declareGoal(experiment_id, variant)
+  2. increasing the variant success count 
+  
 ## Our team
 * Yovel Gavrieli
 * Abrahem Elnkeeb

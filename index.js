@@ -9,12 +9,13 @@ const sessions = require('express-session');
 const { experimentRouter } = require("./routers/experimentRouter");
 const { IAMRouter } = require("./routers/IAMRouter");
 const { BIDataRouter } = require("./routers/BIDataRouter");
-const {pageRouter} = require("./routers/pageRouter");
+const { pageRouter } = require("./routers/pageRouter");
+const { loggerRouter } = require("./routers/loggerRouter");
 
 
 dotenv.config({ path: path.join(__dirname, './.env') });
 const port = process.env.PORT || 3030;
-
+require('./dbConnection');
 //static files
 app.use(express.static("public"));
 app.use("/css", express.static(__dirname + "public/css"));
@@ -46,6 +47,7 @@ app.use(express.urlencoded({extended: true}));  // handel post reqs with body
 app.use('/growth', experimentRouter);
 app.use('/IAM', IAMRouter);
 app.use('/BI', BIDataRouter);
+app.use('/logger', loggerRouter);
 app.use('/', pageRouter);
 // app.use('/api/boards', boardsRouter);
 

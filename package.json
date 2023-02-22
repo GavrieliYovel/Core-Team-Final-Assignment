@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "abtest-logger": "^1.0.5",
     "axios": "^1.2.2",
     "chart.js": "^4.1.1",
     "cookie-parser": "^1.4.6",

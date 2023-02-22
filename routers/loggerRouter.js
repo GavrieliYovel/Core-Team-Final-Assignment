@@ -5,7 +5,6 @@ const loggerRouter = new Router();
 
 
 loggerRouter.get('/', loggerController.getAllLogs);
-loggerRouter.get('/create', loggerController.error);
 
 
 module.exports = { loggerRouter };

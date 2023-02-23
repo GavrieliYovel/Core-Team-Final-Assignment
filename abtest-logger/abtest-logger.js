@@ -2,16 +2,17 @@ const moment = require('moment');
 const amqp = require('amqplib/callback_api');
 
 module.exports = class Logger{
-    constructor() {
+    constructor(link) {
         if (!Logger._instance) {
             this.logger = console;
+            this.RMQueueLink = link;
             Logger._instance = this;
         } else {
             return Logger._instance;
         }
     }
     async #sendLogsToServer(log) {
-        amqp.connect("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rattlesnake.rmq.cloudamqp.com/qdniwzza", (err, conn) => {
+        amqp.connect(this.RMQueueLink, (err, conn) => {
             conn.createChannel(async (error, ch) => {
                 const q = 'CloudAMQP';
                 const stringMsg = JSON.stringify(log);
@@ -30,7 +31,7 @@ module.exports = class Logger{
             details: message
         }
         await this.#sendLogsToServer(newLog);
-        this.logger.log(`error: ${time}-> ${message}`);
+        this.logger.log(`info: ${time}-> ${message}`);
     }
 
     async error(message = '') {
@@ -50,7 +51,7 @@ module.exports = class Logger{
             details: message
         }
         await this.#sendLogsToServer(newLog);
-        this.logger.log(`error: ${time}-> ${message}`);
+        this.logger.log(`debug: ${time}-> ${message}`);
     }
 
     async getAllLogs() {

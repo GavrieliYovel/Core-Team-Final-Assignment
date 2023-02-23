@@ -1,11 +1,12 @@
 # ABTest Logger
 
-A simple logging library that uses browser-js console.log() and saves the logs to your mongoDB database 
+A simple logging library that uses browser-js console.log() and saves the logs to your mongoDB database.
+Using RMQueue to transfer the logs into your server to save it mongoDB
 ## Setup
 
 ```
 const Logger = require('./abtest-logger');
-const logger = new Logger('MongoDBLink');
+const logger = new Logger('rabbitmqLink');
 ```
 
 

@@ -4,7 +4,7 @@ const experimentRepository = new ExperimentRepository();
 const UserRepository = require('../repositories/userRepository');
 const userRepository = new UserRepository();
 const Logger = require("abtest-logger");
-const logger = new Logger('mongodb+srv://coreteam:bVZR3Is9VfhlDFv1@cluster0.1cxlyo9.mongodb.net/logger?retryWrites=true&w=majority');
+const logger = new Logger("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rattlesnake.rmq.cloudamqp.com/qdniwzza");
 
 function checkManagerAuth(details) {
     return !(details.type !== "manager" || details.credits <= 0);

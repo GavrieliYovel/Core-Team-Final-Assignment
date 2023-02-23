@@ -16,6 +16,7 @@ const { loggerRouter } = require("./routers/loggerRouter");
 dotenv.config({ path: path.join(__dirname, './.env') });
 const port = process.env.PORT || 3030;
 require('./dbConnection');
+const {listenToQ} = require("./reciver");
 //static files
 app.use(express.static("public"));
 app.use("/css", express.static(__dirname + "public/css"));
@@ -50,7 +51,7 @@ app.use('/BI', BIDataRouter);
 app.use('/logger', loggerRouter);
 app.use('/', pageRouter);
 // app.use('/api/boards', boardsRouter);
-
+listenToQ();
 app.use((req, res) => {
     res.status(400).send('Something is broken!');
 });

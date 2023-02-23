@@ -6,6 +6,6 @@ const logsSchema = new Schema({
     date: {type: Date, default: new Date()}
 }, {collection: 'logs', versionKey: false})
 
-const Logs = model('Logs', logsSchema);
+const Log = model('Log', logsSchema);
 
-module.exports = {Logs};
+module.exports = {Log};

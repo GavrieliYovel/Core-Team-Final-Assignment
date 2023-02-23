@@ -4,5 +4,15 @@ const logger = new Logger('mongodb+srv://coreteam:bVZR3Is9VfhlDFv1@cluster0.1cxl
 
 
 
-await logger.log('check');
+// await logger.log('check');
 
+const test =  async () => {
+    logger.info("test").then(r => r);
+}
+
+try {
+    test();
+}
+catch (e) {
+    console.log(e)
+}

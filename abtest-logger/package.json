@@ -1,6 +1,6 @@
 {
   "name": "abtest-logger",
-  "version": "1.0.5",
+  "version": "1.0.12",
   "description": "Logger by Core Team",
   "main": "abtest-logger.js",
   "scripts": {
@@ -9,11 +9,11 @@
   "author": "Core Team",
   "license": "Shenkar",
   "dependencies": {
+    "amqplib": "^0.10.3",
     "moment": "^2.29.4",
     "mongoose": "^6.9.2"
   },
   "files": [
-    "abtest-logger.js",
-    "logger.js"
+    "abtest-logger.js"
   ]
 }

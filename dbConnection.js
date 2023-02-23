@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const options = {
     useNewUrlParser: true,    // For deprecation warnings
-    useUnifiedTopology: true  // For deprecation warnings
+    useUnifiedTopology: true // For deprecation warnings
 };
 
 mongoose.set('strictQuery', false);

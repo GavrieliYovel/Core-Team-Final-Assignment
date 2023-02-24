@@ -6,77 +6,67 @@ module.exports = class Logger{
         if (!Logger._instance) {
             this.logger = console;
             this.RMQueueLink = link;
+            this.logs = [];
+            amqp.connect(this.RMQueueLink, (err, conn) => {
+                if (err) {
+                    console.error('Failed to connect to RabbitMQ:', err);
+                    return;
+                }
+                conn.createChannel((err, ch) => {
+                    if (err) {
+                        console.error('Failed to create channel:', err);
+                        return;
+                    }
+                    this.channel = ch;
+                    ch.assertQueue('CloudAMQP', { durable: false });
+                });
+            });
+            setInterval(async () => {
+                if (this.logs.length > 0) {
+                    try {
+                        await this.#sendLogsToServer();
+                    } catch (error) {
+                        console.log("failed to send logs")
+                    }
+                }
+            }, 60000); // Send logs to server after every minute
             Logger._instance = this;
         } else {
             return Logger._instance;
         }
     }
-    async #sendLogsToServer(log) {
+    async #sendLogsToServer() {
         try {
-            amqp.connect(this.RMQueueLink, (err, conn) => {
-                try {
-                conn.createChannel(async (error, ch) => {
-                    const q = 'CloudAMQP';
-                    const stringMsg = JSON.stringify(log);
-                    ch.assertQueue(q, { durable: false });
-                    await ch.sendToQueue(q, Buffer.from(stringMsg));
-                });
-                } catch (error) {
-                    console.log("failed to send message");
-                }
-            });
+            const stringMsg = JSON.stringify(this.logs);
+            await this.channel.sendToQueue('CloudAMQP', Buffer.from(stringMsg));
+            this.logs = []
         } catch (error) {
-            console.log("failed to send message");
+            console.log("Failed to send message:", error);
         }
-
     };
 
 
-
-    async info(message = '') {
+    log(level, message) {
         const time = moment().format('DD-MM-YY hh:mm:ss');
         const newLog = {
-            level: 'info',
+            level: level,
             details: message,
             date: new Date()
         }
-        try {
-            await this.#sendLogsToServer(newLog);
-        } catch (error) {
-            console.log("failed to send message");
-        }
-
-        this.logger.log(`info: ${time}-> ${message}`);
+        this.logs.push(newLog);
+        this.logger.log(`${level}: ${time}-> ${message}`);
     }
 
-    async error(message = '') {
-        const time = moment().format('DD-MM-YY hh:mm:ss');
-        const newLog = {
-            level: 'error',
-            details: message,
-            date: new Date()
-        }
-        try {
-            await this.#sendLogsToServer(newLog);
-        } catch (error) {
-            console.log("failed to send message");
-        }
-        this.logger.log(`error: ${time}-> ${message}`);
+    info(message = '') {
+        this.log('info', message);
     }
 
-    async debug(message = '') {
-        const time = moment().format('DD-MM-YY hh:mm:ss');
-        const newLog = {
-            level: 'debug',
-            details: message,
-            date: new Date()
-        }
-        try {
-            await this.#sendLogsToServer(newLog);
-        } catch (error) {
-            console.log("failed to send message");
-        }
-        this.logger.log(`debug: ${time}-> ${message}`);
+    error(message = '') {
+        this.log('error', message);
+    }
+
+    debug(message = '') {
+        this.log('debug', message);
     }
 
 }

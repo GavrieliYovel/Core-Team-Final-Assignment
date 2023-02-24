@@ -8,16 +8,22 @@ const listenToQ = () => {
         amqp.connect(process.env.LISTEN_LOGGER, (err, conn) => {
             try {
                 conn.createChannel((error, ch) => {
-                    ch.consume(q, async (msg) => {
-                        const qm = (JSON.parse(msg.content.toString()));
-                        const newLog = new Log({
-                            level: qm.level,
-                            details: qm.details,
-                            date: qm.date
-                        });
-                        await newLog.save();
-                        console.log(`received log`);
-                    }, {noAck: true});
+                    try{
+                        ch.consume(q, async (msg) => {
+                            const qm = (JSON.parse(msg.content.toString()));
+                            for (const log of qm) {
+                                const newLog = new Log({
+                                    level: log.level,
+                                    details: log.details,
+                                    date: log.date
+                                });
+                                await newLog.save();
+                                console.log(`received log`);
+                            }
+                        }, {noAck: true});
+                    } catch (error) {
+                        console.log("failed to listen")
+                    }
                 });
             } catch(error) {
                 console.log("failed receiving a message")

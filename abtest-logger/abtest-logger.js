@@ -2,23 +2,33 @@ const moment = require('moment');
 const amqp = require('amqplib/callback_api');
 
 module.exports = class Logger{
-    constructor() {
+    constructor(link) {
         if (!Logger._instance) {
             this.logger = console;
+            this.RMQueueLink = link;
             Logger._instance = this;
         } else {
             return Logger._instance;
         }
     }
     async #sendLogsToServer(log) {
-        amqp.connect("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rattlesnake.rmq.cloudamqp.com/qdniwzza", (err, conn) => {
-            conn.createChannel(async (error, ch) => {
-                const q = 'CloudAMQP';
-                const stringMsg = JSON.stringify(log);
-                ch.assertQueue(q, { durable: false });
-                await ch.sendToQueue(q, Buffer.from(stringMsg));
+        try {
+            amqp.connect(this.RMQueueLink, (err, conn) => {
+                try {
+                conn.createChannel(async (error, ch) => {
+                    const q = 'CloudAMQP';
+                    const stringMsg = JSON.stringify(log);
+                    ch.assertQueue(q, { durable: false });
+                    await ch.sendToQueue(q, Buffer.from(stringMsg));
+                });
+                } catch (error) {
+                    console.log("failed to send message");
+                }
             });
-        });
+        } catch (error) {
+            console.log("failed to send message");
+        }
+
     };
 
 
@@ -27,19 +37,30 @@ module.exports = class Logger{
         const time = moment().format('DD-MM-YY hh:mm:ss');
         const newLog = {
             level: 'info',
-            details: message
+            details: message,
+            date: new Date()
         }
-        await this.#sendLogsToServer(newLog);
-        this.logger.log(`error: ${time}-> ${message}`);
+        try {
+            await this.#sendLogsToServer(newLog);
+        } catch (error) {
+            console.log("failed to send message");
+        }
+
+        this.logger.log(`info: ${time}-> ${message}`);
     }
 
     async error(message = '') {
         const time = moment().format('DD-MM-YY hh:mm:ss');
         const newLog = {
             level: 'error',
-            details: message
+            details: message,
+            date: new Date()
         }
-        await this.#sendLogsToServer(newLog);
+        try {
+            await this.#sendLogsToServer(newLog);
+        } catch (error) {
+            console.log("failed to send message");
+        }
         this.logger.log(`error: ${time}-> ${message}`);
     }
 
@@ -47,14 +68,15 @@ module.exports = class Logger{
         const time = moment().format('DD-MM-YY hh:mm:ss');
         const newLog = {
             level: 'debug',
-            details: message
+            details: message,
+            date: new Date()
         }
-        await this.#sendLogsToServer(newLog);
-        this.logger.log(`error: ${time}-> ${message}`);
+        try {
+            await this.#sendLogsToServer(newLog);
+        } catch (error) {
+            console.log("failed to send message");
+        }
+        this.logger.log(`debug: ${time}-> ${message}`);
     }
 
-    async getAllLogs() {
-        const logs = await Logs.find({});
-        return logs;
-    }
 }

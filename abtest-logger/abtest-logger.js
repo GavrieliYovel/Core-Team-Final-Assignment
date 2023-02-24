@@ -49,7 +49,7 @@ module.exports = class Logger{
     log(level, message) {
         const time = moment().format('DD-MM-YY hh:mm:ss');
         const newLog = {
-            level,
+            level: level,
             details: message,
             date: new Date()
         }

@@ -5,13 +5,24 @@ const logger = new Logger("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rat
 
 // await logger.log('check');
 
-const test =  async () => {
-    logger.info("test").then(r => r);
-}
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
+logger.info("test");
 
-try {
-    test();
-}
-catch (e) {
-    console.log(e)
-}
+// const test =  async () => {
+//     logger.info("test").then(r => r);
+// }
+//
+// try {
+//     test();
+// }
+// catch (e) {
+//     console.log(e)
+// }

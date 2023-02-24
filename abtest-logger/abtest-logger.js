@@ -29,7 +29,7 @@ module.exports = class Logger{
                         console.log("failed to send logs")
                     }
                 }
-            }, 60000); // Send logs to server after every minute
+            }, 10000); // Send logs to server after every minute
             Logger._instance = this;
         } else {
             return Logger._instance;

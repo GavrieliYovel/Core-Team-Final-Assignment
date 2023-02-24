@@ -1,6 +1,6 @@
 {
   "name": "abtest-logger",
-  "version": "1.0.15",
+  "version": "1.0.19",
   "description": "Logger by Core Team",
   "main": "abtest-logger.js",
   "scripts": {

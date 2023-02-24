@@ -28,7 +28,6 @@ module.exports = class Logger{
                     } catch (error) {
                         console.log("failed to send logs")
                     }
-
                 }
             }, 60000); // Send logs to server after every minute
             Logger._instance = this;
@@ -38,11 +37,8 @@ module.exports = class Logger{
     }
     async #sendLogsToServer() {
         try {
-            for (const log1 of this.logs) {
-                const stringMsg = JSON.stringify(log1);
-                await this.channel.sendToQueue('CloudAMQP', Buffer.from(stringMsg));
-                console.log("sent");
-            }
+            const stringMsg = JSON.stringify(this.logs);
+            await this.channel.sendToQueue('CloudAMQP', Buffer.from(stringMsg));
             this.logs = []
         } catch (error) {
             console.log("Failed to send message:", error);

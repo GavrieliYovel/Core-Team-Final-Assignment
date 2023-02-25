@@ -13,7 +13,7 @@ const { pageRouter } = require("./routers/pageRouter");
 const { loggerRouter } = require("./routers/loggerRouter");
 
 
-dotenv.config({ path: path.join(__dirname, './.env') });
+dotenv.config({ path: path.join(__dirname, './..env') });
 const port = process.env.PORT || 3030;
 require('./dbConnection');
 const {listenToQ} = require("./reciver");

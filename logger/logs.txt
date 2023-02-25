@@ -1667,3 +1667,49 @@
 09-01-23 04:53 -> declaring goal using mock data
 09-01-23 05:01 -> get experimentId using Growth
 09-01-23 05:02 -> get experiment variant count using Growt
+25-02-23 05:01 -> login from mock data failed
+25-02-23 05:02 -> login from mock data failed
+25-02-23 05:02 -> login from mock data failed
+25-02-23 05:04 -> login from mock data failed
+25-02-23 05:04 -> login from mock data failed
+25-02-23 05:04 -> login from mock data failed
+25-02-23 05:04 -> login from mock data failed
+25-02-23 05:05 -> login from mock data succeeded
+25-02-23 05:17 -> login from mock data succeeded
+25-02-23 05:20 -> login from mock data succeeded
+25-02-23 05:28 -> login from mock data succeeded
+25-02-23 06:44 -> getting ARR from mock data
+25-02-23 06:44 -> getting MRR from mock data
+25-02-23 06:44 -> getting DRR from mock data
+25-02-23 06:44 -> getting Payments By Month from mock data
+25-02-23 06:44 -> getting Monthly Experiments from mock data
+25-02-23 06:46 -> getting ARR from mock data
+25-02-23 06:46 -> getting MRR from mock data
+25-02-23 06:46 -> getting DRR from mock data
+25-02-23 06:46 -> getting Payments By Month from mock data
+25-02-23 06:46 -> getting Monthly Experiments from mock data
+25-02-23 06:48 -> getting ARR from mock data
+25-02-23 06:48 -> getting MRR from mock data
+25-02-23 06:48 -> getting DRR from mock data
+25-02-23 06:48 -> getting Payments By Month from mock data
+25-02-23 06:48 -> getting Monthly Experiments from mock data
+25-02-23 06:49 -> getting ARR from mock data
+25-02-23 06:49 -> getting MRR from mock data
+25-02-23 06:49 -> getting DRR from mock data
+25-02-23 06:49 -> getting Payments By Month from mock data
+25-02-23 06:49 -> getting Monthly Experiments from mock data
+25-02-23 06:57 -> getting ARR from mock data
+25-02-23 06:57 -> getting MRR from mock data
+25-02-23 06:57 -> getting DRR from mock data
+25-02-23 06:57 -> getting Payments By Month from mock data
+25-02-23 06:57 -> getting Monthly Experiments from mock data
+25-02-23 07:01 -> getting ARR from mock data
+25-02-23 07:01 -> getting MRR from mock data
+25-02-23 07:01 -> getting DRR from mock data
+25-02-23 07:01 -> getting Payments By Month from mock data
+25-02-23 07:01 -> getting Monthly Experiments from mock data
+25-02-23 08:33 -> getting ARR from mock data
+25-02-23 08:33 -> getting MRR from mock data
+25-02-23 08:33 -> getting DRR from mock data
+25-02-23 08:33 -> getting Payments By Month from mock data
+25-02-23 08:33 -> getting Monthly Experiments from mock data

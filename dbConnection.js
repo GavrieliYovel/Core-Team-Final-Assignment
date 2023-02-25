@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+const dotenv =require('dotenv');
+dotenv.config({path:'.env'});
 const options = {
     useNewUrlParser: true,    // For deprecation warnings
     useUnifiedTopology: true // For deprecation warnings

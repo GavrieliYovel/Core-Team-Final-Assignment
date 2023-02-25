@@ -7,6 +7,8 @@ module.exports = class Logger{
             this.logger = console;
             this.RMQueueLink = link;
             this.logs = [];
+
+            // Connect to RabbitMQ
             amqp.connect(this.RMQueueLink, (err, conn) => {
                 if (err) {
                     console.error('Failed to connect to RabbitMQ:', err);
@@ -21,7 +23,7 @@ module.exports = class Logger{
                     ch.assertQueue('CloudAMQP', { durable: false });
                 });
             });
-            setInterval(async () => {
+            this.intervalId = setInterval(async () => {
                 if (this.logs.length > 0) {
                     try {
                         await this.#sendLogsToServer();
@@ -29,7 +31,26 @@ module.exports = class Logger{
                         console.log("failed to send logs")
                     }
                 }
-            }, 60000); // Send logs to server after every minute
+            }, 1000); // Send logs to server after every minute
+
+
+            process.on('exit', async () => {
+                try {
+                    await this.channel.close();
+                    clearInterval(this.intervalId);
+                } catch (error) {
+                    console.log("failed to close connection");
+                }
+            });
+
+            process.on('SIGINT', async () => {
+                try {
+                    await this.channel.close();
+                    clearInterval(this.intervalId);
+                } catch (error) {
+                    console.log("failed to close connection");
+                }
+            });
             Logger._instance = this;
         } else {
             return Logger._instance;
@@ -41,7 +62,7 @@ module.exports = class Logger{
             await this.channel.sendToQueue('CloudAMQP', Buffer.from(stringMsg));
             this.logs = []
         } catch (error) {
-            console.log("Failed to send message:", error);
+            console.log("failed to send message");
         }
     };
 

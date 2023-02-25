@@ -2,3 +2,4 @@
 /.idea/
 /.env
 /abtest-logger/node_modules/
+/shenkar-abtest-sdk/node_modules/

@@ -1,10 +1,10 @@
 const express = require("express");
-const path    = require("path")
-const cors    = require('cors');
-const app     = express();
-const dotenv  = require('dotenv');
+const path = require("path");
+const cors = require("cors");
+const app = express();
+const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
+const sessions = require("express-session");
 
 const { experimentRouter } = require("./routers/experimentRouter");
 const { IAMRouter } = require("./routers/IAMRouter");
@@ -12,11 +12,10 @@ const { BIDataRouter } = require("./routers/BIDataRouter");
 const { pageRouter } = require("./routers/pageRouter");
 const { loggerRouter } = require("./routers/loggerRouter");
 
-
-dotenv.config({ path: path.join(__dirname, './.env') });
-const port = process.env.PORT || 3030;
-require('./dbConnection');
-const {listenToQ} = require("./reciver");
+dotenv.config({ path: path.join(__dirname, "./.env") });
+const port = process.env.PORT || 3031;
+require("./dbConnection");
+const { listenToQ } = require("./reciver");
 //static files
 app.use(express.static("public"));
 app.use("/css", express.static(__dirname + "public/css"));
@@ -27,12 +26,14 @@ app.use("/includes", express.static(__dirname + "public/includes"));
 const oneDay = 1000 * 60 * 60 * 24;
 
 //session middleware
-app.use(sessions({
+app.use(
+  sessions({
     secret: process.env.SESSION_KEY,
-    saveUninitialized:true,
+    saveUninitialized: true,
     cookie: { maxAge: oneDay },
-    resave: false
-}));
+    resave: false,
+  })
+);
 // cookie parser middleware
 app.use(cookieParser());
 
@@ -42,18 +43,19 @@ app.set("view engine", "ejs");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));  // handel post reqs with body
+app.use(express.urlencoded({ extended: true })); // handel post reqs with body
 
 //
-app.use('/growth', experimentRouter);
-app.use('/IAM', IAMRouter);
-app.use('/BI', BIDataRouter);
-app.use('/logger', loggerRouter);
-app.use('/', pageRouter);
+app.use("/growth", experimentRouter);
+app.use("/IAM", IAMRouter);
+app.use("/BI", BIDataRouter);
+app.use("/logger", loggerRouter);
+app.use("/", pageRouter);
 // app.use('/api/boards', boardsRouter);
 listenToQ();
 app.use((req, res) => {
-    res.status(400).send('Something is broken!');
+  res.status(400).send("Something is broken!");
 });
-app.listen(port, () => console.log(`Express server is running on port ${port}`));
-
+app.listen(port, () =>
+  console.log(`Express server is running on port ${port}`)
+);

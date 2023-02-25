@@ -11,9 +11,13 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "moment": "^2.29.4",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "type": "moudle"
   },
   "name": "final-project---phase-1",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "description": "",
   "version": "1.0.0",
   "main": "index.js",

@@ -1667,3 +1667,5 @@
 09-01-23 04:53 -> declaring goal using mock data
 09-01-23 05:01 -> get experimentId using Growth
 09-01-23 05:02 -> get experiment variant count using Growt
+25-02-23 05:31 -> login from mock data failed
+25-02-23 05:31 -> login from mock data succeeded

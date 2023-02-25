@@ -157,8 +157,6 @@ exports.experimentController = {
             await axios.get(`https://ab-test-production.onrender.com/experiments/account/${req.params.account}`)
                 .then(response => {
                     logger.info("getting experiments by account from Growth");
-                    logger.debug("getting experiments by account from Growth");
-                    logger.error("getting experiments by account from Growth");
                     res.status(200).json(response.data);
                 })
                 .catch(mock => {

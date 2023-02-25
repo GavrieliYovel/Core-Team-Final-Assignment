@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "abtest-logger": "^1.0.20",
+    "abtest-logger": "^1.0.21",
     "amqplib": "^0.10.3",
     "axios": "^1.2.2",
     "chart.js": "^4.1.1",

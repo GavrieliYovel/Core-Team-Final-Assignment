@@ -6,6 +6,9 @@ const userRepository = new UserRepository();
 const Logger = require("abtest-logger");
 const logger = new Logger("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rattlesnake.rmq.cloudamqp.com/qdniwzza");
 
+
+const growthRender = "https://ab-test-bvtg.onrender.com/";
+
 function checkManagerAuth(details) {
     return !(details.type !== "manager" || details.credits <= 0);
 }
@@ -57,11 +60,13 @@ exports.experimentController = {
     async createExperiment(req, res) {
         const details = await getDetails(req);
         console.log(details);
-        if (checkManagerAuth(details)) {
-            await axios.post('https://ab-test-production.onrender.com/experiments/', req.body)
+        let access = checkManagerAuth(details);
+        access = true; //until IAM Integration
+        if (access) {
+            await axios.post(`${growthRender}experiments/new`, req.body)
 
                 .then(async response => {
-                    logger.info("creating experiment using Growth");
+                    logger.info("creating experiment using Growth API");
                     await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
                         .then(response => {
                             logger.info("use 1 credit using IAM");
@@ -75,16 +80,8 @@ exports.experimentController = {
                         })
                 })
                 .catch(mock => {
-                    logger.info("creating experiment using mock data");
-                    logger.info("use 1 credit using mock data");
-                    const newAmount = userRepository.decreaseCredit(req.session.userId, 1);
-                    logger.info(`new user credit amount ${newAmount} using mock data`);
-                    const id = experimentRepository.createExperiment(req.body);
-                    const experiment = experimentRepository.getExperimentById(id);
-                    res.status(200).json({
-                        mode: "mock",
-                        data: experiment
-                    });
+                    logger.error("Failed to create experiment using Growth API");
+                    res.status(404).json("Failed to create experiment using Growth API");
                 })
         }
         else {
@@ -95,17 +92,18 @@ exports.experimentController = {
     },
     async updateExperiment(req, res) {
         const details = await getDetails(req);
-        if (checkManagerAuth(details)) {
-            await axios.put(`https://ab-test-production.onrender.com/experiments/${req.params.id}`, req.body)
+        let access = checkManagerAuth(details);
+        access = true; //until IAM Integration
+        if (access) {
+            await axios.put(`${growthRender}experiments/${req.params.id}`, req.body)
 
                 .then(response => {
                     logger.info("updating experiment using Growth");
                     res.status(200).json(response.data);
                 })
                 .catch(mock => {
-                    logger.info("updating experiment using mock data");
-                    const updatedExperiment = experimentRepository.updateExperiment(req.body, req.params.id);
-                    res.status(200).json(updatedExperiment);
+                    logger.error("Failed to update experiment using Growth API");
+                    res.status(404).json("Failed to update experiment using Growth API");
                 })
         }
         else {
@@ -113,40 +111,19 @@ exports.experimentController = {
             res.status(500).json( { mass: "you don't have permission to update experiment" })
         }
     },
-    async experimentStatistics(req , res) {
-        if(await getToken(req)) {
-            await axios.get(`https://ab-test-production.onrender.com/stats/${req.params.id}`)
-                .then(response => {
-
-                    logger.info("getting experiment statistics using Growth");
-                    res.send(response.data);
-                })
-                .catch(mock => {
-                    logger.info("getting experiment statistics using mock data");
-                    res.send(`Statistics data from experiment ${req.params.id}`);
-                })
-        } else {
-            logger.info("experimentStatistics - must login first");
-            res.send(`experimentStatistics - must login first`);
-
-        }
-
-    },
-    async endExperiment(req, res) {
+    async terminateExperiment(req, res) {
         const details = await getDetails(req);
-        if (checkManagerAuth(details)) {
-            await axios.post(`https://ab-test-production.onrender.com/end/${req.params.id}`, {
-
-                experimentId: req.body.experimentId
-            })
+        let access = checkManagerAuth(details);
+        access = true; //until IAM Integration
+        if (access) {
+            await axios.put(`${growthRender}experiments/terminate/${req.params.id}`, {})
                 .then(response => {
                     logger.info("ending experiment using Growth");
                     res.status(200).send(response.data);
                 })
-                .catch(mock => {
-                    logger.info("ending experiment using mock data");
-                    experimentRepository.endExperiment(req.params.id);
-                    res.status(200).send(`experiment ${req.params.id} ended`);
+                .catch(error => {
+                    logger.error("Failed to terminate experiment from Growth API");
+                    res.status(404).json("Failed to terminate experiment from Growth API");
                 })
         }
         else {
@@ -156,9 +133,8 @@ exports.experimentController = {
     },
     async experimentsByAccount(req, res) {
         let status = getToken(req);
-        console.log('check');
         if(status) {
-            await axios.get(`https://ab-test-production.onrender.com/experiments/account/${req.params.account}`)
+            await axios.get(`${growthRender}experiments/account/${req.params.account}`)
                 .then(response => {
                     logger.info("getting experiments by account from Growth");
                     res.status(200).json(response.data);
@@ -180,7 +156,7 @@ exports.experimentController = {
     async ABTestExperimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://ab-test-production.onrender.com/experiments/AB/${req.params.account}`)
+            await axios.get(`${growthRender}experiments/AB/${req.params.account}`)
                 .then(response => {
                     logger.info("getting AB experiments by account from Growth");
                     res.status(200).json(response.data);
@@ -199,7 +175,7 @@ exports.experimentController = {
     async FeatureFlagExperimentsByAccount(req, res) {
         let status = getToken(req);
         if(status) {
-            await axios.get(`https://ab-test-production.onrender.com/experiments/FF/${req.params.account}`)
+            await axios.get(`${growthRender}experiments/FF/${req.params.account}`)
                 .then(response => {
                     logger.info("getting FF experiments by account from Growth");
                     res.status(200).json(response.data);
@@ -212,24 +188,6 @@ exports.experimentController = {
         }
         else {
             logger.info("user not authorised to get experiments by account");
-            res.send("you don't have permissions");
-        }
-    },
-    async deleteExperiment(req, res) {
-        const details = await getDetails(req);
-        if (checkManagerAuth(details)) {
-            await axios.delete(`https://ab-test-production.onrender.com/experiments/${req.body.id}`)
-                .then(response => {
-                    logger.info("deleting experiment using Growth");
-                    res.status(200).json(response.data);
-                })
-                .catch(mock => {
-                    logger.info("deleting experiment using mock data");
-                    experimentRepository.deleteExperiment(req.body.id);
-                    res.status(200).json(`experiment ${req.body.id} deleted`);
-                })
-        } else {
-            logger.info("user not authorised to delete experiments");
             res.send("you don't have permissions");
         }
     },
@@ -262,7 +220,6 @@ exports.experimentController = {
             })
             .catch(mock => {
                 logger.info("declaring goal using mock data");
-                experimentRepository.updateVariantCount(req.params.id, req.body.variant)
                 res.status(200).send("declared goal");
             })
             .catch(mock => {
@@ -273,9 +230,9 @@ exports.experimentController = {
 
     },
     async getExperimentById(req, res) {
-        await axios.get(`https://ab-test-production.onrender.com/experiments/${req.params.id}`)
+        await axios.get(`${growthRender}experiments/${req.params.id}`)
             .then(response => {
-                logger.info("get experimentId using Growth");
+                logger.info("get experiment by Id using Growth");
                 res.status(200).json(response.data);
             })
             .catch(mock => {
@@ -283,28 +240,49 @@ exports.experimentController = {
                 const experiment = experimentRepository.getExperimentById(req.params.id);
                 res.status(200).json(experiment);
             })
-
     },
-    async getVariantCountById(req, res) {
-        await axios.get(`https://ab-test-production.onrender.com/goal/variantCount/${req.params.id}`)
+    async getVariantExposeById(req, res) {
+        await axios.get(`${growthRender}/goal/variantCount/${req.params.id}`)
             .then(response => {
                 logger.info("get experiment variant count using Growth");
                 res.status(200).json(response.data);
             })
             .catch(mock => {
                 logger.info("get experiment variant count using mock");
-                res.status(200).json(experimentRepository.getVariantCountById(req.params.id));
+                res.status(200).json("mock");
             })
     },
-    async getCallCountById(req, res) {
-        await axios.get(`https://ab-test-production.onrender.com/goal/callCount/${req.params.id}`)
+    async getVariantSuccessById(req, res) {
+        await axios.get(`${growthRender}stats/variantSuccessCount/${req.params.id}/${req.params.gid}`)
             .then(response => {
-                logger.info("get experiment call count using Growth");
+                logger.info("get variant success count by ID using Growth");
                 res.status(200).json(response.data);
             })
-            .catch(mock => {
-                logger.info("get experiment call count using mock");
-                res.status(200).json(experimentRepository.getCallCountById(req.params.id));
+            .catch(error => {
+                logger.error("Failed to get variant success count from Growth API");
+                res.status(404).json("Failed to get variant success count from Growth API");
+            })
+    },
+    async getRequestPerAttributeById(req, res) {
+        await axios.get(`${growthRender}stats/reqPerAtt/${req.params.id}`)
+            .then(response => {
+                logger.info("get Request per attribute by ID using Growth");
+                res.status(200).json(response.data);
+            })
+            .catch(error => {
+                logger.error("Failed to get Request per attribute from Growth API");
+                res.status(404).json("Failed to get Request per attribute from Growth API");
+            })
+    },
+    async experimentCallsByAccount(req, res) {
+        await axios.get(`${growthRender}stats/testsPerMonth/${req.params.id}`)
+            .then(response => {
+                logger.info("get experiment calls per month by ID using Growth API");
+                res.status(200).json(response.data);
+            })
+            .catch(error => {
+                logger.error("Failed get experiment calls per month by ID using Growth API");
+                res.status(404).json("Failed get experiment calls per month by ID using Growth API");
             })
     }
 }

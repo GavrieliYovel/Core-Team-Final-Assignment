@@ -2,7 +2,7 @@
 
 Our project is part of a complete system, which our main assignment is to wrap the parts that make it up.
 
-## Our Ownership
+## Description
 ### Authentication:
 Using the data we get from the IAM Team that in charge of authentication -  We can decide who has access to different parts of the system by the user assests we recieve.
 
@@ -12,8 +12,6 @@ We are also responsible for business intelligence (BI) data statistics and their
 * Annual Recurring Revenue (ARR).
 * The amount of successful or failed payments we had this month.
 * The amount of experiments running per month.
-
-
 
 ### Glossary 
 * Experiment - In our system we have two types of experiments. AB test, Feature Flag.
@@ -65,28 +63,17 @@ We are also responsible for business intelligence (BI) data statistics and their
 
 ### Setup
   1. const ABTestSDK = require('shenkar-abtest')
-  2. const ab = new ABTestSDK(*accountId*)
+  2. const ab = new ABTestSDK(api-key)
 
 ### SDK Functions
-#### getAllExperiments()
-  1. ab.getAllExperiments()
-  2. return an array of all experiments attached to the accountId
+#### getVariant(experiment_id)
+get a variant for a specific experiment.
+id from the dashboard.
   
-#### getABExperiments()
-  1. ab.getABExperiments()
-  2. return an array of all the AB experiments attached to the accountId
+#### reportGoal(goal_id)
+reporting that a goal was reached.
+id from the dashboard.
   
-#### getFFExperiments()
-  1. ab.getFFExperiments()
-  2. return an array of all the Feature Flag experiments attached to the accountId
-  
-#### callExperiment(experiment_id)
-  1. ab.callExperiment(experiment_id)
-  2. return a random variant of the experiment
-
-#### declareGoal(experiment_id, variant)
-  1. ab.declareGoal(experiment_id, variant)
-  2. increasing the variant success count 
   
 ## Our team
 * Yovel Gavrieli

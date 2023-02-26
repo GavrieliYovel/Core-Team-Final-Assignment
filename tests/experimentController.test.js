@@ -79,7 +79,8 @@ describe('experimentController', () => {
     });
     test('Get Request per variant by experiment ID', async () => {
         // Arrange
-        const expected = {"testAttributes": {
+        const expected = {
+            "testAttributes": {
                 "location": [
                     {
                         "value": "IL",
@@ -87,10 +88,6 @@ describe('experimentController', () => {
                     }
                 ],
                 "device": [
-                    {
-                        "value": "mobile",
-                        "valueReqCount": 0
-                    },
                     {
                         "value": "desktop",
                         "valueReqCount": 0
@@ -102,7 +99,31 @@ describe('experimentController', () => {
                         "valueReqCount": 0
                     }
                 ]
-            }};
+            },
+            "customAttributes": {
+                "Color": [
+                    {
+                        "value": "Yellow",
+                        "valueReqCount": 0
+                    },
+                    {
+                        "value": "Red",
+                        "valueReqCount": 0
+                    }
+                ],
+                "Shape": [
+                    {
+                        "value": "circle",
+                        "valueReqCount": 0
+                    },
+                    {
+                        "value": "triangle",
+                        "valueReqCount": 0
+                    }
+                ]
+            }
+        };
+
         const req = {params: {id: '63fa6106d7a6d00778090881'}};
         const res = {status: jest.fn(), json: jest.fn()};
 

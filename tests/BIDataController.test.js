@@ -17,8 +17,8 @@ describe('BIDataController', () => {
 
     test('getMRR', async () => {
         // Arrange
-        const expected = "25000";
-        const req = {params: {year: '2022', month: '1'}};
+        const expected = 4340;
+        const req = {params: {year: '2023', month: '1'}};
         const res = {status: jest.fn(), json: jest.fn()};
 
         // Act
@@ -30,8 +30,8 @@ describe('BIDataController', () => {
 
     test('getDRR', async () => {
         // Arrange
-        const expected = "25000";
-        const req = {params: {year: '2022', month: '1', day: '1'}};
+        const expected = 10;
+        const req = {params: {year: '2023', month: '1', day: '3'}};
         const res = {status: jest.fn(), json: jest.fn()};
 
         // Act
@@ -57,8 +57,8 @@ describe('BIDataController', () => {
 
     test('getMonthlyExperiments', async () => {
         // Arrange
-        const expected = "0";
-        const req = {params: {year: '2022', month: '1'}};
+        const expected = {"sum": 2};
+        const req = {params: {year: '2023', month: '2'}};
         const res = {status: jest.fn(), json: jest.fn()};
 
         // Act
@@ -68,6 +68,37 @@ describe('BIDataController', () => {
         expect(res.json).toHaveBeenCalledWith(expected);
     });
 
+    test('getAllRequestsPerAttribute', async () => {
+        // Arrange
+        const expected = {
+            "attribute_distribution": {
+                "devices": [
+                    {
+                        "count": 53,
+                        "device": "desktop"
+                    },
+                    {
+                        "count": 52,
+                        "device": "mobile"
+                    }
+                ],
+                "locations": [
+                    {
+                        "count": 53,
+                        "location": "IL"
+                    }
+                ]
+            }
+        };
+        const req = {};
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await BIDataController.getAllRequestsPerAttribute(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
 
     // for failed calls
 

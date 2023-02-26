@@ -2,6 +2,10 @@ const axios = require('axios');
 const Logger = require("abtest-logger");
 const logger = new Logger("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rattlesnake.rmq.cloudamqp.com/qdniwzza");
 
+
+const growthRender = "https://ab-test-bvtg.onrender.com/";
+
+
 exports.BIDataController = {
 
     async getARR(req, res) {
@@ -48,7 +52,8 @@ exports.BIDataController = {
         await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/payment-intents/${req.params.year}/${req.params.month}`)
             .then(response => {
                 logger.info("getting Payments By Month from Billing");
-                res.send(response.data)
+                res.status(200);
+                res.json(response.data);
             })
             .catch(mock => {
                 logger.error("Failed to get Monthly Payments from Billing");
@@ -70,7 +75,23 @@ exports.BIDataController = {
                 res.status(404);
                 res.json({message: "Failed to get Monthly Experiments from Growth"});
             })
+    },
 
-    }
+    async getAllRequestsPerAttribute(req, res) {
+        await axios.get(`${growthRender}stats/ExperimentsAttributesCount`)
+            .then(response => {
+                logger.info("getting getAllRequestsPerAttributes from Growth");
+                res.status(200);
+                res.json(response.data)
+            })
+            .catch(mock => {
+                logger.error("Failed to getAllRequestsPerAttribute from Growth");
+                res.status(404);
+                res.json({message: "Failed to getAllRequestsPerAttribute from Growth"});
+            })
+    },
+
+
+
 
 }

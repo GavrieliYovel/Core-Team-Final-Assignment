@@ -188,8 +188,8 @@ exports.experimentController = {
             res.json({message: "you don't have permission to create experiment"});
         }
     },
-    async callExperiment(req, res) {
-        await axios.post(`https://ab-test-production.onrender.com/test/run`, req.body, req.headers)
+    async getVariant(req, res) {
+        await axios.post(`${growthRender}test/run`, req.body, req.headers)
             .then(response => {
                 logger.info("calling experiment using Growth");
                 res.status(200);
@@ -201,8 +201,8 @@ exports.experimentController = {
                 res.json({message: "Failed to get call Experiments from Growth API"});
             })
     },
-    async declareGoal(req, res) {
-        await axios.put(`https://growth.render.com/experiment/goal/${req.params.id}`, req.body)
+    async reportGoal(req, res) {
+        await axios.put(`${growthRender}report-goal`, req.body)
             .then(response => {
                 logger.info("declaring goal using Growth");
                 res.status(200);

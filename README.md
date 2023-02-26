@@ -14,37 +14,6 @@ We are also responsible for business intelligence (BI) data statistics and their
 * The amount of experiments running per month.
 
 
-![image](https://user-images.githubusercontent.com/77021357/211335396-8376b323-6985-4b06-b59f-b7042ecfdccb.png)
-
-
-
-### User Interaction With Growth API
-An end user has a number of options regarding the experiments page: 
-1. **C**reate experiment 
-2. **R**ead experiment (all or by type)
-3. **U**pdate experiment
-4. **D**elete experiment 
-5. Run experiment
-6. Decalre goal
-7. Get call/variant count
-8. Get experiment statistics
-
-No matter what he chooses, the IAM team has to check whether he is authorized. If he isn't, than his access denied. Otherwise he has access to growth api.
-
-
-## Dependencies
-* IAM - when login through IAM, the user receives token 
-* Growth - all the business logic of the system. We export all their methods. 
-
-
-## Flow
-The best way to explain our flow is by showing our sequence diagram:
-
-![image](https://user-images.githubusercontent.com/77021357/211335189-03122d35-c391-47da-95d2-3c97cddf65b0.png)
-
-If the axios request failed, we are using user mock data.
-
-
 
 ### Glossary 
 * Experiment - In our system we have two types of experiments. AB test, Feature Flag.

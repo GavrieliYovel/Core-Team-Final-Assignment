@@ -1,57 +1,59 @@
 const axios = require('axios');
-const ExperimentRepository = require('../repositories/experimentRepository');
-const experimentRepository = new ExperimentRepository();
-const Logger = require("../logger/Logger");
-const logger = new Logger();
+const Logger = require("abtest-logger");
+const logger = new Logger("amqps://qdniwzza:a-yzSrHM7aPJ-ySEYMc7trjzvs00QJ5b@rattlesnake.rmq.cloudamqp.com/qdniwzza");
 
 exports.BIDataController = {
 
     async getARR(req, res) {
-        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/ARR/${req.params.year}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/arr/${req.params.year}`)
             .then(response => {
-                logger.log("getting ARR from Billing");
+                logger.info("getting ARR from Billing");
+                res.status(200);
                 res.json(response.data)
             })
-            .catch(mock => {
-                logger.log("getting ARR from mock data");
-                res.send(`300000`)
+            .catch(error => {
+                logger.error("Failed to get ARR from Billing");
+                res.status(404);
+                res.json({message: "Failed to get ARR from Billing"});
             })
     },
     async getMRR(req, res) {
-        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/MRR/${req.params.year}/${req.params.month}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/mrr/${req.params.year}/${req.params.month}`)
             .then(response => {
-                logger.log("getting MRR from Billing");
+                logger.info("getting MRR from Billing");
+                res.status(200);
                 res.json(response.data)
             })
             .catch(mock => {
-                logger.log("getting MRR from mock data");
-                res.send(`25000`)
+                logger.error("Failed to get MRR from Billing");
+                res.status(404);
+                res.json({message: "Failed to get MRR from Billing"});
             })
     },
     async getDRR(req, res) {
-        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/DRR/${req.params.year}/${req.params.month}/${req.params.day}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/drr/${req.params.year}/${req.params.month}/${req.params.day}`)
             .then(response => {
-                logger.log("getting DRR from Billing");
+                logger.info("getting DRR from Billing");
+                res.status(200);
                 res.json(response.data)
             })
             .catch(mock => {
-                logger.log("getting DRR from mock data");
-                res.send(`25000`)
+                logger.error("Failed to get DRR from Billing");
+                res.status(404);
+                res.json({message: "Failed to get DRR from Billing"});
             })
     },
 
     async getPaymentsByMonth(req, res) {
-        await axios.get(`https://billing-final-phase1-development.onrender.com/payments/${req.params.year}/${req.params.month}`)
+        await axios.get(`https://billing-final-phase1-development.onrender.com/statistics/payment-intents/${req.params.year}/${req.params.month}`)
             .then(response => {
-                logger.log("getting Payments By Month from Billing");
-                res.json(response.data)
+                logger.info("getting Payments By Month from Billing");
+                res.send(response.data)
             })
             .catch(mock => {
-                logger.log("getting Payments By Month from mock data");
-                res.send({
-                    success: 10,
-                    fail: 5
-                })
+                logger.error("Failed to get Monthly Payments from Billing");
+                res.status(404);
+                res.json({message: "Failed to get Monthly Payments from Billing"});
             })
 
     },
@@ -59,12 +61,14 @@ exports.BIDataController = {
     async getMonthlyExperiments(req, res) {
         await axios.get(`https://Growth.render.com/experiments?month=${req.params.month}&year=${req.params.year}`)
             .then(response => {
-                logger.log("getting Monthly Experiments from Growth");
+                logger.info("getting Monthly Experiments from Growth");
+                res.status(200);
                 res.json(response.data)
             })
             .catch(mock => {
-                logger.log("getting Monthly Experiments from mock data");
-                res.send(`${experimentRepository.getExperimentsByMonth(req.params.month, req.params.year)}`);
+                logger.error("Failed to get Monthly Experiments from Growth");
+                res.status(404);
+                res.json({message: "Failed to get Monthly Experiments from Growth"});
             })
 
     }

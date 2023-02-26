@@ -1,8 +1,5 @@
 const axios = require("axios");
-const UserRepository = require('../repositories/userRepository');
-const userRepository = new UserRepository();
-const Logger = require("../logger/Logger");
-const logger = new Logger();
+
 
 exports.IAMController = {
     async login(req, res) {
@@ -15,22 +12,11 @@ exports.IAMController = {
             }
         })
             .then(response => {
-                logger.log("login from IAM succeeded");
                 res.cookie(response.headers["set-cookie"]);
                 res.send("success");
             })
             .catch(mock => {
-                const answer = userRepository.login(req.body.email, req.body.password);
-                if (answer === "success") {
-                    logger.log("login from mock data succeeded");
-                    const user = userRepository.getUserIdByEmail(req.body.email);
-                    req.session.userId = user.id;
-                    req.session.type = user.type;
-                    res.send("success");
-                } else {
-                    logger.log("login from mock data failed");
-                    res.send("fail");
-                }
+
             });
     },
     getSession(req, res) {

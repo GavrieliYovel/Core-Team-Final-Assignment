@@ -64,11 +64,12 @@ exports.BIDataController = {
     },
 
     async getMonthlyExperiments(req, res) {
-        await axios.get(`https://Growth.render.com/experiments?month=${req.params.month}&year=${req.params.year}`)
+        await axios.get(`${growthRender}stats/ExperimentsCountByDate/${req.params.month}/${req.params.year}`)
             .then(response => {
                 logger.info("getting Monthly Experiments from Growth");
+                const sumExperiments = Object.entries(response.data.activeExperiments).reduce((total, [key, value]) => total + value, 0)
                 res.status(200);
-                res.json(response.data)
+                res.json({sum: sumExperiments})
             })
             .catch(mock => {
                 logger.error("Failed to get Monthly Experiments from Growth");

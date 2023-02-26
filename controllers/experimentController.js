@@ -271,8 +271,11 @@ exports.experimentController = {
         await axios.get(`${growthRender}stats/testsPerMonth/${req.params.account}`)
             .then(response => {
                 logger.info("get experiment calls per month by ID using Growth API");
+                const sumCalls = response.data.tests.reduce((total, current) => {
+                    return total + current.totalCalls;
+                }, 0);
                 res.status(200);
-                res.json(response.data);
+                res.json({calls: sumCalls});
             })
             .catch(error => {
                 logger.error("Failed get experiment calls per month by ID using Growth API");

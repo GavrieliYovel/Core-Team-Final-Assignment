@@ -229,16 +229,16 @@ exports.experimentController = {
             })
     },
     async getVariantExposeById(req, res) {
-        await axios.get(`${growthRender}/goal/variantCount/${req.params.id}`)
+        await axios.get(`${growthRender}stats/userVariant/${req.params.id}`)
             .then(response => {
                 logger.info("get experiment variant count using Growth");
                 res.status(200);
                 res.json(response.data);
             })
-            .catch(mock => {
-                logger.info("get experiment variant count using mock");
+            .catch(error => {
+                logger.error("Failed to getVariantExposeById from Growth API");
                 res.status(404);
-                res.json({message: "mock"});
+                res.json({message: "Failed to getVariantExposeById from Growth API"});
             })
     },
     async getVariantSuccessById(req, res) {
@@ -268,7 +268,7 @@ exports.experimentController = {
             })
     },
     async experimentCallsByAccount(req, res) {
-        await axios.get(`${growthRender}stats/testsPerMonth/${req.params.id}`)
+        await axios.get(`${growthRender}stats/testsPerMonth/${req.params.account}`)
             .then(response => {
                 logger.info("get experiment calls per month by ID using Growth API");
                 res.status(200);

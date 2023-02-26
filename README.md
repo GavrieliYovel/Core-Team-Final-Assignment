@@ -20,7 +20,7 @@ We are also responsible for business intelligence (BI) data statistics and their
 * Mock data - We used the schemas of the different groups in order to use mock data (JSON file).
 * Variant -  In each Experiment we have different options based on the type. (AB test {A,B,C}, Feature Flag {ON, OFF}).
 
-
+## Setup and usage guide for our project
 ## User Guide - API
 ### Before
 1. Check out the [API documentation](https://documenter.getpostman.com/view/24149790/2s8Z75RpFi#5e503b8e-7465-44a5-88cf-1e04f789d857)

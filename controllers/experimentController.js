@@ -52,27 +52,17 @@ exports.experimentController = {
         access = true; //until IAM Integration
         if (access) {
             await axios.post(`${growthRender}experiments/new`, req.body)
-
                 .then(async response => {
                     logger.info("creating experiment using Growth API");
-                    await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
-                        .then(response => {
-                            logger.info("use 1 credit using IAM");
-                            res.status(200);
-                            res.json(response.data);
-                        })
-                        .catch(mock => {
-                            logger.error("Failed to use 1 credit from IAM API");
-                            res.status(404);
-                            res.json({message: "Failed to use 1 credit from IAM API"});
-                        })
+                    res.status(200);
+                    res.json(response.data);
                 })
                 .catch(mock => {
-                    logger.error("Failed to create experiment from Growth API");
-                    res.status(404);
-                    res.json({message: "Failed to create experiment from Growth API"});
-                })
-        }
+                        logger.error("Failed to create experiment from Growth API");
+                        res.status(404);
+                        res.json({message: "Failed to create experiment from Growth API"});
+                    })
+                }
         else {
             logger.info("user not authorised for creating experiment");
             res.status(500);

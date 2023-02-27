@@ -19,10 +19,8 @@ async function getDetails(req) {
             details = response.data;
         })
         .catch(mock => {
-            logger.info("getting user details from mock data");
-            details = 1;
+            logger.error("Failed to get data from IMA JWT");;
         })
-    console.log("details: " + details);
     return details;
 }
 
@@ -34,9 +32,10 @@ async function getToken(req) {
         }
     })
         .then(response => {
+            logger.info("JWT Verification Successes");
         })
         .catch(error => {
-            console.error(error);
+            logger.error("JWT Verification Failed");
         });
 }
 

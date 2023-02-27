@@ -6,7 +6,6 @@ const growthRender = "https://ab-test-bvtg.onrender.com/";
 
 
 async function getDetails(req) {
-    console.log("token details: " + req.headers.authorization);
     let details;
     //getting type, credits, plan assets from IAM
     await axios.get('https://abtest-shenkar.onrender.com/assets', {
@@ -16,20 +15,18 @@ async function getDetails(req) {
         }
     })
         .then(response => {
-            logger.info("getting user details from IAM");
+            logger.info("getting user details from IAM JWT");
             details = response.data;
         })
-        .catch(mock => {+
-            console.log(mock.message)
-            logger.error("Failed to get details  from IAM JWT");
+        .catch(mock => {
+            +
+                logger.error("Failed to get details  from IAM JWT");
         })
-    console.log("details: " + details);
     return details;
 }
 
 
 async function getToken(req) {
-    console.log("token: " + req.headers.authorization);
     axios.get('https://abtest-shenkar.onrender.com/assets/token', {
         headers: {
             'authorization': `${req.headers.authorization}`,
@@ -37,10 +34,10 @@ async function getToken(req) {
         }
     })
         .then(response => {
-            console.log("token check success");
+            logger.info("JWT Verification Successes");
         })
         .catch(error => {
-            console.error(error);
+            logger.error("JWT Verification Failed");
         });
 }
 
@@ -48,8 +45,7 @@ async function getToken(req) {
 exports.experimentController = {
     async createExperiment(req, res) {
         await getToken(req);
-        //  details = await getDetails(req);
-        const details = {type: 'manager'};
+        const details = await getDetails(req);
         if (details.type === 'manager') {
             axios.post(`${growthRender}experiments/new`, req.body)
 
@@ -96,7 +92,7 @@ exports.experimentController = {
         await getToken(req);
         const details = await getDetails(req);
         if (details.type === 'manager') {
-             axios.put(`${growthRender}experiments/terminate/${req.params.id}`, {})
+            axios.put(`${growthRender}experiments/terminate/${req.params.id}`, {})
                 .then(response => {
                     logger.info("ending experiment using Growth");
                     res.status(200);
@@ -146,7 +142,7 @@ exports.experimentController = {
     async FeatureFlagExperimentsByAccount(req, res) {
         await getToken(req);
         const details = await getDetails(req);
-         axios.get(`${growthRender}experiments/FF/${details?.accountId}`)
+        axios.get(`${growthRender}experiments/FF/${details?.accountId}`)
             .then(response => {
                 logger.info("getting FF experiments by account from Growth");
                 res.status(200);
@@ -159,7 +155,7 @@ exports.experimentController = {
             })
     },
     async getVariant(req, res) {
-         axios.post(`${growthRender}test/run`, req.body, req.headers)
+        axios.post(`${growthRender}test/run`, req.body, req.headers)
             .then(response => {
                 logger.info("calling experiment using Growth");
                 res.status(200);
@@ -172,7 +168,7 @@ exports.experimentController = {
             })
     },
     async reportGoal(req, res) {
-         axios.put(`${growthRender}test/report-goal`, req.body)
+        axios.put(`${growthRender}test/report-goal`, req.body)
             .then(response => {
                 logger.info("declaring goal using Growth");
                 res.status(200);
@@ -187,9 +183,7 @@ exports.experimentController = {
     },
     async getExperimentById(req, res) {
         await getToken(req);
-        const details = await getDetails(req);
-
-         axios.get(`${growthRender}experiments/${req.params.id}`)
+        axios.get(`${growthRender}experiments/${req.params.id}`)
             .then(response => {
                 logger.info("get experiment by Id using Growth");
                 res.status(200);
@@ -203,9 +197,8 @@ exports.experimentController = {
     },
     async getVariantExposeById(req, res) {
         await getToken(req);
-        const details = await getDetails(req);
 
-         axios.get(`${growthRender}stats/userVariant/${req.params.id}`)
+        axios.get(`${growthRender}stats/userVariant/${req.params.id}`)
             .then(response => {
                 logger.info("get experiment variant count using Growth");
                 res.status(200);
@@ -219,9 +212,8 @@ exports.experimentController = {
     },
     async getVariantSuccessById(req, res) {
         await getToken(req);
-        const details = await getDetails(req);
 
-         axios.get(`${growthRender}stats/variantSuccessCount/${req.params.id}/${req.params.gid}`)
+        axios.get(`${growthRender}stats/variantSuccessCount/${req.params.id}/${req.params.gid}`)
             .then(response => {
                 logger.info("get variant success count by ID using Growth");
                 res.status(200);
@@ -235,9 +227,8 @@ exports.experimentController = {
     },
     async getRequestPerAttributeById(req, res) {
         await getToken(req);
-        const details = await getDetails(req);
 
-         axios.get(`${growthRender}stats/reqPerAtt/${req.params.id}`)
+        axios.get(`${growthRender}stats/reqPerAtt/${req.params.id}`)
             .then(response => {
                 logger.info("get Request per attribute by ID using Growth");
                 res.status(404);

@@ -136,8 +136,8 @@ describe('experimentController', () => {
 
     test('Report Goal', async () => {
         // Arrange
-        const expected = "";
-        const req = {params: {id: '63fa918e041de9bef3f8164c'}};
+        const expected = "varaintSuccessCount";
+        const req = {body: {id: '63fa918e041de9bef3f8164c', gid: '63fa918e256d6bef5r97s32'}};
         const res = {status: jest.fn(), json: jest.fn()};
 
         // Act
@@ -146,6 +146,46 @@ describe('experimentController', () => {
         // Assert
         expect(res.json).toHaveBeenCalledWith(expected);
     });
+
+    test('Get Variant', async () => {
+        // Arrange
+        const expected = "varaintSuccessCount";
+        const req = {body: {id: '63fa918e041de9bef3f8164c'}};
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.getVariant(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
+    test('getVariantSuccessById', async () => {
+        // Arrange
+        const expected = "VariantSuccessCount";
+        const req = {body: {id: '63fa918e041de9bef3f8164c'}};
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.getVariantSuccessById(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+    test('getRequestPerAttributeById', async () => {
+        // Arrange
+        const expected = "RequestPerAttribute";
+        const req = {body: {id: '63fa918e041de9bef3f8164c'}};
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.getRequestPerAttributeById(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
+
 
     // for failed calls
     test('Catch fail to Get Experiment by ID', async () => {
@@ -224,6 +264,58 @@ describe('experimentController', () => {
         // Arrange
         const expected = {message: "Failed to get Request per attribute from Growth API"};
         const req = {params: {id: '1414124'}}; //wrong ID cause fail
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.getRequestPerAttributeById(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
+    test('Catch fail to Report Goal', async () => {
+        // Arrange
+        const expected = {message: "Failed to declareGoal from Growth API"};
+        const req = {body: {id: 'adad', gid: 'addas'}}; //wrong ID cause fail
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.reportGoal(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
+    test('Catch fail to Get Variant', async () => {
+        // Arrange
+        const expected = {message: "Failed to get call Experiments from Growth API"};
+        const req = {body: {id: 'aadd'}}; //wrong ID cause fail
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.getVariant(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
+    test('Catch fail to getVariantSuccessById', async () => {
+        // Arrange
+        const expected = {message: "Failed to getVariantSuccessById from Growth API"};
+        const req = {body: {id: 'adsad'}}; //wrong ID cause fail
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.getVariantSuccessById(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
+    test('Catch fail to getRequestPerAttributeById', async () => {
+        // Arrange
+        const expected = "RequestPerAttribute";
+        const req = {body: {id: 'asdd'}}; //wrong ID cause fail
         const res = {status: jest.fn(), json: jest.fn()};
 
         // Act

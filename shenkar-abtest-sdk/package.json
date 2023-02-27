@@ -1,6 +1,6 @@
 {
   "name": "shenkar-abtest-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AB Test by Shenkar",
   "main": "shenkar-abtest.js",
   "scripts": {

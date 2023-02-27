@@ -27,26 +27,6 @@ async function getDetails(req) {
     return details;
 }
 
-// async function getDetails(req) {
-//     let details;
-//     //getting type, credits, plan assets from IAM
-//     await axios.get('https://abtest-shenkar.onrender.com/user/role', {
-//         headers: {
-//             'authorization': `${req.headers.authorization}`,
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then(response => {
-//             logger.info("getting user details from IAM");
-//             details = response.data;
-//         })
-//         .catch(mock => {
-//             logger.info("getting user details from mock data");
-//             details = 1;
-//         })
-//     console.log("details: " + details);
-//     return details;
-// }
 
 async function getToken(req) {
     console.log("token: " + req.headers.authorization);

@@ -12,14 +12,15 @@ experimentRouter.get('/experiment/:id/goal/:gid/variantSuccess', experimentContr
 experimentRouter.get('/experiment/:id/requestPerAtt', experimentController.getRequestPerAttributeById);
 experimentRouter.get('/experiment/:id/variantExpose', experimentController.getVariantExposeById);
 experimentRouter.get('/experiment/:id', experimentController.getExperimentById);
+experimentRouter.get('/account', experimentController.getAccountDetails);
 
 //POST
 experimentRouter.post('/experiment/new', experimentController.createExperiment);
-experimentRouter.post('/experiment', experimentController.callExperiment);
+experimentRouter.post('/experiment/run', experimentController.getVariant);
 
 //PUT
 experimentRouter.put('/experiment/:id/terminate', experimentController.terminateExperiment);
-experimentRouter.put('/experiment/goal/:id', experimentController.declareGoal);
+experimentRouter.put('/experiment/goal/', experimentController.reportGoal);
 experimentRouter.put('/experiment/:id', experimentController.updateExperiment);
 
 module.exports = { experimentRouter };

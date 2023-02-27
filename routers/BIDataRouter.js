@@ -12,8 +12,8 @@ BIDataRouter.get("/payments/:year/:month", BIDataController.getPaymentsByMonth )
 
 // Growth BI
 BIDataRouter.get("/experiments/:year/:month", BIDataController.getMonthlyExperiments );
-// BIDataRouter.get("/distribution/:device", BIDataController.getDistributionByDevice );
-// BIDataRouter.get("/distribution/:location", BIDataController.getDistributionByGeo );
+BIDataRouter.get("/experiments/attributes", BIDataController.getAllRequestsPerAttribute );
+
 
 
 module.exports = { BIDataRouter };

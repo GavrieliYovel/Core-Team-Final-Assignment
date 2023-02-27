@@ -22,7 +22,6 @@ async function getDetails(req) {
             logger.info("getting user details from mock data");
             details = 1;
         })
-    console.log("details: " + details);
     return details;
 }
 

@@ -6,7 +6,6 @@ const growthRender = "https://ab-test-bvtg.onrender.com/";
 
 
 async function getDetails(req) {
-    console.log("token details: " + req.headers.authorization);
     let details;
     //getting type, credits, plan assets from IAM
     await axios.get('https://abtest-shenkar.onrender.com/assets', {
@@ -16,20 +15,17 @@ async function getDetails(req) {
         }
     })
         .then(response => {
-            logger.info("getting user details from IAM");
+            logger.info("getting user details from IAM JWT");
             details = response.data;
         })
         .catch(mock => {+
-            console.log(mock.message)
             logger.error("Failed to get details  from IAM JWT");
         })
-    console.log("details: " + details);
     return details;
 }
 
 
 async function getToken(req) {
-    console.log("token: " + req.headers.authorization);
     axios.get('https://abtest-shenkar.onrender.com/assets/token', {
         headers: {
             'authorization': `${req.headers.authorization}`,
@@ -37,10 +33,10 @@ async function getToken(req) {
         }
     })
         .then(response => {
-            console.log("token check success");
+            logger.info("Got JWT Verification");
         })
         .catch(error => {
-            console.error(error);
+            logger.error("JWT Verification failed")
         });
 }
 

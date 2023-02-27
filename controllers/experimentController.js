@@ -52,12 +52,14 @@ exports.experimentController = {
         const details = {type: 'manager'};
         if (details.type === 'manager') {
             axios.post(`${growthRender}experiments/new`, req.body)
+
                 .then(async response => {
                     logger.info("creating experiment using Growth API");
                     res.status(200);
                     res.json(response.data);
                 })
                 .catch(mock => {
+
                     logger.error("Failed to create experiment from Growth API");
                     res.status(404);
                     res.json({message: "Failed to create experiment from Growth API"});

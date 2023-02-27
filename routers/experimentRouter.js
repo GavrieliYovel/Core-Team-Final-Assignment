@@ -12,6 +12,7 @@ experimentRouter.get('/experiment/:id/goal/:gid/variantSuccess', experimentContr
 experimentRouter.get('/experiment/:id/requestPerAtt', experimentController.getRequestPerAttributeById);
 experimentRouter.get('/experiment/:id/variantExpose', experimentController.getVariantExposeById);
 experimentRouter.get('/experiment/:id', experimentController.getExperimentById);
+experimentRouter.get('/account', experimentController.getAccountDetails);
 
 //POST
 experimentRouter.post('/experiment/new', experimentController.createExperiment);

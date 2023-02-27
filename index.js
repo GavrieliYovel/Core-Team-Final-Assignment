@@ -5,7 +5,6 @@ const app     = express();
 const dotenv  = require('dotenv');
 
 const { experimentRouter } = require("./routers/experimentRouter");
-const { IAMRouter } = require("./routers/IAMRouter");
 const { BIDataRouter } = require("./routers/BIDataRouter");
 const { loggerRouter } = require("./routers/loggerRouter");
 
@@ -26,8 +25,7 @@ app.use(express.urlencoded({extended: true}));  // handel post reqs with body
 
 //
 app.use('/growth', experimentRouter);
-app.use('/IAM', IAMRouter);
-app.use('/BI', BIDataRouter);
+app.use('/bi', BIDataRouter);
 app.use('/logger', loggerRouter);
 
 listenToQ();

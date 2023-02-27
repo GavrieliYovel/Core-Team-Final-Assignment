@@ -40,7 +40,7 @@ class ABTestSDK {
         const attributes = filterUserAttributes(req);
         let variant = "";
         if(attributes.uuid) { //old user
-            axios.post("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/", {
+            axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/", {
                 experimentId: experimentId,
                 subscription: "pro",
                 inclusive: true,
@@ -53,7 +53,7 @@ class ABTestSDK {
                     variant = "wrong";
                 })
         } else { //new User
-            axios.post("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/", {
+            axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/", {
                 experimentId: experimentId,
                 subscription: "pro",
                 inclusive: true,
@@ -75,7 +75,7 @@ class ABTestSDK {
     async reportGoal(experimentId, goalId, req) {
         const attributes = filterUserAttributes(req);
         let successCount;
-        axios.post("http://localhost:3030/Growth/experiment/goal/", {
+        axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/goal/", {
             experimentId: experimentId,
             goalId: goalId,
             ...attributes

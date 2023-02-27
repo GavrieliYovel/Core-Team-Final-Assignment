@@ -29,23 +29,23 @@ const filterUserAttributes = (endUserReq, endUserCustomAttributes = null) => {
             ...getUserBrowserDevice(endUserReq)
         },
         customAttributes: endUserCustomAttributes,
-        uuid: endUserReq.cookies.uuid || null
+        uuid: endUserReq.cookies?.uuid || null
     }
 }
 
 
 class ABTestSDK {
 
-    async getVariant(experimentId, req, res) {
-        const attributes = filterUserAttributes(req);
+    async getVariant(experimentId, customAttributes, req, res) {
+        const attributes = filterUserAttributes(req, customAttributes);
+        const reqBody = {
+            experimentId: experimentId,
+            inclusive: true,
+            ...attributes
+        };
         let variant = "";
         if(attributes.uuid) { //old user
-            axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/", {
-                experimentId: experimentId,
-                subscription: "pro",
-                inclusive: true,
-                ...attributes
-            })
+            await axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/run", reqBody)
                 .then(response => {
                     variant = response.data.variant;
                 })
@@ -53,17 +53,13 @@ class ABTestSDK {
                     variant = "wrong";
                 })
         } else { //new User
-            axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/", {
-                experimentId: experimentId,
-                subscription: "pro",
-                inclusive: true,
-                ...attributes
-            })
+          await  axios.post("https://core-team-final-assignment.onrender.com/Growth/experiment/run", reqBody)
                 .then(response => {
                     variant = response.data.variant;
-                    const newUuid = response.data.uuid;
-                    res.cookie("uuid", newUuid, { maxAge: 900000, httpOnly: true });
-                })
+                    if(response.data.uuid) {
+                        const newUuid = response.data.uuid;
+                        res.cookie("uuid", newUuid, {maxAge: 900000, httpOnly: true});
+                    }})
                 .catch(fail => {
                     variant = "wrong";
                 })

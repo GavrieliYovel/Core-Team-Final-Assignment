@@ -134,6 +134,19 @@ describe('experimentController', () => {
         expect(res.json).toHaveBeenCalledWith(expect.objectContaining(expected));
     });
 
+    test('Report Goal', async () => {
+        // Arrange
+        const expected = "";
+        const req = {params: {id: '63fa918e041de9bef3f8164c'}};
+        const res = {status: jest.fn(), json: jest.fn()};
+
+        // Act
+        await experimentController.reportGoal(req, res);
+
+        // Assert
+        expect(res.json).toHaveBeenCalledWith(expected);
+    });
+
     // for failed calls
     test('Catch fail to Get Experiment by ID', async () => {
         // Arrange

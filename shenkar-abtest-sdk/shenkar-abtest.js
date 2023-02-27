@@ -2,6 +2,8 @@ const axios = require("axios");
 const requestIp = require('request-ip');
 const geoip = require("geoip-lite");
 const parser = require("ua-parser-js");
+const {response} = require("express");
+const {readUsedSize} = require("chart.js/helpers");
 
 
 const getIp = (endUserReq) => {
@@ -20,66 +22,71 @@ const getUserBrowserDevice = (endUserReq) => {
     };
 }
 
+const filterUserAttributes = (endUserReq, endUserCustomAttributes = null) => {
+    return {
+        testAttributes: {
+            location: getLocationCode(endUserReq),
+            ...getUserBrowserDevice(endUserReq)
+        },
+        customAttributes: endUserCustomAttributes,
+        uuid: endUserReq.cookies.uuid || null
+    }
+}
+
 
 class ABTestSDK {
-    account_id;
-     constructor(email, password){
-         axios.post("https://core-team-final-assignment-dev.onrender.com/IAM/login", {
-             "email": email,
-             "password": password
-         })
-             .then(response => {
-                 this.setAccountID(response.data.account)
-             })
-             .catch(response =>{
-                 console.log("Failed to login");
-             })
-     }
 
-     setAccountID(id){
-         this.account_id = id;
-     }
-
-     getAccountID(){
-         return this.account_id;
-     }
-
-    async getVariant(experimentId, attributes){
-        await axios.post("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/", {
-            experimentId: experimentId,
-            subscription: "pro",
-            ...attributes
-        })
-            .then(response => {
-                return response.data;
+    async getVariant(experimentId, req, res) {
+        const attributes = filterUserAttributes(req);
+        let variant = "";
+        if(attributes.uuid) { //old user
+            axios.post("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/", {
+                experimentId: experimentId,
+                subscription: "pro",
+                inclusive: true,
+                ...attributes
             })
-            .catch(fail => {
-                return "wrong ";
+                .then(response => {
+                    variant = response.data.variant;
+                })
+                .catch(fail => {
+                    variant = "wrong";
+                })
+        } else { //new User
+            axios.post("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/", {
+                experimentId: experimentId,
+                subscription: "pro",
+                inclusive: true,
+                ...attributes
             })
+                .then(response => {
+                    variant = response.data.variant;
+                    const newUuid = response.data.uuid;
+                    res.cookie("uuid", newUuid, { maxAge: 900000, httpOnly: true });
+                })
+                .catch(fail => {
+                    variant = "wrong";
+                })
+        }
+        return variant;
+
     }
-    async reportGoal(experimentId, goalId ,attributes){
-        await axios.post("https://core-team-final-assignment-dev.onrender.com/Growth/experiment/goal/", {
+
+    async reportGoal(experimentId, goalId, req) {
+        const attributes = filterUserAttributes(req);
+        let successCount;
+        axios.post("http://localhost:3030/Growth/experiment/goal/", {
             experimentId: experimentId,
             goalId: goalId,
             ...attributes
         })
             .then(response => {
-                return response.data;
+                successCount = response.data;
             })
             .catch(fail => {
-                return "wrong ";
+                successCount = "wrong ";
             })
-    }
-
-    filterUserAttributes(endUserReq, endUserCustomAttributes = null) {
-        return {
-            testAttributes: {
-                location: getLocationCode(endUserReq),
-                ...getUserBrowserDevice(endUserReq)
-            },
-            customAttributes: endUserCustomAttributes,
-            uuid:  endUserReq.cookies.uuid || null
-        }
+        return successCount;
     }
 
 }

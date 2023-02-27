@@ -54,17 +54,8 @@ exports.experimentController = {
             axios.post(`${growthRender}experiments/new`, req.body)
                 .then(async response => {
                     logger.info("creating experiment using Growth API");
-                    await axios.put('https://am-shenkar.onrender.com/credits/1', {headers: {'Content-Type': 'application/json'}})
-                        .then(response => {
-                            logger.info("use 1 credit using IAM");
-                            res.status(200);
-                            res.json(response.data);
-                        })
-                        .catch(mock => {
-                            logger.error("Failed to use 1 credit from IAM API");
-                            res.status(404);
-                            res.json({message: "Failed to use 1 credit from IAM API"});
-                        })
+                    res.status(200);
+                    res.json(response.data);
                 })
                 .catch(mock => {
                     logger.error("Failed to create experiment from Growth API");
@@ -103,7 +94,7 @@ exports.experimentController = {
         await getToken(req);
         const details = await getDetails(req);
         if (details.type === 'manager') {
-            await axios.put(`${growthRender}experiments/terminate/${req.params.id}`, {})
+             axios.put(`${growthRender}experiments/terminate/${req.params.id}`, {})
                 .then(response => {
                     logger.info("ending experiment using Growth");
                     res.status(200);
@@ -153,7 +144,7 @@ exports.experimentController = {
     async FeatureFlagExperimentsByAccount(req, res) {
         await getToken(req);
         const details = await getDetails(req);
-        await axios.get(`${growthRender}experiments/FF/${details?.accountId}`)
+         axios.get(`${growthRender}experiments/FF/${details?.accountId}`)
             .then(response => {
                 logger.info("getting FF experiments by account from Growth");
                 res.status(200);
@@ -166,7 +157,7 @@ exports.experimentController = {
             })
     },
     async getVariant(req, res) {
-        await axios.post(`${growthRender}test/run`, req.body, req.headers)
+         axios.post(`${growthRender}test/run`, req.body, req.headers)
             .then(response => {
                 logger.info("calling experiment using Growth");
                 res.status(200);
@@ -179,7 +170,7 @@ exports.experimentController = {
             })
     },
     async reportGoal(req, res) {
-        await axios.put(`${growthRender}test/report-goal`, req.body)
+         axios.put(`${growthRender}test/report-goal`, req.body)
             .then(response => {
                 logger.info("declaring goal using Growth");
                 res.status(200);
@@ -196,7 +187,7 @@ exports.experimentController = {
         await getToken(req);
         const details = await getDetails(req);
 
-        await axios.get(`${growthRender}experiments/${req.params.id}`)
+         axios.get(`${growthRender}experiments/${req.params.id}`)
             .then(response => {
                 logger.info("get experiment by Id using Growth");
                 res.status(200);
@@ -212,7 +203,7 @@ exports.experimentController = {
         await getToken(req);
         const details = await getDetails(req);
 
-        await axios.get(`${growthRender}stats/userVariant/${req.params.id}`)
+         axios.get(`${growthRender}stats/userVariant/${req.params.id}`)
             .then(response => {
                 logger.info("get experiment variant count using Growth");
                 res.status(200);
@@ -228,7 +219,7 @@ exports.experimentController = {
         await getToken(req);
         const details = await getDetails(req);
 
-        await axios.get(`${growthRender}stats/variantSuccessCount/${req.params.id}/${req.params.gid}`)
+         axios.get(`${growthRender}stats/variantSuccessCount/${req.params.id}/${req.params.gid}`)
             .then(response => {
                 logger.info("get variant success count by ID using Growth");
                 res.status(200);
@@ -244,7 +235,7 @@ exports.experimentController = {
         await getToken(req);
         const details = await getDetails(req);
 
-        await axios.get(`${growthRender}stats/reqPerAtt/${req.params.id}`)
+         axios.get(`${growthRender}stats/reqPerAtt/${req.params.id}`)
             .then(response => {
                 logger.info("get Request per attribute by ID using Growth");
                 res.status(404);
